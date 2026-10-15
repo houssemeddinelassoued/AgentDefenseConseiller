@@ -46,10 +46,22 @@ Variables d'environnement équivalentes : `AGENT_FOURNISSEUR=ollama`, `OLLAMA_MO
 .venv\Scripts\streamlit run streamlit_app.py
 ```
 
-Tableau de bord des indicateurs, priorisation, file de validation humaine, fiches par dossier,
-traçabilité et téléchargement du rapport HTML imprimable. Le moteur se choisit dans la barre
-latérale : démonstration, Claude (API) ou Ollama (local). Le Top N et le seuil de confiance
-s'appliquent sans relancer l'analyse.
+| Page | Rôle |
+|---|---|
+| **Nouvelle analyse** | Téléverser un document (PDF, Word, texte ; 10 Mo) ou rédiger le besoin, préciser la classification, lancer l'analyse : les étapes de l'agent s'affichent en direct, puis la fiche et le rapport imprimable |
+| **Mes analyses** | Analyses de la session, réouvrables, et rapport consolidé à télécharger |
+| **Démonstration** | Les 9 dossiers fictifs : indicateurs, priorisation, fiches, rapport du lot (Top N réglable) |
+| **À propos** | Carte d'identité de l'agent, règles d'escalade, actions permises et interdites |
+
+Le moteur (Claude ou Ollama) et le seuil de confiance se règlent dans le panneau latéral. Un niveau
+au-delà de Protégé A bloque la saisie ; une case de confirmation de classification est exigée avant
+chaque envoi au moteur. Les documents trop longs ou sans texte extractible (PDF numérisé) sont
+refusés avec un message plutôt que tronqués. Les analyses de session ne sont pas conservées après
+fermeture de la page : téléchargez les rapports.
+
+Thème : palette marine et rouge d'inspiration gouvernementale (`.streamlit/config.toml`), polices
+Noto Sans et Lato. Il ne reprend volontairement aucun symbole officiel (mot-symbole « Canada »,
+signature du MDN, drapeau) : l'application est un prototype public non officiel.
 
 **Déploiement sur Streamlit Community Cloud** : sur [share.streamlit.io](https://share.streamlit.io),
 « Create app » → dépôt `houssemeddinelassoued/AgentDefenseConseiller`, branche `main`, fichier

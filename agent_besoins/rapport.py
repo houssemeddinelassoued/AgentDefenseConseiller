@@ -314,7 +314,8 @@ def construire_html(resultats: list[Resultat], config: Config, references_titres
         '<div class="bandeau-demo">DÉMONSTRATION — Demandes fictives et analyses pré-calculées à titre '
         "d'illustration. Ne reflète aucun besoin réel des FAC.</div>" if mode_demo else ""
     )
-    lot = f"Top N = {config.top_n_validation}"
+    lot = (f"Top N = {config.top_n_validation}" if config.top_n_validation
+           else "Top N non applicable (analyse individuelle)")
 
     html = f"""<!doctype html>
 <html lang="fr-CA">
@@ -342,7 +343,7 @@ def construire_html(resultats: list[Resultat], config: Config, references_titres
     <div><dt>Règle d'escalade</dt><dd>{e(lot)} · confiance &lt; {config.seuil_confiance:.2f}</dd></div>
     <div><dt>Moteur</dt><dd>{e(moteur if not mode_demo else "Aucun (démonstration)")}</dd></div>
   </dl>
-  <p class="avertissement">Document de travail — recommandations non engageantes produites par un agent d'IA.
+  <p class="avertissement">Prototype non officiel · document de travail — recommandations non engageantes produites par un agent d'IA.
   Aucune voie d'approvisionnement n'est retenue sans validation par un responsable RDDC.</p>
   <nav class="no-print"><a href="#synthese">Synthèse</a><a href="#priorisation">Priorisation</a>
   <a href="#revue-humaine">Validation humaine</a><a href="#fiches">Fiches</a><a href="#tracabilite">Traçabilité</a><a href="#agent">Agent</a></nav>

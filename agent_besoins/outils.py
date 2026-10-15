@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 from datetime import datetime, timezone
+from typing import Callable
 
 from .connecteurs import ERPDip, References, SharePoint
 from .modeles import Trace
@@ -150,17 +151,21 @@ OUTILS_AUTORISES = frozenset(o["name"] for o in OUTILS)
 class Executeur:
     """Exécute les appels d'outils du modèle en appliquant la politique d'actions et journalise tout."""
 
-    def __init__(self, sharepoint: SharePoint, dip: ERPDip, references: References):
+    def __init__(self, sharepoint: SharePoint, dip: ERPDip, references: References,
+                 observateur: Callable[[Trace], None] | None = None):
         self.sharepoint = sharepoint
         self.dip = dip
         self.references = references
         self.traces: list[Trace] = []
+        self.observateur = observateur  # p. ex. l'interface qui affiche les étapes en direct
 
     def _tracer(self, outil: str, entree: dict, statut: str, detail: str = "") -> None:
         self.traces.append(Trace(
             horodatage=datetime.now(timezone.utc).isoformat(timespec="seconds"),
             outil=outil, entree=entree, statut=statut, detail=detail[:300],
         ))
+        if self.observateur:
+            self.observateur(self.traces[-1])
 
     def executer(self, nom: str, entree: dict) -> tuple[str, bool]:
         """Retourne (contenu du tool_result, est_erreur)."""

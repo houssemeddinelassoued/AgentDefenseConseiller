@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="260" height="48" viewBox="0 0 260 48" role="img" aria-label="Analyse des besoins en innovation">
+  <path d="M20 4 L36 9 V22 C36 32 29 39 20 43 C11 39 4 32 4 22 V9 Z" fill="#26374a" stroke="#c9d7e8" stroke-width="1.5"/>
+  <path d="M20 4 L36 9 V22 C36 32 29 39 20 43 Z" fill="#33475e"/>
+  <path d="M11 24 L20 15 L29 24 L26 27 L20 21 L14 27 Z" fill="#af3c43"/>
+  <path d="M11 31 L20 22 L29 31 L26 34 L20 28 L14 34 Z" fill="#ffffff" opacity=".9"/>
+  <text x="46" y="21" font-family="Lato, 'Segoe UI', Arial, sans-serif" font-size="15" font-weight="900" fill="#ffffff" letter-spacing=".4">ANALYSE DES BESOINS</text>
+  <text x="46" y="38" font-family="'Noto Sans', 'Segoe UI', Arial, sans-serif" font-size="12" fill="#f2b8bc" letter-spacing=".3">Innovation de défense · S&amp;T</text>
+</svg>

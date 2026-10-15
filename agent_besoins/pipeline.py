@@ -2,8 +2,11 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import time
+from dataclasses import replace
+from datetime import datetime
 from pathlib import Path
 from typing import Callable
 
@@ -94,6 +97,51 @@ def executer_demo(config: Config, fichier: Path = FICHIER_EXEMPLES) -> list[Resu
         r.integrite_ok = sharepoint.verifier_integrite(chemin, d.empreinte_sha256)
         resultats.append(r)
     return appliquer_escalade(resultats, config)
+
+
+def creer_demande(titre: str, contenu: str, demandeur: str, classification: str,
+                  source: str, contexte: dict | None = None) -> Demande:
+    """Demande soumise depuis l'interface (texte rédigé ou document téléversé)."""
+    maintenant = datetime.now()
+    return Demande(
+        id=f"SOUM-{maintenant:%Y%m%d-%H%M%S}",
+        titre=titre.strip(),
+        date_reception=f"{maintenant:%Y-%m-%d}",
+        demandeur=demandeur.strip() or "Non précisé",
+        classification=classification,
+        contexte={"source": source, **(contexte or {})},
+        contenu=contenu,
+        empreinte_sha256=hashlib.sha256(contenu.encode("utf-8")).hexdigest(),
+    )
+
+
+def analyser_demande(config: Config, demande: Demande, observateur=None) -> Resultat:
+    """Analyse une demande isolée. Le Top N ne s'applique pas hors d'un lot ; les autres règles, si.
+
+    Lève MoteurIndisponible ou ErreurFatale si le moteur est inutilisable.
+    """
+    from .agent import AgentAnalyseBesoins
+
+    contenu_initial = demande.contenu
+    hors = _hors_perimetre(demande, config)
+    if hors:
+        resultat = _resultat_vide(demande, hors)
+    else:
+        agent = AgentAnalyseBesoins(config)
+        fatales, par_dossier = _erreurs_moteur(config)
+        try:
+            resultat = agent.analyser(demande, observateur=observateur)
+        except fatales as exc:
+            raise ErreurFatale("Identifiants Anthropic invalides ou absents (ANTHROPIC_API_KEY).") from exc
+        except par_dossier as exc:
+            resultat = _resultat_vide(demande, f"Erreur du moteur : {str(exc)[:300]}")
+        agent.sharepoint.enregistrer_analyse(f"{demande.id}_analyse.json", resultat.model_dump_json(indent=2))
+    resultat.integrite_ok = (
+        demande.contenu == contenu_initial
+        and hashlib.sha256(demande.contenu.encode("utf-8")).hexdigest() == demande.empreinte_sha256
+    )
+    appliquer_escalade([resultat], replace(config, top_n_validation=0))
+    return resultat
 
 
 def titres_references(config: Config) -> dict[str, str]:

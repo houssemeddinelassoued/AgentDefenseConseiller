@@ -28,7 +28,8 @@ class AgentAnalyseBesoins:
         self.dip = ERPDip(config)
         self.references = References(config)
 
-    def analyser(self, demande: Demande) -> Resultat:
+    def analyser(self, demande: Demande, observateur=None) -> Resultat:
+        """`observateur(trace)` est appelé après chaque appel d'outil (affichage en direct)."""
         resultat = Resultat(
             demande_id=demande.id, titre=demande.titre, demandeur=demande.demandeur,
             classification=demande.classification, date_reception=demande.date_reception,
@@ -42,7 +43,7 @@ class AgentAnalyseBesoins:
             )
             return resultat
 
-        executeur = Executeur(self.sharepoint, self.dip, self.references)
+        executeur = Executeur(self.sharepoint, self.dip, self.references, observateur)
         conversation = self.nouvelle_conversation()
 
         def compter(tour) -> None:

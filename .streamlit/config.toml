@@ -1,8 +1,47 @@
+# Thème sobre d'inspiration gouvernementale (palette marine / rouge), sans symbole officiel.
 [theme]
 base = "light"
-primaryColor = "#0b3d91"
-secondaryBackgroundColor = "#f4f6fa"
-textColor = "#0f1f3a"
+font = "'Noto Sans':https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap"
+headingFont = "Lato:https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap"
+headingFontWeights = [700, 700, 700, 700, 600, 600]
+headingFontSizes = ["2.4rem", "1.7rem", "1.3rem", "1.1rem", "1rem", "0.9rem"]
+baseFontSize = 15
+metricValueFontSize = "1.75rem"
+metricValueFontWeight = 700
+
+primaryColor = "#26374a"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f1f3f6"
+textColor = "#1f2933"
+linkColor = "#284162"
+borderColor = "#d4d9e0"
+redColor = "#af3c43"
+blueColor = "#1d5fd1"
+greenColor = "#1b7f3b"
+orangeColor = "#c25e00"
+
+baseRadius = "small"
+buttonRadius = "small"
+showWidgetBorder = true
+showSidebarBorder = false
+linkUnderline = false
+
+dataframeHeaderBackgroundColor = "#26374a"
+dataframeHeaderTextColor = "#ffffff"
+dataframeBorderColor = "#d4d9e0"
+chartCategoricalColors = ["#1d5fd1", "#0e8a7a", "#c25e00", "#26374a", "#af3c43", "#6b7fa3"]
+
+paddingTop = "1.5rem"
+
+[theme.sidebar]
+backgroundColor = "#26374a"
+secondaryBackgroundColor = "#33475e"
+codeBackgroundColor = "#33475e"
+textColor = "#ffffff"
+borderColor = "#4a5d73"
+primaryColor = "#f2b8bc"
+linkColor = "#c9d7e8"
 
 [server]
 headless = true
+maxUploadSize = 10

@@ -176,12 +176,16 @@ class ClientOllama:
         elif api_key:
             self.entetes["Authorization"] = f"Bearer {api_key}"
 
-    def _requete(self, chemin: str, corps: dict | None = None) -> dict:
+    def _requete(self, chemin: str, corps: dict | None = None, flux: bool = False) -> dict:
         donnees = json.dumps(corps).encode("utf-8") if corps is not None else None
         req = urllib.request.Request(f"{self.url}{chemin}", data=donnees, headers=self.entetes)
         try:
             with urllib.request.urlopen(req, timeout=self.timeout) as rep:
-                return json.loads(rep.read().decode("utf-8"))
+                return _assembler_flux(rep) if flux else json.loads(rep.read().decode("utf-8"))
+        except TimeoutError:
+            raise MoteurIndisponible(
+                f"Le modèle n'a rien renvoyé pendant {self.timeout:.0f} s ({self.url}). Le poste est peut-être "
+                "surchargé : réduisez OLLAMA_NUM_CTX ou choisissez un modèle plus léger.")
         except urllib.error.HTTPError as exc:
             if exc.code == 401:
                 raise MoteurIndisponible(
@@ -205,7 +209,31 @@ class ClientOllama:
         return {m["name"]: m.get("capabilities") for m in self._requete("/api/tags").get("models", [])}
 
     def chat(self, corps: dict) -> dict:
-        return self._requete("/api/chat", corps)
+        # Réponse reçue au fil de l'eau : le délai s'applique entre deux fragments, pas à toute la
+        # génération, qu'un modèle local peut mettre plus de 10 minutes à produire.
+        return self._requete("/api/chat", {**corps, "stream": True}, flux=True)
+
+
+def _assembler_flux(reponse) -> dict:
+    """Recompose une réponse /api/chat diffusée (une ligne JSON par fragment) en une seule réponse."""
+    contenu: list[str] = []
+    appels: list[dict] = []
+    final: dict = {}
+    for ligne in reponse:
+        if not ligne.strip():
+            continue
+        fragment = json.loads(ligne.decode("utf-8"))
+        if fragment.get("error"):
+            raise MoteurIndisponible(f"Erreur Ollama : {fragment['error']}")
+        message = fragment.get("message") or {}
+        contenu.append(message.get("content") or "")
+        appels.extend(message.get("tool_calls") or [])
+        if fragment.get("done"):
+            final = fragment
+    message = {"role": "assistant", "content": "".join(contenu)}
+    if appels:
+        message["tool_calls"] = appels
+    return {**final, "message": message}
 
 
 class ConversationOllama:
@@ -223,7 +251,6 @@ class ConversationOllama:
         return self.client.chat({
             "model": self.config.ollama_modele,
             "messages": self.messages,
-            "stream": False,
             # Le contexte par défaut d'Ollama est trop court pour une demande + références.
             "options": {"num_ctx": self.config.ollama_num_ctx, "temperature": 0.2},
             **extra,
