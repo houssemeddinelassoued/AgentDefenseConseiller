@@ -6,8 +6,10 @@ agentique (`agent.py`), qui reste ainsi indépendante du fournisseur.
 
 from __future__ import annotations
 
+import http.client
 import json
 import urllib.error
+import urllib.parse
 import urllib.request
 import uuid
 from dataclasses import dataclass, field
@@ -126,28 +128,47 @@ CONSIGNE_JSON = (
 )
 
 
+def est_adresse_locale(url: str) -> bool:
+    hote = urllib.parse.urlsplit(url if "://" in url else f"http://{url}").hostname or ""
+    return hote in ("localhost", "127.0.0.1", "::1", "0.0.0.0")
+
+
+def _conseil(url: str, exc: Exception) -> str:
+    if est_adresse_locale(url):
+        return ("Démarrez Ollama sur cette machine (« ollama serve »). Si l'application est hébergée "
+                "(Streamlit Cloud), « localhost » désigne le serveur d'hébergement et non votre poste.")
+    return f"Vérifiez l'adresse, le tunnel ou le pare-feu ({getattr(exc, 'reason', exc)})."
+
+
 class ClientOllama:
     """Client minimal de l'API REST d'Ollama (bibliothèque standard uniquement)."""
 
-    def __init__(self, url: str, timeout: float):
-        self.url = url.rstrip("/")
+    def __init__(self, url: str, timeout: float, api_key: str = ""):
+        url = url.strip().rstrip("/")
+        self.url = url if "://" in url else f"http://{url}"
         self.timeout = timeout
+        self.entetes = {"Content-Type": "application/json"}
+        if api_key:
+            self.entetes["Authorization"] = f"Bearer {api_key}"
 
     def _requete(self, chemin: str, corps: dict | None = None) -> dict:
         donnees = json.dumps(corps).encode("utf-8") if corps is not None else None
-        req = urllib.request.Request(f"{self.url}{chemin}", data=donnees,
-                                     headers={"Content-Type": "application/json"})
+        req = urllib.request.Request(f"{self.url}{chemin}", data=donnees, headers=self.entetes)
         try:
             with urllib.request.urlopen(req, timeout=self.timeout) as rep:
                 return json.loads(rep.read().decode("utf-8"))
         except urllib.error.HTTPError as exc:
+            if exc.code in (401, 403):
+                raise MoteurIndisponible(f"Accès refusé par {self.url} ({exc.code}) : vérifiez la clé API Ollama.")
             raise MoteurIndisponible(f"Ollama a répondu {exc.code} : {exc.read().decode('utf-8', 'replace')[:300]}")
-        except (urllib.error.URLError, TimeoutError) as exc:
-            raise MoteurIndisponible(f"Ollama injoignable à {self.url} ({exc}). Lancez « ollama serve ».")
+        except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException) as exc:
+            raise MoteurIndisponible(f"Aucun serveur Ollama ne répond à {self.url}. {_conseil(self.url, exc)}")
+        except json.JSONDecodeError:
+            raise MoteurIndisponible(f"{self.url} a répondu, mais ce n'est pas l'API Ollama (vérifiez l'adresse).")
 
-    def modeles(self) -> dict[str, list[str]]:
-        """Nom du modèle → capacités déclarées (p. ex. ['completion', 'tools'])."""
-        return {m["name"]: m.get("capabilities", []) for m in self._requete("/api/tags").get("models", [])}
+    def modeles(self) -> dict[str, list[str] | None]:
+        """Nom du modèle → capacités déclarées (p. ex. ['completion', 'tools']) ; None si non déclarées."""
+        return {m["name"]: m.get("capabilities") for m in self._requete("/api/tags").get("models", [])}
 
     def chat(self, corps: dict) -> dict:
         return self._requete("/api/chat", corps)
@@ -214,7 +235,7 @@ class ConversationOllama:
 
 
 def moteur_ollama(config: Config):
-    client = ClientOllama(config.ollama_url, config.ollama_timeout)
+    client = ClientOllama(config.ollama_url, config.ollama_timeout, config.ollama_api_key)
     disponibles = client.modeles()
     if config.ollama_modele not in disponibles:
         liste = ", ".join(disponibles) or "aucun"
@@ -222,7 +243,9 @@ def moteur_ollama(config: Config):
             f"Modèle Ollama « {config.ollama_modele} » introuvable. Installés : {liste}. "
             f"Installez-le avec « ollama pull {config.ollama_modele} » ou choisissez-en un avec --modele-ollama."
         )
-    avec_outils = "tools" in disponibles[config.ollama_modele]
+    capacites = disponibles[config.ollama_modele]
+    # Capacités non déclarées (certains serveurs distants) : on tente les outils, avec repli JSON.
+    avec_outils = capacites is None or "tools" in capacites
     return lambda: ConversationOllama(config, client, avec_outils)
 
 

@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import os
 from collections import Counter
+from pathlib import Path
 from dataclasses import replace
 
 import pandas as pd
@@ -12,20 +13,41 @@ import streamlit as st
 from agent_besoins.config import Config
 from agent_besoins.escalade import appliquer_escalade
 from agent_besoins.modeles import Resultat
-from agent_besoins.moteurs import ClientOllama, MoteurIndisponible, libelle_moteur
+from agent_besoins.moteurs import ClientOllama, MoteurIndisponible, est_adresse_locale, libelle_moteur
 from agent_besoins.pipeline import ErreurFatale, executer_analyse, executer_demo, titres_references
 from agent_besoins.rapport import construire_html
 
 st.set_page_config(page_title="Analyse des besoins en innovation", page_icon=":material/biotech:", layout="wide")
 
 # Clé Anthropic : secrets Streamlit (Cloud) ou variable d'environnement (poste local)
-try:
-    if "ANTHROPIC_API_KEY" in st.secrets and not os.environ.get("ANTHROPIC_API_KEY"):
-        os.environ["ANTHROPIC_API_KEY"] = st.secrets["ANTHROPIC_API_KEY"]
-except FileNotFoundError:
-    pass  # aucun fichier de secrets en local
+def secret(nom: str, defaut: str = "") -> str:
+    """Secret Streamlit (Cloud), sinon variable d'environnement (poste local)."""
+    try:
+        if nom in st.secrets:
+            return str(st.secrets[nom])
+    except FileNotFoundError:
+        pass  # aucun fichier de secrets en local
+    return os.environ.get(nom, defaut)
 
-MOTEURS = {"demo": "Démonstration", "anthropic": "Claude (API)", "ollama": "Ollama (local)"}
+
+if secret("ANTHROPIC_API_KEY"):
+    os.environ["ANTHROPIC_API_KEY"] = secret("ANTHROPIC_API_KEY")
+
+# Streamlit Community Cloud monte le dépôt sous /mount/src : « localhost » y est le serveur d'hébergement.
+EN_LIGNE = Path("/mount/src").exists()
+
+MOTEURS = {"demo": "Démonstration", "anthropic": "Claude (API)", "ollama": "Ollama"}
+AIDE_OLLAMA_CLOUD = """L'application tourne sur Streamlit Cloud : elle ne peut pas joindre l'Ollama de votre poste.
+Trois possibilités :
+
+1. **Lancer l'application en local** (`streamlit run streamlit_app.py`) : Ollama sur `localhost` fonctionne directement.
+2. **Exposer votre Ollama par un tunnel HTTPS** puis coller l'adresse ci-dessus, par exemple
+   `cloudflared tunnel --url http://localhost:11434 --http-host-header localhost:11434`.
+   Le tunnel rend votre Ollama accessible depuis Internet : arrêtez-le après usage.
+3. **Utiliser Ollama Cloud** : adresse `https://ollama.com` et clé API Ollama. Les demandes quittent alors votre poste.
+
+Vous pouvez aussi définir `OLLAMA_HOST` et `OLLAMA_API_KEY` dans les secrets de l'application.
+"""
 VOIES_COURTES = {
     "R&D interne (RDDC)": "R&D interne",
     "Défi d'innovation IDEaS": "Défi IDEaS",
@@ -34,8 +56,14 @@ VOIES_COURTES = {
 
 
 @st.cache_data(ttl="1m", show_spinner=False)
-def modeles_ollama(url: str) -> dict[str, list[str]]:
-    return ClientOllama(url, 5).modeles()
+def modeles_ollama(url: str, api_key: str) -> dict[str, list[str] | None]:
+    return ClientOllama(url, 10, api_key).modeles()
+
+
+def etiquette_modele(nom: str, capacites: list[str] | None) -> str:
+    if capacites is None:
+        return nom
+    return f"{nom} · {'outils' if 'tools' in capacites else 'JSON seul'}"
 
 
 @st.cache_data(show_spinner=False)
@@ -66,22 +94,29 @@ with st.sidebar:
             st.warning("Ajoutez `ANTHROPIC_API_KEY` aux secrets de l'application pour activer Claude.",
                        title="Clé API absente", icon=":material/key_off:")
     elif mode == "ollama":
-        url = st.text_input("Serveur Ollama", value=config.ollama_url, key="ollama_url")
-        try:
-            disponibles = modeles_ollama(url)
-        except MoteurIndisponible as exc:
-            disponibles = {}
-            st.error(str(exc), title="Ollama injoignable", icon=":material/cloud_off:")
-            st.caption("Sur Streamlit Cloud, `localhost` désigne le serveur de Streamlit : exposez votre "
-                       "Ollama par une adresse accessible ou exécutez l'application en local.")
+        url_defaut = secret("OLLAMA_HOST", "" if EN_LIGNE else "http://localhost:11434")
+        url = st.text_input("Serveur Ollama", value=url_defaut, key="ollama_url",
+                            placeholder="https://mon-tunnel.example.com ou https://ollama.com")
+        api_key = st.text_input("Clé API Ollama (facultative)", value=secret("OLLAMA_API_KEY"), type="password",
+                                key="ollama_api_key", help="Uniquement pour un serveur protégé, p. ex. Ollama Cloud.")
+        disponibles: dict = {}
+        if EN_LIGNE and (not url or est_adresse_locale(url)):
+            st.info(AIDE_OLLAMA_CLOUD, title="Ollama local inaccessible depuis le cloud", icon=":material/lan:")
+        elif url:
+            try:
+                disponibles = modeles_ollama(url, api_key)
+            except MoteurIndisponible as exc:
+                st.error(str(exc), title="Ollama injoignable", icon=":material/cloud_off:")
+            if url and not disponibles and not EN_LIGNE:
+                st.caption("Vérifiez qu'Ollama tourne : `ollama serve`, puis `ollama list`.")
         if disponibles:
             noms = list(disponibles)
-            modele = st.selectbox(
-                "Modèle", noms, key="ollama_modele",
-                index=noms.index(config.ollama_modele) if config.ollama_modele in noms else 0,
-                format_func=lambda n: f"{n} · {'outils' if 'tools' in disponibles[n] else 'JSON seul'}",
-            )
-            config = replace(config, fournisseur="ollama", ollama_url=url, ollama_modele=modele)
+            defaut = secret("OLLAMA_MODELE", config.ollama_modele)
+            modele = st.selectbox("Modèle", noms, key="ollama_modele",
+                                  index=noms.index(defaut) if defaut in noms else 0,
+                                  format_func=lambda n: etiquette_modele(n, disponibles[n]))
+            config = replace(config, fournisseur="ollama", ollama_url=url, ollama_modele=modele,
+                             ollama_api_key=api_key)
 
     st.subheader("Règles d'escalade")
     top_n = st.number_input("Top N soumis à validation", min_value=0, max_value=1000, value=3, key="top_n",

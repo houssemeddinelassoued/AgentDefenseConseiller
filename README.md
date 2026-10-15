@@ -61,8 +61,18 @@ ANTHROPIC_API_KEY = "sk-ant-..."
 
 Sans secret, l'application publique reste en mode démonstration. Avec une clé, restreignez
 l'accès à l'application (*Settings → Sharing*), sinon tout visiteur peut lancer des analyses
-facturées sur votre compte. Ollama n'est pas joignable depuis le cloud (`localhost` y désigne le
-serveur Streamlit) : utilisez-le avec l'application lancée en local.
+facturées sur votre compte.
+
+**Ollama et Streamlit Cloud** : dans le cloud, `localhost` désigne le serveur Streamlit, pas votre
+poste ; l'application l'indique au lieu de tenter la connexion. Trois options :
+
+1. lancer l'application en local (Ollama sur `localhost` fonctionne directement) ;
+2. exposer votre Ollama par un tunnel HTTPS et saisir son adresse, par exemple
+   `cloudflared tunnel --url http://localhost:11434 --http-host-header localhost:11434`
+   (le tunnel rend Ollama accessible depuis Internet : arrêtez-le après usage) ;
+3. utiliser Ollama Cloud (`https://ollama.com` et une clé API) ; les demandes quittent alors le poste.
+
+Secrets facultatifs : `OLLAMA_HOST`, `OLLAMA_API_KEY`, `OLLAMA_MODELE`.
 
 Sorties dans `sortie/` : `rapport_analyse_besoins.html` (bouton « Imprimer / Exporter en PDF »),
 `rapport_analyse_besoins.pdf` (option `--pdf`, via Edge ou Chrome sans tête) et `resultats.json`.

@@ -19,6 +19,8 @@ class Config:
     ollama_modele: str = os.environ.get("OLLAMA_MODELE", "gemma4:latest")
     ollama_num_ctx: int = int(os.environ.get("OLLAMA_NUM_CTX", "32768"))
     ollama_timeout: float = 600.0  # un modèle local sur CPU peut être lent
+    # Facultatif : serveur Ollama distant protégé (Ollama Cloud, proxy) — envoyé en « Bearer »
+    ollama_api_key: str = os.environ.get("OLLAMA_API_KEY", "")
 
     # Modèle Claude et profondeur de raisonnement
     modele: str = os.environ.get("AGENT_MODELE", "claude-opus-5-5")

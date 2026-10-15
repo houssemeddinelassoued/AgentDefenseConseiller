@@ -53,11 +53,12 @@ def main() -> None:
 
     if args.mode == "modeles-ollama":
         try:
-            modeles = ClientOllama(config.ollama_url, 10).modeles()
+            modeles = ClientOllama(config.ollama_url, 10, config.ollama_api_key).modeles()
         except MoteurIndisponible as exc:
             sys.exit(str(exc))
         for nom, capacites in modeles.items():
-            note = "outils ✓" if "tools" in capacites else "sans outils (contexte pré-chargé + sortie JSON)"
+            note = ("capacités non déclarées" if capacites is None else
+                    "outils ✓" if "tools" in capacites else "sans outils (contexte pré-chargé + sortie JSON)")
             print(f"  {nom:30} {note}")
         return
 
