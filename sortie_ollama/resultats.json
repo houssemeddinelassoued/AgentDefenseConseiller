@@ -1,0 +1,1160 @@
+[
+  {
+    "demande_id": "BES-2026-0141",
+    "titre": "Détection de mini-drones en environnement arctique",
+    "demandeur": "Armée canadienne — Direction des besoins en capacités terrestres",
+    "classification": "NON CLASSIFIÉ",
+    "date_reception": "2026-09-08",
+    "analyse": null,
+    "erreur": "Erreur du moteur : MoteurIndisponible — Aucun serveur Ollama ne répond à http://localhost:11434. Démarrez Ollama sur cette machine (« ollama serve »). Si l'application est hébergée (Streamlit Cloud), « localhost » désigne le serveur d'héber",
+    "rang_priorite": null,
+    "escalade": true,
+    "motifs_escalade": [
+      "Erreur du moteur : MoteurIndisponible — Aucun serveur Ollama ne répond à http://localhost:11434. Démarrez Ollama sur cette machine (« ollama serve »). Si l'application est hébergée (Streamlit Cloud), « localhost » désigne le serveur d'héber"
+    ],
+    "traces": [],
+    "integrite_ok": true,
+    "jetons_entree": 0,
+    "jetons_sortie": 0
+  },
+  {
+    "demande_id": "BES-2026-0142",
+    "titre": "Modélisation de la signature acoustique rayonnée des futurs navires de combat",
+    "demandeur": "Marine royale canadienne — Direction des besoins maritimes",
+    "classification": "PROTÉGÉ A",
+    "date_reception": "2026-09-11",
+    "analyse": {
+      "id_demande": "BES-2026-0142",
+      "resume_besoin": "Développer et valider des modèles numériques de signature acoustique rayonnée (couplant machines, structure et hydrodynamique) pour les futurs navires de combat. Le besoin est de passer d'un état de preuve de concept (TRL 3) à une démonstration de prototype en environnement pertinent (TRL 6).",
+      "voie_recommandee": "R&D interne (RDDC)",
+      "scores_voies": {
+        "rd_interne": 95,
+        "ideas": 20
+      },
+      "justification": [
+        "**Problème Opérationnel et Contraintes:** Le besoin est intrinsèquement lié à des données de performance et des mesures de navires en service qui sont classifiées SECRET. Ces données ne peuvent être partagées avec un écosystème externe (industrie, PME) sans compromettre la sécurité de l'information et la souveraineté de l'information. De plus, le demandeur signale l'existence de travaux antérieurs et d'installations de mesure au sein du Ministère, ce qui oriente naturellement vers l'expertise interne.",
+        "**Analyse des Critères (REF-001):** Le besoin répond parfaitement aux critères de la R&D interne (RDDC) : l'information est classifiée et sensible, les résultats constituent une information souveraine, et l'expertise et les installations de mesure sont déjà disponibles au sein du Ministère (REF-003).",
+        "**Évaluation IDEaS:** Le défi IDEaS est écarté car la validation du modèle nécessite l'accès aux mesures classifiées, rendant impossible la mise en concurrence ouverte et la participation d'acteurs externes sur la base de données sensibles."
+      ],
+      "criteres": [
+        {
+          "critere": "Sensibilité de l'information",
+          "evaluation": "Classifiée SECRET. Exclut l'IDEaS.",
+          "favorise": "R&D interne"
+        },
+        {
+          "critere": "Propriété intellectuelle",
+          "evaluation": "Information souveraine. Doit être conservée par la Couronne.",
+          "favorise": "R&D interne"
+        },
+        {
+          "critere": "Expertise et ressources",
+          "evaluation": "Le demandeur pointe vers l'utilisation de centres de recherche et d'installations ministérielles existantes.",
+          "favorise": "R&D interne"
+        }
+      ],
+      "risques": [
+        {
+          "description": "Complexité technique et intégration des domaines physiques.",
+          "niveau": "élevé",
+          "mitigation": "Le projet nécessite une coordination multidisciplinaire entre l'acoustique, l'hydrodynamique et la mécanique structurelle. Il est crucial de définir des jalons de validation clairs pour chaque domaine physique et de ne pas considérer le modèle comme un simple assemblage de simulations."
+        },
+        {
+          "description": "Dépendance aux données classifiées.",
+          "niveau": "élevé",
+          "mitigation": "La gestion du cycle de vie des données classifiées doit être intégrée dès la phase de conception du projet pour garantir la conformité légale et sécuritaire."
+        }
+      ],
+      "zones_grises": [
+        "Le passage de TRL 3 à TRL 6 est ambitieux pour un horizon de 36 mois. Il est nécessaire de décomposer le besoin en plusieurs phases de maturité pour gérer le risque de calendrier."
+      ],
+      "contradictions": [],
+      "questions_ouvertes": [
+        "Le niveau de détail des mesures de signature acoustique (fréquence, portée, type de source) doit être précisé pour établir un plan de travail détaillé."
+      ],
+      "trl_estime": "Le TRL visé (6) est réalisable, mais nécessite une approche par étapes (TRL 3 -> TRL 4 -> TRL 5 -> TRL 6) plutôt qu'une approche monolithique.",
+      "priorite": 90,
+      "justification_priorite": "La nature classifiée et la dépendance aux ressources internes confèrent une priorité élevée à l'approche RDDC, car toute tentative de délocalisation ou de mise en concurrence externe est bloquée par les contraintes de sécurité de l'information.",
+      "confiance": 0.9,
+      "references_utilisees": [
+        "REF-003",
+        "REF-001"
+      ]
+    },
+    "erreur": null,
+    "rang_priorite": 1,
+    "escalade": true,
+    "motifs_escalade": [
+      "Top 3 des recommandations (cas stratégique)",
+      "Risque de niveau élevé"
+    ],
+    "traces": [
+      {
+        "horodatage": "2026-10-15T15:41:13+00:00",
+        "outil": "rechercher_references",
+        "entree": {
+          "requete": "signature acoustique navale classifiée"
+        },
+        "statut": "ok",
+        "detail": ""
+      }
+    ],
+    "integrite_ok": true,
+    "jetons_entree": 10614,
+    "jetons_sortie": 12158
+  },
+  {
+    "demande_id": "BES-2026-0143",
+    "titre": "Outil prédictif de détection précoce de l'épuisement chez les militaires",
+    "demandeur": "Groupe des Services de santé des Forces canadiennes",
+    "classification": "NON CLASSIFIÉ",
+    "date_reception": "2026-09-15",
+    "analyse": {
+      "id_demande": "BES-2026-0143",
+      "resume_besoin": "Développer un outil d'aide à la décision prédictif pour détecter précocement le risque d'épuisement professionnel et de détresse psychologique chez les militaires, en combinant des données cliniques, opérationnelles et comportementales.",
+      "voie_recommandee": "Revue humaine approfondie",
+      "scores_voies": {
+        "rd_interne": 45,
+        "ideas": 35
+      },
+      "justification": [
+        "**Problème opérationnel réel :** Le besoin est de développer une capacité de surveillance prédictive de la santé mentale des effectifs militaires pour améliorer le maintien en puissance. Il s'agit d'un problème de science des données et de facteurs humains.",
+        "**Niveau de Maturité Technologique (TRL) :** Le passage de TRL 2 (concept formulé) à TRL 5 (validation en environnement représentatif) est un saut significatif nécessitant une validation clinique et algorithmique rigoureuse.",
+        "**Analyse des contraintes et risques :** Le risque majeur n'est pas technologique, mais **légal, éthique et de gouvernance des données**. L'utilisation de renseignements personnels de santé (PHI) est extrêmement sensible. L'absence d'évaluation des facteurs relatifs à la vie privée (EFVP) et de protocoles de confidentialité clairs (notamment concernant la chaîne de commandement) rend tout lancement S&T prématuré.",
+        "**Comparaison des voies :**",
+        "**R&D interne (RDDC) :** Bien que les centres de recherche RDDC (notamment le Centre de recherches de Toronto pour les facteurs humains et le CARO pour l'analytique) possèdent l'expertise nécessaire pour la modélisation, l'accès aux données réelles de santé protégées et la validation clinique nécessitent une structure légale et éthique qui n'est pas en place. Le développement interne est possible, mais il doit être précédé d'une revue juridique approfondie.",
+        "**Défi d'innovation IDEaS :** Cette voie serait idéale pour le développement de l'algorithme *en théorie* en utilisant des données synthétiques, car elle permet la concurrence externe. Cependant, la complexité de l'intégration de données réelles (cliniques, opérationnelles, comportementales) et la nécessité de garantir la confidentialité des alertes rendent l'approche IDEaS trop risquée sans un cadre de données sécurisé et légalement validé.",
+        "**Conclusion :** Les enjeux éthiques, juridiques et de vie privée sont primordiaux et dépassent le cadre d'une simple orientation S&T. Il est impératif de réaliser une revue approfondie pour établir la faisabilité légale et éthique avant de déterminer si le besoin doit être traité en interne ou en externe."
+      ],
+      "criteres": [
+        {
+          "critere": "Sensibilité/Classification",
+          "evaluation": "Haute. Implique des renseignements personnels de santé protégés (PHI).",
+          "favorise": "R&D interne"
+        },
+        {
+          "critere": "Nature du problème",
+          "evaluation": "Modélisation complexe, nécessitant une expertise en science des données et en facteurs humains.",
+          "favorise": "IDEaS"
+        },
+        {
+          "critere": "Enjeux éthiques/Juridiques",
+          "evaluation": "Critique. L'absence d'EFVP et de protocoles de confidentialité clairs est un blocage majeur.",
+          "favorise": "Neutre"
+        }
+      ],
+      "risques": [
+        {
+          "description": "Risque de confidentialité et de vie privée (PHI). L'utilisation des données de santé doit être précédée d'une évaluation légale et éthique formelle (EFVP).",
+          "niveau": "élevé",
+          "mitigation": "Suspension du lancement S&T jusqu'à validation légale."
+        },
+        {
+          "description": "Contradiction entre l'ambition du besoin (utilisation de données réelles et complexes) et le statut de non-classification du besoin, qui masque la sensibilité des données sous-jacentes.",
+          "niveau": "moyen",
+          "mitigation": "Clarification des sources de données et des protocoles d'accès."
+        },
+        {
+          "description": "Manque de définition des modalités d'utilisation des alertes (confidentialité vis-à-vis de la chaîne de commandement).",
+          "niveau": "moyen",
+          "mitigation": "Impliquer les responsables opérationnels et juridiques dès la phase de cadrage."
+        }
+      ],
+      "zones_grises": [
+        "La demande est techniquement réalisable (TRL 2 -> 5), mais la faisabilité est bloquée par des considérations de gouvernance des données qui nécessitent une expertise juridique et éthique externe au processus S&T."
+      ],
+      "contradictions": [
+        "Le demandeur est ouvert à un défi ouvert (IDEaS) mais le sujet (santé mentale militaire) est intrinsèquement lié à des données hautement sensibles et potentiellement classifiées dans leur usage réel, ce qui contredit les exigences de l'IDEaS."
+      ],
+      "questions_ouvertes": [
+        "Quelle est la base légale pour l'utilisation de ces données de santé (consentement, mandat, etc.) ?",
+        "Quels sont les protocoles de confidentialité et de partage des alertes entre les cliniciens et la chaîne de commandement ?",
+        "Le budget de 900 k$ est-il suffisant pour couvrir l'intégralité du cycle de vie (développement algorithmique + validation clinique + revue légale) ?"
+      ],
+      "trl_estime": "2 (Concept formulé)",
+      "priorite": 60,
+      "justification_priorite": "Le besoin est stratégique pour le MDN, mais la complexité réglementaire et éthique nécessite une phase de cadrage préliminaire (Revue humaine approfondie) avant d'attribuer une priorité de lancement S&T.",
+      "confiance": 0.85,
+      "references_utilisees": [
+        "REF-001",
+        "REF-004",
+        "REF-003",
+        "REF-005"
+      ]
+    },
+    "erreur": null,
+    "rang_priorite": 7,
+    "escalade": true,
+    "motifs_escalade": [
+      "Dossier ambigu : revue humaine recommandée par l'agent",
+      "Contradictions détectées (1)",
+      "Risque de niveau élevé"
+    ],
+    "traces": [
+      {
+        "horodatage": "2026-10-15T15:46:11+00:00",
+        "outil": "rechercher_references",
+        "entree": {
+          "requete": "santé mentale militaire données de santé"
+        },
+        "statut": "ok",
+        "detail": ""
+      }
+    ],
+    "integrite_ok": true,
+    "jetons_entree": 11332,
+    "jetons_sortie": 10110
+  },
+  {
+    "demande_id": "BES-2026-0144",
+    "titre": "Textile de camouflage multispectral adaptatif",
+    "demandeur": "Armée canadienne — Direction du soldat",
+    "classification": "NON CLASSIFIÉ",
+    "date_reception": "2026-09-17",
+    "analyse": {
+      "id_demande": "BES-2026-0144",
+      "resume_besoin": "Le besoin est de développer un textile de camouflage multispectral adaptatif, léger et durable, capable de réduire la détectabilité des soldats dans le visible, le proche infrarouge et l'infrarouge thermique. Le projet vise à faire passer la technologie de maturité TRL 3 à TRL 6 sur un horizon de 30 mois.",
+      "voie_recommandee": "Défi d'innovation IDEaS",
+      "scores_voies": {
+        "rd_interne": 40,
+        "ideas": 95
+      },
+      "justification": [
+        "Le besoin concerne un textile de camouflage multispectral adaptatif, un problème de science des matériaux qui est non classifié.",
+        "L'existence d'un écosystème externe actif (universités, PME textiles) et la nature ouverte des spécifications de performance sont des facteurs clés qui favorisent un appel à la concurrence.",
+        "L'historique des demandes similaires (BES-2024-0219) a déjà retenu la voie IDEaS pour ce type de défi."
+      ],
+      "criteres": [
+        {
+          "critere": "Sensibilité de l'information",
+          "evaluation": "Le besoin est explicitement NON CLASSIFIÉ, ce qui ouvre la porte à la participation du secteur privé et universitaire.",
+          "favorise": "IDEaS"
+        },
+        {
+          "critere": "Écosystème de solutions",
+          "evaluation": "Le demandeur mentionne l'existence d'un écosystème externe actif (laboratoires universitaires, secteur textile) capable de proposer des solutions concurrentielles.",
+          "favorise": "IDEaS"
+        },
+        {
+          "critere": "Nature du problème",
+          "evaluation": "Le problème est un défi de recherche et développement en science des matériaux et en ingénierie textile, qui bénéficie de l'approche par la concurrence pour optimiser le rapport performance/coût.",
+          "favorise": "IDEaS"
+        }
+      ],
+      "risques": [
+        {
+          "description": "Le saut de TRL 3 à TRL 6 est ambitieux et nécessite une coordination complexe entre la recherche fondamentale et les tests de terrain.",
+          "niveau": "élevé",
+          "mitigation": "Découper le projet en phases successives : Phase 1 (TRL 3->4 : preuve de concept en laboratoire) ; Phase 2 (TRL 4->6 : prototypes et tests de terrain)."
+        },
+        {
+          "description": "Le coût de production à l'échelle industrielle (analyse des coûts) n'est pas détaillé et pourrait devenir une contrainte majeure.",
+          "niveau": "moyen",
+          "mitigation": "Intégrer une composante d'analyse de faisabilité industrielle et de coût dès la phase de défi d'innovation."
+        }
+      ],
+      "zones_grises": [
+        "La transition entre la recherche fondamentale (TRL 3) et la production industrielle (TRL 6) est un saut technologique majeur qui nécessite une gestion de projet très structurée."
+      ],
+      "contradictions": [],
+      "questions_ouvertes": [
+        "Quelles sont les spécifications précises de \"l'adaptabilité saisonnière\" (ex: résistance au gel, respirabilité en haute humidité) ?",
+        "Y a-t-il des contraintes de maintenance ou de cycle de vie spécifiques à intégrer dans le cahier des charges ?"
+      ],
+      "trl_estime": "TRL 3 → TRL 6",
+      "priorite": 90,
+      "justification_priorite": "Le besoin répond à une menace opérationnelle moderne et critique (détection par capteurs avancés) et est essentiel pour la survie et l'efficacité des troupes au sol.",
+      "confiance": 0.9,
+      "references_utilisees": [
+        "BES-2024-0219"
+      ]
+    },
+    "erreur": null,
+    "rang_priorite": 2,
+    "escalade": true,
+    "motifs_escalade": [
+      "Top 3 des recommandations (cas stratégique)",
+      "Risque de niveau élevé"
+    ],
+    "traces": [
+      {
+        "horodatage": "2026-10-15T15:50:33+00:00",
+        "outil": "rechercher_references",
+        "entree": {
+          "requete": "textile camouflage multispectral"
+        },
+        "statut": "ok",
+        "detail": ""
+      },
+      {
+        "horodatage": "2026-10-15T15:50:48+00:00",
+        "outil": "rechercher_demandes_similaires",
+        "entree": {
+          "requete": "textile camouflage multispectral"
+        },
+        "statut": "ok",
+        "detail": ""
+      },
+      {
+        "horodatage": "2026-10-15T15:51:53+00:00",
+        "outil": "soumettre_analyse",
+        "entree": {
+          "confiance": 0.9,
+          "contradictions": [],
+          "criteres": [
+            {
+              "critere": "Sensibilité de l'information",
+              "evaluation": "Le besoin est explicitement NON CLASSIFIÉ, ce qui ouvre la porte à la participation du secteur privé et universitaire.",
+              "favorise": "IDEaS"
+            },
+            {
+              "critere": "Écosystème de solutions",
+              "evaluation": "Le demandeur mentionne l'existence d'un écosystème externe actif (laboratoires universitaires, secteur textile) capable de proposer des solutions concurrentielles.",
+              "favorise": "IDEaS"
+            },
+            {
+              "critere": "Nature du problème",
+              "evaluation": "Le problème est un défi de recherche et développement en science des matériaux et en ingénierie textile, qui bénéficie de l'approche par la concurrence pour optimiser le rapport performance/coût.",
+              "favorise": "IDEaS"
+            }
+          ],
+          "id_demande": "BES-2026-0144",
+          "justification": [
+            "Le besoin concerne un textile de camouflage multispectral adaptatif, un problème de science des matériaux qui est non classifié.",
+            "L'existence d'un écosystème externe actif (universités, PME textiles) et la nature ouverte des spécifications de performance sont des facteurs clés qui favorisent un appel à la concurrence.",
+            "L'historique des demandes similaires (BES-2024-0219) a déjà retenu la voie IDEaS pour ce type de défi."
+          ],
+          "justification_priorite": "Le besoin répond à une menace opérationnelle moderne et critique (détection par capteurs avancés) et est essentiel pour la survie et l'efficacité des troupes au sol.",
+          "priorite": 90,
+          "questions_ouvertes": [
+            "Quelles sont les spécifications précises de \"l'adaptabilité saisonnière\" (ex: résistance au gel, respirabilité en haute humidité) ?",
+            "Y a-t-il des contraintes de maintenance ou de cycle de vie spécifiques à intégrer dans le cahier des charges ?"
+          ],
+          "references_utilisees": [
+            "BES-2024-0219"
+          ],
+          "resume_besoin": "Le besoin est de développer un textile de camouflage multispectral adaptatif, léger et durable, capable de réduire la détectabilité des soldats dans le visible, le proche infrarouge et l'infrarouge thermique. Le projet vise à faire passer la technologie de maturité TRL 3 à TRL 6 sur un horizon de 30 mois.",
+          "risques": [
+            {
+              "description": "Le saut de TRL 3 à TRL 6 est ambitieux et nécessite une coordination complexe entre la recherche fondamentale et les tests de terrain.",
+              "mitigation": "Découper le projet en phases successives : Phase 1 (TRL 3->4 : preuve de concept en laboratoire) ; Phase 2 (TRL 4->6 : prototypes et tests de terrain).",
+              "niveau": "élevé"
+            },
+            {
+              "description": "Le coût de production à l'échelle industrielle (analyse des coûts) n'est pas détaillé et pourrait devenir une contrainte majeure.",
+              "mitigation": "Intégrer une composante d'analyse de faisabilité industrielle et de coût dès la phase de défi d'innovation.",
+              "niveau": "moyen"
+            }
+          ],
+          "scores_voies": {
+            "ideas": 95,
+            "rd_interne": 40
+          },
+          "trl_estime": "TRL 3 → TRL 6",
+          "voie_recommandee": "Défi d'innovation IDEaS",
+          "zones_grises": [
+            "La transition entre la recherche fondamentale (TRL 3) et la production industrielle (TRL 6) est un saut technologique majeur qui nécessite une gestion de projet très structurée."
+          ]
+        },
+        "statut": "ok",
+        "detail": ""
+      }
+    ],
+    "integrite_ok": true,
+    "jetons_entree": 7136,
+    "jetons_sortie": 4438
+  },
+  {
+    "demande_id": "BES-2026-0145",
+    "titre": "Purification d'eau portative pour patrouilles nordiques",
+    "demandeur": "Groupe de patrouilles des Rangers canadiens",
+    "classification": "NON CLASSIFIÉ",
+    "date_reception": "2026-09-22",
+    "analyse": {
+      "id_demande": "BES-2026-0145",
+      "resume_besoin": "Le Groupe de patrouilles des Rangers canadiens a besoin d'équiper ses patrouilles de longue durée d'un purificateur d'eau portatif fiable, capable de fonctionner à -30°C. Le besoin se limite à la sélection et à l'acquisition de 300 unités dans un délai de six mois, en se basant sur la validation de trois produits commerciaux déjà identifiés.",
+      "voie_recommandee": "Revue humaine approfondie",
+      "scores_voies": {
+        "rd_interne": 10,
+        "ideas": 30
+      },
+      "justification": [
+        "Le besoin est de valider la performance de produits commerciaux existants dans des conditions extrêmes (-30°C) et d'en procéder à l'acquisition.",
+        "Le TRL actuel (8) et visé (9) indique que la technologie est mature et prête pour le déploiement opérationnel.",
+        "La nature de la demande (achat et vérification de produits commerciaux) ne relève pas de la recherche fondamentale ou du développement technologique complexe."
+      ],
+      "criteres": [
+        {
+          "critere": "Niveau de maturité technologique (TRL)",
+          "evaluation": "TRL 8-9 (Système qualifié et éprouvé en opération). Le besoin est de validation et d'acquisition, non de développement.",
+          "favorise": "Neutre"
+        },
+        {
+          "critere": "Nature du problème",
+          "evaluation": "Le besoin est de sélectionner et d'acquérir des produits commerciaux existants (3 produits identifiés).",
+          "favorise": "Neutre"
+        },
+        {
+          "critere": "Accès aux données/systèmes militaires",
+          "evaluation": "Le besoin est de vérifier la performance environnementale (froid) de produits externes, pas de développer un système interne ou classifié.",
+          "favorise": "Neutre"
+        }
+      ],
+      "risques": [
+        {
+          "description": "Risque de dérive du mandat (Scope Creep) : Le demandeur pourrait tenter de transformer une demande d'achat/validation en un projet de développement S&T.",
+          "niveau": "élevé",
+          "mitigation": "Définir clairement les limites du mandat : l'analyse doit se concentrer uniquement sur la validation de la performance et la faisabilité d'acquisition des produits commerciaux identifiés."
+        }
+      ],
+      "zones_grises": [
+        "Le niveau de détail sur les critères de sélection des produits commerciaux (critères de performance, coût total de possession, maintenance) est insuffisant pour une recommandation définitive."
+      ],
+      "contradictions": [],
+      "questions_ouvertes": [
+        "Quelles sont les spécifications exactes de l'environnement opérationnel (pression, débit, type de source d'eau) pour la validation des produits ?",
+        "Y a-t-il des critères de maintenance ou de logistique spécifiques au Grand Nord qui doivent être intégrés à l'évaluation des produits ?"
+      ],
+      "trl_estime": "TRL 8 → TRL 9 (Validation et Acquisition)",
+      "priorite": 85,
+      "justification_priorite": "L'urgence opérationnelle est élevée, mais la nature du besoin est purement logistique et d'approvisionnement, nécessitant une expertise en achat et validation de marché plutôt qu'en S&T.",
+      "confiance": 0.95,
+      "references_utilisees": [
+        "REF-005"
+      ]
+    },
+    "erreur": null,
+    "rang_priorite": 4,
+    "escalade": true,
+    "motifs_escalade": [
+      "Dossier ambigu : revue humaine recommandée par l'agent",
+      "Risque de niveau élevé"
+    ],
+    "traces": [
+      {
+        "horodatage": "2026-10-15T15:52:20+00:00",
+        "outil": "rechercher_references",
+        "entree": {
+          "requete": "acquisition commerciale validation équipement froid"
+        },
+        "statut": "ok",
+        "detail": ""
+      },
+      {
+        "horodatage": "2026-10-15T15:53:05+00:00",
+        "outil": "soumettre_analyse",
+        "entree": {
+          "confiance": 0.95,
+          "contradictions": [],
+          "criteres": [
+            {
+              "critere": "Niveau de maturité technologique (TRL)",
+              "evaluation": "TRL 8-9 (Système qualifié et éprouvé en opération). Le besoin est de validation et d'acquisition, non de développement.",
+              "favorise": "Revue humaine approfondie"
+            },
+            {
+              "critere": "Nature du problème",
+              "evaluation": "Le besoin est de sélectionner et d'acquérir des produits commerciaux existants (3 produits identifiés).",
+              "favorise": "Revue humaine approfondie"
+            },
+            {
+              "critere": "Accès aux données/systèmes militaires",
+              "evaluation": "Le besoin est de vérifier la performance environnementale (froid) de produits externes, pas de développer un système interne ou classifié.",
+              "favorise": "Revue humaine approfondie"
+            }
+          ],
+          "id_demande": "BES-2026-0145",
+          "justification": [
+            "Le besoin est de valider la performance de produits commerciaux existants dans des conditions extrêmes (-30°C) et d'en procéder à l'acquisition.",
+            "Le TRL actuel (8) et visé (9) indique que la technologie est mature et prête pour le déploiement opérationnel.",
+            "La nature de la demande (achat et vérification de produits commerciaux) ne relève pas de la recherche fondamentale ou du développement technologique complexe."
+          ],
+          "justification_priorite": "L'urgence opérationnelle est élevée, mais la nature du besoin est purement logistique et d'approvisionnement, nécessitant une expertise en achat et validation de marché plutôt qu'en S&T.",
+          "priorite": 85,
+          "questions_ouvertes": [
+            "Quelles sont les spécifications exactes de l'environnement opérationnel (pression, débit, type de source d'eau) pour la validation des produits ?",
+            "Y a-t-il des critères de maintenance ou de logistique spécifiques au Grand Nord qui doivent être intégrés à l'évaluation des produits ?"
+          ],
+          "references_utilisees": [
+            "REF-005"
+          ],
+          "resume_besoin": "Le Groupe de patrouilles des Rangers canadiens a besoin d'équiper ses patrouilles de longue durée d'un purificateur d'eau portatif fiable, capable de fonctionner à -30°C. Le besoin se limite à la sélection et à l'acquisition de 300 unités dans un délai de six mois, en se basant sur la validation de trois produits commerciaux déjà identifiés.",
+          "risques": [
+            {
+              "description": "Risque de dérive du mandat (Scope Creep) : Le demandeur pourrait tenter de transformer une demande d'achat/validation en un projet de développement S&T.",
+              "mitigation": "Définir clairement les limites du mandat : l'analyse doit se concentrer uniquement sur la validation de la performance et la faisabilité d'acquisition des produits commerciaux identifiés.",
+              "niveau": "élevé"
+            }
+          ],
+          "scores_voies": {
+            "ideas": 30,
+            "rd_interne": 10
+          },
+          "trl_estime": "TRL 8 → TRL 9 (Validation et Acquisition)",
+          "voie_recommandee": "Revue humaine approfondie",
+          "zones_grises": [
+            "Le niveau de détail sur les critères de sélection des produits commerciaux (critères de performance, coût total de possession, maintenance) est insuffisant pour une recommandation définitive."
+          ]
+        },
+        "statut": "ok",
+        "detail": ""
+      },
+      {
+        "horodatage": "2026-10-15T15:53:26+00:00",
+        "outil": "soumettre_analyse",
+        "entree": {
+          "confiance": 0.95,
+          "contradictions": [],
+          "criteres": [
+            {
+              "critere": "Niveau de maturité technologique (TRL)",
+              "evaluation": "TRL 8-9 (Système qualifié et éprouvé en opération). Le besoin est de validation et d'acquisition, non de développement.",
+              "favorise": "Neutre"
+            },
+            {
+              "critere": "Nature du problème",
+              "evaluation": "Le besoin est de sélectionner et d'acquérir des produits commerciaux existants (3 produits identifiés).",
+              "favorise": "Neutre"
+            },
+            {
+              "critere": "Accès aux données/systèmes militaires",
+              "evaluation": "Le besoin est de vérifier la performance environnementale (froid) de produits externes, pas de développer un système interne ou classifié.",
+              "favorise": "Neutre"
+            }
+          ],
+          "id_demande": "BES-2026-0145",
+          "justification": [
+            "Le besoin est de valider la performance de produits commerciaux existants dans des conditions extrêmes (-30°C) et d'en procéder à l'acquisition.",
+            "Le TRL actuel (8) et visé (9) indique que la technologie est mature et prête pour le déploiement opérationnel.",
+            "La nature de la demande (achat et vérification de produits commerciaux) ne relève pas de la recherche fondamentale ou du développement technologique complexe."
+          ],
+          "justification_priorite": "L'urgence opérationnelle est élevée, mais la nature du besoin est purement logistique et d'approvisionnement, nécessitant une expertise en achat et validation de marché plutôt qu'en S&T.",
+          "priorite": 85,
+          "questions_ouvertes": [
+            "Quelles sont les spécifications exactes de l'environnement opérationnel (pression, débit, type de source d'eau) pour la validation des produits ?",
+            "Y a-t-il des critères de maintenance ou de logistique spécifiques au Grand Nord qui doivent être intégrés à l'évaluation des produits ?"
+          ],
+          "references_utilisees": [
+            "REF-005"
+          ],
+          "resume_besoin": "Le Groupe de patrouilles des Rangers canadiens a besoin d'équiper ses patrouilles de longue durée d'un purificateur d'eau portatif fiable, capable de fonctionner à -30°C. Le besoin se limite à la sélection et à l'acquisition de 300 unités dans un délai de six mois, en se basant sur la validation de trois produits commerciaux déjà identifiés.",
+          "risques": [
+            {
+              "description": "Risque de dérive du mandat (Scope Creep) : Le demandeur pourrait tenter de transformer une demande d'achat/validation en un projet de développement S&T.",
+              "mitigation": "Définir clairement les limites du mandat : l'analyse doit se concentrer uniquement sur la validation de la performance et la faisabilité d'acquisition des produits commerciaux identifiés.",
+              "niveau": "élevé"
+            }
+          ],
+          "scores_voies": {
+            "ideas": 30,
+            "rd_interne": 10
+          },
+          "trl_estime": "TRL 8 → TRL 9 (Validation et Acquisition)",
+          "voie_recommandee": "Revue humaine approfondie",
+          "zones_grises": [
+            "Le niveau de détail sur les critères de sélection des produits commerciaux (critères de performance, coût total de possession, maintenance) est insuffisant pour une recommandation définitive."
+          ]
+        },
+        "statut": "ok",
+        "detail": ""
+      }
+    ],
+    "integrite_ok": true,
+    "jetons_entree": 8116,
+    "jetons_sortie": 4685
+  },
+  {
+    "demande_id": "BES-2026-0146",
+    "titre": "Détection des campagnes de désinformation générées par IA visant les opérations des FAC",
+    "demandeur": "État-major interarmées stratégique — Opérations d'information",
+    "classification": "NON CLASSIFIÉ",
+    "date_reception": "2026-09-24",
+    "analyse": {
+      "id_demande": "BES-2026-0146",
+      "resume_besoin": "L'État-major interarmées stratégique a besoin d'un outil opérationnel (TRL 8) capable de détecter, d'estimer l'origine et la portée des campagnes de désinformation générées par IA ciblant les opérations des FAC. L'outil doit être développé en 6 mois, utiliser des données de renseignement classifiées et garantir la non-divulgation de son existence.",
+      "voie_recommandee": "Revue humaine approfondie",
+      "scores_voies": {
+        "rd_interne": 85,
+        "ideas": 40
+      },
+      "justification": [
+        "Le besoin est critique et l'urgence est très élevée, nécessitant une analyse immédiate.",
+        "Le besoin de traiter des données classifiées et d'assurer la souveraineté de l'information oriente fortement vers les capacités contrôlées de RDDC.",
+        "Les lacunes juridiques et la contradiction entre le besoin de données classifiées et la méthode IDEaS requièrent un jugement d'expert."
+      ],
+      "criteres": [
+        {
+          "critere": "Gestion des données sensibles",
+          "evaluation": "L'exigence d'utiliser des rapports de renseignement classifiés pour l'entraînement de l'outil est une contrainte majeure qui nécessite un environnement sécurisé et contrôlé.",
+          "favorise": "Neutre"
+        },
+        {
+          "critere": "Nature de l'appel (Ouvert vs. Contrôlé)",
+          "evaluation": "Le demandeur souhaite un défi ouvert (IDEaS), mais la nature du matériel source (classifié) impose un cadre de travail fermé.",
+          "favorise": "Neutre"
+        },
+        {
+          "critere": "Enjeux juridiques et éthiques",
+          "evaluation": "Les considérations juridiques concernant la surveillance de contenus publics ne sont pas examinées, ce qui dépasse le cadre purement S&T.",
+          "favorise": "Neutre"
+        }
+      ],
+      "risques": [
+        {
+          "description": "Contradiction entre la méthode IDEaS ouverte et l'utilisation de données classifiées.",
+          "niveau": "élevé",
+          "mitigation": "Le processus de sélection doit être réévalué pour permettre une collaboration industrielle sous un cadre de sécurité contrôlé (ex. : partenariat RDDC/Industrie)."
+        },
+        {
+          "description": "Risque de divulgation de l'existence de l'outil ou de ses capacités.",
+          "niveau": "élevé",
+          "mitigation": "Toute solution doit intégrer des protocoles stricts de gestion de l'information et de la propriété intellectuelle."
+        },
+        {
+          "description": "Le délai de 6 mois pour passer de TRL 2 à TRL 8 est extrêmement ambitieux et pourrait mener à une défaillance opérationnelle.",
+          "niveau": "moyen",
+          "mitigation": "Décomposer le projet en jalons plus petits et plus gérables (ex. : TRL 2 $\\rightarrow$ TRL 4 en 3 mois, puis TRL 4 $\\rightarrow$ TRL 6 en 3 mois)."
+        }
+      ],
+      "zones_grises": [
+        "La contradiction entre l'exigence d'un défi ouvert (IDEaS) et la nécessité d'utiliser des données classifiées.",
+        "L'absence d'examen des enjeux juridiques et éthiques concernant la surveillance de contenus publics."
+      ],
+      "contradictions": [
+        "Le demandeur exige un défi ouvert à l'industrie (IDEaS) tout en spécifiant que l'outil doit être entraîné sur des rapports de renseignement classifiés, ce qui est incompatible avec un processus IDEaS standard.",
+        "La demande mentionne des considérations juridiques (surveillance de contenus publics produits par des Canadiens) sans qu'un examen préalable n'ait été effectué, ce qui constitue un risque majeur non adressé."
+      ],
+      "questions_ouvertes": [
+        "Quelles sont les sources exactes de données classifiées qui seront utilisées pour l'entraînement ? (Format, volume, fréquence de mise à jour).",
+        "Un examen juridique et éthique préliminaire a-t-il été effectué concernant la surveillance de contenus publics produits par des Canadiens ?",
+        "Le budget de 3 M$ est-il suffisant pour atteindre un TRL 8 en 6 mois, compte tenu de la complexité des données classifiées ?"
+      ],
+      "trl_estime": "TRL 2 $\\rightarrow$ TRL 8",
+      "priorite": 90,
+      "justification_priorite": "L'urgence opérationnelle est très élevée et l'impact potentiel sur les opérations des FAC est critique, justifiant une priorité élevée malgré les incertitudes méthodologiques.",
+      "confiance": 0.65,
+      "references_utilisees": []
+    },
+    "erreur": null,
+    "rang_priorite": 3,
+    "escalade": true,
+    "motifs_escalade": [
+      "Top 3 des recommandations (cas stratégique)",
+      "Faible confiance (0.65 < 0.70)",
+      "Dossier ambigu : revue humaine recommandée par l'agent",
+      "Contradictions détectées (2)",
+      "Risque de niveau élevé"
+    ],
+    "traces": [
+      {
+        "horodatage": "2026-10-15T15:53:52+00:00",
+        "outil": "rechercher_references",
+        "entree": {
+          "requete": "désinformation IA détection"
+        },
+        "statut": "ok",
+        "detail": ""
+      },
+      {
+        "horodatage": "2026-10-15T15:54:14+00:00",
+        "outil": "consulter_dip",
+        "entree": {
+          "id_demande": "BES-2026-0146"
+        },
+        "statut": "ok",
+        "detail": ""
+      },
+      {
+        "horodatage": "2026-10-15T15:54:54+00:00",
+        "outil": "soumettre_analyse",
+        "entree": {
+          "confiance": 0.65,
+          "contradictions": [
+            "Le demandeur exige un défi ouvert à l'industrie (IDEaS) tout en spécifiant que l'outil doit être entraîné sur des rapports de renseignement classifiés, ce qui est incompatible avec un processus IDEaS standard.",
+            "La demande mentionne des considérations juridiques (surveillance de contenus publics produits par des Canadiens) sans qu'un examen préalable n'ait été effectué, ce qui constitue un risque majeur non adressé."
+          ],
+          "criteres": [
+            {
+              "critere": "Gestion des données sensibles",
+              "evaluation": "L'exigence d'utiliser des rapports de renseignement classifiés pour l'entraînement de l'outil est une contrainte majeure qui nécessite un environnement sécurisé et contrôlé.",
+              "favorise": "R&D interne"
+            },
+            {
+              "critere": "Nature de l'appel (Ouvert vs. Contrôlé)",
+              "evaluation": "Le demandeur souhaite un défi ouvert (IDEaS), mais la nature du matériel source (classifié) impose un cadre de travail fermé.",
+              "favorise": "Neutre"
+            },
+            {
+              "critere": "Enjeux juridiques et éthiques",
+              "evaluation": "Les considérations juridiques concernant la surveillance de contenus publics ne sont pas examinées, ce qui dépasse le cadre purement S&T.",
+              "favorise": "Revue humaine approfondie"
+            }
+          ],
+          "id_demande": "BES-2026-0146",
+          "justification": [
+            "Le besoin est critique et l'urgence est très élevée, nécessitant une analyse immédiate.",
+            "Le besoin de traiter des données classifiées et d'assurer la souveraineté de l'information oriente fortement vers les capacités contrôlées de RDDC.",
+            "Les lacunes juridiques et la contradiction entre le besoin de données classifiées et la méthode IDEaS requièrent un jugement d'expert."
+          ],
+          "justification_priorite": "L'urgence opérationnelle est très élevée et l'impact potentiel sur les opérations des FAC est critique, justifiant une priorité élevée malgré les incertitudes méthodologiques.",
+          "priorite": 90,
+          "questions_ouvertes": [
+            "Quelles sont les sources exactes de données classifiées qui seront utilisées pour l'entraînement ? (Format, volume, fréquence de mise à jour).",
+            "Un examen juridique et éthique préliminaire a-t-il été effectué concernant la surveillance de contenus publics produits par des Canadiens ?",
+            "Le budget de 3 M$ est-il suffisant pour atteindre un TRL 8 en 6 mois, compte tenu de la complexité des données classifiées ?"
+          ],
+          "references_utilisees": [],
+          "risques": [
+            {
+              "description": "Contradiction entre la méthode IDEaS ouverte et l'utilisation de données classifiées.",
+              "mitigation": "Le processus de sélection doit être réévalué pour permettre une collaboration industrielle sous un cadre de sécurité contrôlé (ex. : partenariat RDDC/Industrie).",
+              "niveau": "élevé"
+            },
+            {
+              "description": "Risque de divulgation de l'existence de l'outil ou de ses capacités.",
+              "mitigation": "Toute solution doit intégrer des protocoles stricts de gestion de l'information et de la propriété intellectuelle.",
+              "niveau": "élevé"
+            },
+            {
+              "description": "Le délai de 6 mois pour passer de TRL 2 à TRL 8 est extrêmement ambitieux et pourrait mener à une défaillance opérationnelle.",
+              "mitigation": "Décomposer le projet en jalons plus petits et plus gérables (ex. : TRL 2 $\\rightarrow$ TRL 4 en 3 mois, puis TRL 4 $\\rightarrow$ TRL 6 en 3 mois).",
+              "niveau": "moyen"
+            }
+          ],
+          "scores_voies": {
+            "ideas": 40,
+            "rd_interne": 85
+          },
+          "trl_estime": "TRL 2 $\\rightarrow$ TRL 8",
+          "voie_recommandee": "Revue humaine approfondie",
+          "zones_grises": [
+            "La contradiction entre l'exigence d'un défi ouvert (IDEaS) et la nécessité d'utiliser des données classifiées.",
+            "L'absence d'examen des enjeux juridiques et éthiques concernant la surveillance de contenus publics."
+          ],
+          "sources_utilisees": [
+            "Métadonnées de la demande BES-2026-0146"
+          ],
+          "resume_besoin": "L'État-major interarmées stratégique a besoin d'un outil opérationnel (TRL 8) capable de détecter, d'estimer l'origine et la portée des campagnes de désinformation générées par IA ciblant les opérations des FAC. L'outil doit être développé en 6 mois, utiliser des données de renseignement classifiées et garantir la non-divulgation de son existence."
+        },
+        "statut": "ok",
+        "detail": ""
+      },
+      {
+        "horodatage": "2026-10-15T15:55:31+00:00",
+        "outil": "soumettre_analyse",
+        "entree": {
+          "confiance": 0.65,
+          "contradictions": [
+            "Le demandeur exige un défi ouvert à l'industrie (IDEaS) tout en spécifiant que l'outil doit être entraîné sur des rapports de renseignement classifiés, ce qui est incompatible avec un processus IDEaS standard.",
+            "La demande mentionne des considérations juridiques (surveillance de contenus publics produits par des Canadiens) sans qu'un examen préalable n'ait été effectué, ce qui constitue un risque majeur non adressé."
+          ],
+          "criteres": [
+            {
+              "critere": "Gestion des données sensibles",
+              "evaluation": "L'exigence d'utiliser des rapports de renseignement classifiés pour l'entraînement de l'outil est une contrainte majeure qui nécessite un environnement sécurisé et contrôlé.",
+              "favorise": "Neutre"
+            },
+            {
+              "critere": "Nature de l'appel (Ouvert vs. Contrôlé)",
+              "evaluation": "Le demandeur souhaite un défi ouvert (IDEaS), mais la nature du matériel source (classifié) impose un cadre de travail fermé.",
+              "favorise": "Neutre"
+            },
+            {
+              "critere": "Enjeux juridiques et éthiques",
+              "evaluation": "Les considérations juridiques concernant la surveillance de contenus publics ne sont pas examinées, ce qui dépasse le cadre purement S&T.",
+              "favorise": "Neutre"
+            }
+          ],
+          "id_demande": "BES-2026-0146",
+          "justification": [
+            "Le besoin est critique et l'urgence est très élevée, nécessitant une analyse immédiate.",
+            "Le besoin de traiter des données classifiées et d'assurer la souveraineté de l'information oriente fortement vers les capacités contrôlées de RDDC.",
+            "Les lacunes juridiques et la contradiction entre le besoin de données classifiées et la méthode IDEaS requièrent un jugement d'expert."
+          ],
+          "justification_priorite": "L'urgence opérationnelle est très élevée et l'impact potentiel sur les opérations des FAC est critique, justifiant une priorité élevée malgré les incertitudes méthodologiques.",
+          "priorite": 90,
+          "questions_ouvertes": [
+            "Quelles sont les sources exactes de données classifiées qui seront utilisées pour l'entraînement ? (Format, volume, fréquence de mise à jour).",
+            "Un examen juridique et éthique préliminaire a-t-il été effectué concernant la surveillance de contenus publics produits par des Canadiens ?",
+            "Le budget de 3 M$ est-il suffisant pour atteindre un TRL 8 en 6 mois, compte tenu de la complexité des données classifiées ?"
+          ],
+          "references_utilisees": [],
+          "resume_besoin": "L'État-major interarmées stratégique a besoin d'un outil opérationnel (TRL 8) capable de détecter, d'estimer l'origine et la portée des campagnes de désinformation générées par IA ciblant les opérations des FAC. L'outil doit être développé en 6 mois, utiliser des données de renseignement classifiées et garantir la non-divulgation de son existence.",
+          "risques": [
+            {
+              "description": "Contradiction entre la méthode IDEaS ouverte et l'utilisation de données classifiées.",
+              "mitigation": "Le processus de sélection doit être réévalué pour permettre une collaboration industrielle sous un cadre de sécurité contrôlé (ex. : partenariat RDDC/Industrie).",
+              "niveau": "élevé"
+            },
+            {
+              "description": "Risque de divulgation de l'existence de l'outil ou de ses capacités.",
+              "mitigation": "Toute solution doit intégrer des protocoles stricts de gestion de l'information et de la propriété intellectuelle.",
+              "niveau": "élevé"
+            },
+            {
+              "description": "Le délai de 6 mois pour passer de TRL 2 à TRL 8 est extrêmement ambitieux et pourrait mener à une défaillance opérationnelle.",
+              "mitigation": "Décomposer le projet en jalons plus petits et plus gérables (ex. : TRL 2 $\\rightarrow$ TRL 4 en 3 mois, puis TRL 4 $\\rightarrow$ TRL 6 en 3 mois).",
+              "niveau": "moyen"
+            }
+          ],
+          "scores_voies": {
+            "ideas": 40,
+            "rd_interne": 85
+          },
+          "sources_utilisees": [
+            "Métadonnées de la demande BES-2026-0146"
+          ],
+          "trl_estime": "TRL 2 $\\rightarrow$ TRL 8",
+          "voie_recommandee": "Revue humaine approfondie",
+          "zones_grises": [
+            "La contradiction entre l'exigence d'un défi ouvert (IDEaS) et la nécessité d'utiliser des données classifiées.",
+            "L'absence d'examen des enjeux juridiques et éthiques concernant la surveillance de contenus publics."
+          ]
+        },
+        "statut": "ok",
+        "detail": ""
+      }
+    ],
+    "integrite_ok": true,
+    "jetons_entree": 10844,
+    "jetons_sortie": 6187
+  },
+  {
+    "demande_id": "BES-2026-0147",
+    "titre": "Évaluation de la résilience d'une liaison de données tactique",
+    "demandeur": "Commandement — Systèmes C4ISR",
+    "classification": "SECRET",
+    "date_reception": "2026-09-29",
+    "analyse": null,
+    "erreur": "Classification « SECRET » hors du périmètre autorisé : dossier non transmis au modèle, orienté directement vers un analyste habilité.",
+    "rang_priorite": null,
+    "escalade": true,
+    "motifs_escalade": [
+      "Classification « SECRET » hors du périmètre autorisé : dossier non transmis au modèle, orienté directement vers un analyste habilité."
+    ],
+    "traces": [],
+    "integrite_ok": true,
+    "jetons_entree": 0,
+    "jetons_sortie": 0
+  },
+  {
+    "demande_id": "BES-2026-0148",
+    "titre": "Maintenance prédictive des moteurs de la flotte d'hélicoptères maritimes",
+    "demandeur": "Aviation royale canadienne — Direction de la gestion du programme d'équipement aérospatial",
+    "classification": "PROTÉGÉ A",
+    "date_reception": "2026-10-02",
+    "analyse": {
+      "id_demande": "BES-2026-0148",
+      "resume_besoin": "Le besoin est de développer des modèles de maintenance prédictive pour la flotte d'hélicoptères maritimes afin d'anticiper les défaillances moteur et d'optimiser les déposes. Ce projet doit exploiter les données de vol et de maintenance enregistrées, mais il est fortement contraint par le statut classifié des données (PROTÉGÉ A) et les droits de propriété intellectuelle du fabricant. L'intégration des modèles aux processus de navigabilité est l'objectif final.",
+      "voie_recommandee": "R&D interne (RDDC)",
+      "scores_voies": {
+        "rd_interne": 90,
+        "ideas": 45
+      },
+      "justification": [
+        "Le besoin concerne l'exploitation de données de vol et de maintenance de la flotte, qui sont classifiées (PROTÉGÉ A) et contiennent des droits de propriété intellectuelle (IP) du fabricant. Ces contraintes de sécurité et de souveraineté des données sont des critères déterminants pour une approche interne (REF-004).",
+        "Le fait qu'un centre de recherche du Ministère possède déjà une expertise pertinente en analytique de données aérospatiales renforce l'adéquation avec les capacités de recherche interne (REF-003).",
+        "Le programme DIP montre un projet connexe (\"Analytique des données de vol\"), suggérant que le besoin s'inscrit dans une continuité de recherche souveraine."
+      ],
+      "criteres": [
+        {
+          "critere": "Sensibilité des données et souveraineté de l'information",
+          "evaluation": "Les données sont classifiées (PROTÉGÉ A) et contiennent des éléments de propriété intellectuelle du fabricant. Le contrôle doit rester au sein des installations habilitées.",
+          "favorise": "R&D interne"
+        },
+        {
+          "critere": "Expertise et ressources disponibles",
+          "evaluation": "Le demandeur mentionne qu'un centre de recherche du Ministère possède déjà une expertise en analytique de données aérospatiales, ce qui est un atout pour une approche interne.",
+          "favorise": "R&D interne"
+        },
+        {
+          "critere": "Potentiel de concurrence externe",
+          "evaluation": "Bien que le problème soit un défi d'optimisation, la nature classifiée des données empêche un appel à la concurrence ouvert (IDEaS).",
+          "favorise": "R&D interne"
+        }
+      ],
+      "risques": [
+        {
+          "description": "Violation de la sécurité de l'information due à la nature classifiée des données (PROTÉGÉ A).",
+          "niveau": "élevé",
+          "mitigation": "Le projet doit être confiné à des installations habilitées et suivre les protocoles de sécurité des données classifiées."
+        },
+        {
+          "description": "Litige sur les droits de propriété intellectuelle (IP) des données du fabricant.",
+          "niveau": "moyen",
+          "mitigation": "Une clarification juridique et contractuelle est nécessaire avant de commencer le travail de modélisation."
+        }
+      ],
+      "zones_grises": [
+        "Le niveau de maturité technologique visé (TRL 7) est ambitieux pour un horizon de 24 mois, nécessitant une planification par étapes.",
+        "Le statut juridique des données (IP fabricant) n'est pas suffisamment détaillé pour garantir la faisabilité."
+      ],
+      "contradictions": [
+        "La demande présente une tension entre la nature \"ouverte\" du problème (développement de modèles) et la nature hautement sensible et classifiée des données (PROTÉGÉ A), ce qui limite fortement la participation externe."
+      ],
+      "questions_ouvertes": [
+        "Quels sont les droits contractuels précis concernant le partage des données de la flotte avec des tiers ?",
+        "Quel est le périmètre exact de l'expertise en analytique de données aérospatiales du centre de recherche du Ministère ?",
+        "Le besoin inclut-il l'acquisition de nouvelles capacités de capteurs ou se limite-t-il à l'analyse des données existantes ?"
+      ],
+      "trl_estime": "TRL 4 → TRL 7",
+      "priorite": 75,
+      "justification_priorite": "Le besoin est critique pour la disponibilité opérationnelle de la flotte (impact élevé). Bien que l'urgence soit jugée \"moyenne\", la nature critique de la défaillance des moteurs rend le projet prioritaire. La faisabilité est modérée en raison des contraintes de données.",
+      "confiance": 0.85,
+      "references_utilisees": [
+        "REF-004",
+        "REF-001",
+        "REF-003"
+      ]
+    },
+    "erreur": null,
+    "rang_priorite": 6,
+    "escalade": true,
+    "motifs_escalade": [
+      "Contradictions détectées (1)",
+      "Risque de niveau élevé"
+    ],
+    "traces": [
+      {
+        "horodatage": "2026-10-15T15:56:02+00:00",
+        "outil": "rechercher_references",
+        "entree": {
+          "requete": "maintenance prédictive données classifiées"
+        },
+        "statut": "ok",
+        "detail": ""
+      },
+      {
+        "horodatage": "2026-10-15T15:56:16+00:00",
+        "outil": "consulter_dip",
+        "entree": {
+          "id_demande": "BES-2026-0148"
+        },
+        "statut": "ok",
+        "detail": ""
+      },
+      {
+        "horodatage": "2026-10-15T15:58:11+00:00",
+        "outil": "soumettre_analyse",
+        "entree": {
+          "confiance": 0.85,
+          "contradictions": [
+            "La demande présente une tension entre la nature \"ouverte\" du problème (développement de modèles) et la nature hautement sensible et classifiée des données (PROTÉGÉ A), ce qui limite fortement la participation externe."
+          ],
+          "criteres": [
+            {
+              "critere": "Sensibilité des données et souveraineté de l'information",
+              "evaluation": "Les données sont classifiées (PROTÉGÉ A) et contiennent des éléments de propriété intellectuelle du fabricant. Le contrôle doit rester au sein des installations habilitées.",
+              "favorise": "R&D interne"
+            },
+            {
+              "critere": "Expertise et ressources disponibles",
+              "evaluation": "Le demandeur mentionne qu'un centre de recherche du Ministère possède déjà une expertise en analytique de données aérospatiales, ce qui est un atout pour une approche interne.",
+              "favorise": "R&D interne"
+            },
+            {
+              "critere": "Potentiel de concurrence externe",
+              "evaluation": "Bien que le problème soit un défi d'optimisation, la nature classifiée des données empêche un appel à la concurrence ouvert (IDEaS).",
+              "favorise": "R&D interne"
+            }
+          ],
+          "id_demande": "BES-2026-0148",
+          "justification": [
+            "Le besoin concerne l'exploitation de données de vol et de maintenance de la flotte, qui sont classifiées (PROTÉGÉ A) et contiennent des droits de propriété intellectuelle (IP) du fabricant. Ces contraintes de sécurité et de souveraineté des données sont des critères déterminants pour une approche interne (REF-004).",
+            "Le fait qu'un centre de recherche du Ministère possède déjà une expertise pertinente en analytique de données aérospatiales renforce l'adéquation avec les capacités de recherche interne (REF-003).",
+            "Le programme DIP montre un projet connexe (\"Analytique des données de vol\"), suggérant que le besoin s'inscrit dans une continuité de recherche souveraine."
+          ],
+          "justification_priorite": "Le besoin est critique pour la disponibilité opérationnelle de la flotte (impact élevé). Bien que l'urgence soit jugée \"moyenne\", la nature critique de la défaillance des moteurs rend le projet prioritaire. La faisabilité est modérée en raison des contraintes de données.",
+          "priorite": 75,
+          "questions_ouvertes": [
+            "Quels sont les droits contractuels précis concernant le partage des données de la flotte avec des tiers ?",
+            "Quel est le périmètre exact de l'expertise en analytique de données aérospatiales du centre de recherche du Ministère ?",
+            "Le besoin inclut-il l'acquisition de nouvelles capacités de capteurs ou se limite-t-il à l'analyse des données existantes ?"
+          ],
+          "references_utilisees": [
+            "REF-004",
+            "REF-001",
+            "REF-003"
+          ],
+          "resume_besoin": "Le besoin est de développer des modèles de maintenance prédictive pour la flotte d'hélicoptères maritimes afin d'anticiper les défaillances moteur et d'optimiser les déposes. Ce projet doit exploiter les données de vol et de maintenance enregistrées, mais il est fortement contraint par le statut classifié des données (PROTÉGÉ A) et les droits de propriété intellectuelle du fabricant. L'intégration des modèles aux processus de navigabilité est l'objectif final.",
+          "risques": [
+            {
+              "description": "Violation de la sécurité de l'information due à la nature classifiée des données (PROTÉGÉ A).",
+              "mitigation": "Le projet doit être confiné à des installations habilitées et suivre les protocoles de sécurité des données classifiées.",
+              "niveau": "élevé"
+            },
+            {
+              "description": "Litige sur les droits de propriété intellectuelle (IP) des données du fabricant.",
+              "mitigation": "Une clarification juridique et contractuelle est nécessaire avant de commencer le travail de modélisation.",
+              "niveau": "moyen"
+            }
+          ],
+          "scores_voies": {
+            "ideas": 45,
+            "rd_interne": 90
+          },
+          "trl_estime": "TRL 4 → TRL 7",
+          "voie_recommandee": "R&D interne (RDDC)",
+          "zones_grises": [
+            "Le niveau de maturité technologique visé (TRL 7) est ambitieux pour un horizon de 24 mois, nécessitant une planification par étapes.",
+            "Le statut juridique des données (IP fabricant) n'est pas suffisamment détaillé pour garantir la faisabilité."
+          ]
+        },
+        "statut": "ok",
+        "detail": ""
+      }
+    ],
+    "integrite_ok": true,
+    "jetons_entree": 11680,
+    "jetons_sortie": 7091
+  },
+  {
+    "demande_id": "BES-2026-0149",
+    "titre": "Stockage d'énergie et micro-réseaux pour bases opérationnelles avancées",
+    "demandeur": "Sous-ministre adjoint (Infrastructure et environnement)",
+    "classification": "NON CLASSIFIÉ",
+    "date_reception": "2026-10-06",
+    "analyse": {
+      "id_demande": "BES-2026-0149",
+      "resume_besoin": "Le besoin est de développer et de démontrer des solutions de micro-réseaux hybrides (combinant énergies renouvelables et stockage) pour remplacer la dépendance aux génératrices diesel sur les bases opérationnelles avancées et les camps temporaires. L'objectif est de fournir des démonstrateurs comparés, des données de performance, de logistique et de coût de cycle de vie, en passant d'un niveau de maturité technologique (TRL) 5 à TRL 7.",
+      "voie_recommandee": "Défi d'innovation IDEaS",
+      "scores_voies": {
+        "rd_interne": 20,
+        "ideas": 90
+      },
+      "justification": [
+        "Le besoin est de démontrer des solutions de micro-réseaux hybrides, un problème qui peut être formulé ouvertement (non classifié).",
+        "L'analyse des références (REF-002) confirme que les défis de micro-réseaux sont un domaine idéal pour un appel à la concurrence (IDEaS).",
+        "Le contexte opérationnel (bases avancées) et les objectifs environnementaux sont des moteurs de marché clairs, favorisant l'engagement du secteur privé."
+      ],
+      "criteres": [
+        {
+          "critere": "Classification de l'information",
+          "evaluation": "Le besoin est explicitement NON CLASSIFIÉ et peut être décrit publiquement.",
+          "favorise": "IDEaS"
+        },
+        {
+          "critere": "Écosystème externe",
+          "evaluation": "Le texte mentionne que l'industrie canadienne de l'énergie propre est active et que plusieurs approches concurrentes sont envisageables.",
+          "favorise": "IDEaS"
+        },
+        {
+          "critere": "Nature du problème",
+          "evaluation": "Il s'agit d'un défi technique complexe (micro-réseaux hybrides, grand froid) nécessitant l'apport de multiples acteurs industriels.",
+          "favorise": "IDEaS"
+        }
+      ],
+      "risques": [
+        {
+          "description": "Complexité d'intégration des systèmes (multiples sources d'énergie, stockage, réseau).",
+          "niveau": "élevé",
+          "mitigation": "Le défi IDEaS doit inclure des critères de performance stricts et des jalons de validation en environnement simulé."
+        },
+        {
+          "description": "Fiabilité en conditions de grand froid.",
+          "niveau": "élevé",
+          "mitigation": "Les appels d'offres doivent exiger des tests de performance spécifiques aux températures extrêmes."
+        }
+      ],
+      "zones_grises": [
+        "Le niveau de maturité technologique (TRL 5) est donné, mais les spécifications précises des systèmes existants et des interfaces de connexion sont manquantes."
+      ],
+      "contradictions": [],
+      "questions_ouvertes": [
+        "Quelles sont les spécifications exactes des sites d'essai (géographie, conditions climatiques extrêmes, contraintes de terrain) ?",
+        "Y a-t-il des exigences spécifiques en matière de durée de fonctionnement autonome (autonomie en cas de défaillance du réseau principal) ?"
+      ],
+      "trl_estime": "TRL 5 → TRL 7",
+      "priorite": 85,
+      "justification_priorite": "Le besoin est critique pour la logistique et la réduction de l'empreinte carbone des opérations militaires. Le passage de TRL 5 à 7 est un saut technologique majeur, justifiant une haute priorité.",
+      "confiance": 0.9,
+      "references_utilisees": [
+        "REF-002"
+      ]
+    },
+    "erreur": null,
+    "rang_priorite": 5,
+    "escalade": true,
+    "motifs_escalade": [
+      "Risque de niveau élevé"
+    ],
+    "traces": [
+      {
+        "horodatage": "2026-10-15T15:58:37+00:00",
+        "outil": "rechercher_references",
+        "entree": {
+          "requete": "micro-réseaux bases opérationnelles"
+        },
+        "statut": "ok",
+        "detail": ""
+      },
+      {
+        "horodatage": "2026-10-15T15:59:31+00:00",
+        "outil": "soumettre_analyse",
+        "entree": {
+          "confiance": 0.9,
+          "contradictions": [],
+          "criteres": [
+            {
+              "critere": "Classification de l'information",
+              "evaluation": "Le besoin est explicitement NON CLASSIFIÉ et peut être décrit publiquement.",
+              "favorise": "IDEaS"
+            },
+            {
+              "critere": "Écosystème externe",
+              "evaluation": "Le texte mentionne que l'industrie canadienne de l'énergie propre est active et que plusieurs approches concurrentes sont envisageables.",
+              "favorise": "IDEaS"
+            },
+            {
+              "critere": "Nature du problème",
+              "evaluation": "Il s'agit d'un défi technique complexe (micro-réseaux hybrides, grand froid) nécessitant l'apport de multiples acteurs industriels.",
+              "favorise": "IDEaS"
+            }
+          ],
+          "id_demande": "BES-2026-0149",
+          "justification": [
+            "Le besoin est de démontrer des solutions de micro-réseaux hybrides, un problème qui peut être formulé ouvertement (non classifié).",
+            "L'analyse des références (REF-002) confirme que les défis de micro-réseaux sont un domaine idéal pour un appel à la concurrence (IDEaS).",
+            "Le contexte opérationnel (bases avancées) et les objectifs environnementaux sont des moteurs de marché clairs, favorisant l'engagement du secteur privé."
+          ],
+          "justification_priorite": "Le besoin est critique pour la logistique et la réduction de l'empreinte carbone des opérations militaires. Le passage de TRL 5 à 7 est un saut technologique majeur, justifiant une haute priorité.",
+          "priorite": 85,
+          "questions_ouvertes": [
+            "Quelles sont les spécifications exactes des sites d'essai (géographie, conditions climatiques extrêmes, contraintes de terrain) ?",
+            "Y a-t-il des exigences spécifiques en matière de durée de fonctionnement autonome (autonomie en cas de défaillance du réseau principal) ?"
+          ],
+          "references_utilisees": [
+            "REF-002"
+          ],
+          "resume_besoin": "Le besoin est de développer et de démontrer des solutions de micro-réseaux hybrides (combinant énergies renouvelables et stockage) pour remplacer la dépendance aux génératrices diesel sur les bases opérationnelles avancées et les camps temporaires. L'objectif est de fournir des démonstrateurs comparés, des données de performance, de logistique et de coût de cycle de vie, en passant d'un niveau de maturité technologique (TRL) 5 à TRL 7.",
+          "risques": [
+            {
+              "description": "Complexité d'intégration des systèmes (multiples sources d'énergie, stockage, réseau).",
+              "mitigation": "Le défi IDEaS doit inclure des critères de performance stricts et des jalons de validation en environnement simulé.",
+              "niveau": "élevé"
+            },
+            {
+              "description": "Fiabilité en conditions de grand froid.",
+              "mitigation": "Les appels d'offres doivent exiger des tests de performance spécifiques aux températures extrêmes.",
+              "niveau": "élevé"
+            }
+          ],
+          "scores_voies": {
+            "ideas": 90,
+            "rd_interne": 20
+          },
+          "trl_estime": "TRL 5 → TRL 7",
+          "voie_recommandee": "Défi d'innovation IDEaS",
+          "zones_grises": [
+            "Le niveau de maturité technologique (TRL 5) est donné, mais les spécifications précises des systèmes existants et des interfaces de connexion sont manquantes."
+          ]
+        },
+        "statut": "ok",
+        "detail": ""
+      }
+    ],
+    "integrite_ok": true,
+    "jetons_entree": 4713,
+    "jetons_sortie": 3541
+  }
+]

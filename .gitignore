@@ -1,8 +1,6 @@
 .venv/
 __pycache__/
 *.pyc
-sortie/
-sortie_*
 donnees/sharepoint/analyses/*
 !donnees/sharepoint/analyses/.gitkeep
 .streamlit/secrets.toml

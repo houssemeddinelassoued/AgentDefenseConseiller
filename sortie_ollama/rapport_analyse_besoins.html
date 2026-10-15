@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rapport d'analyse des besoins</title>
+<style>
+:root{
+  --encre:#0f1f3a;--texte:#26334d;--doux:#5b6880;--trait:#d9e0ea;--fond:#f4f6fa;--papier:#fff;
+  --marine:#0b3d91;--rd:#1d5fd1;--rd-p:#e3edfd;--ideas:#0e8a7a;--ideas-p:#dcf3ef;
+  --revue:#c25e00;--revue-p:#fdecdc;--rouge:#b42318;--rouge-p:#fde8e7;--vert:#1b7f3b;--vert-p:#e3f4e8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--texte);font:14px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif}
+main{max-width:1040px;margin:0 auto;padding:24px 16px 48px}
+h1,h2,h3,h4{color:var(--encre);line-height:1.25}
+h1{font-size:32px;margin:6px 0 8px}
+h2{font-size:21px;margin:36px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--marine);display:flex;align-items:center;gap:10px}
+h3{font-size:16px;margin:0 0 10px}
+h4{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--marine);margin:18px 0 6px}
+a{color:var(--rd)}
+.num-sec{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:6px;background:var(--marine);color:#fff;font-size:14px}
+.barre-outils{position:sticky;top:0;z-index:5;display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:10px 16px;background:var(--encre);color:#cfd8e6;font-size:13px}
+.barre-outils button{background:#fff;color:var(--encre);border:0;border-radius:6px;padding:8px 14px;font-weight:600;cursor:pointer}
+.barre-outils button:hover{background:#dbe6fb}
+.bandeau-demo{background:var(--revue-p);color:#7a3b00;border:1px solid #f3c597;border-radius:8px;padding:10px 14px;font-weight:600;margin-bottom:16px}
+.couverture{background:linear-gradient(135deg,#0b3d91,#1d5fd1);color:#fff;border-radius:14px;padding:28px}
+.couverture h1{color:#fff}
+.sur-titre{text-transform:uppercase;letter-spacing:.12em;font-size:12px;opacity:.85}
+.sous-titre{font-size:16px;opacity:.95;margin:0 0 18px}
+.couverture .meta dt{color:#bcd0f5}.couverture .meta dd{color:#fff}
+.avertissement{font-size:12.5px;background:rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;margin:16px 0 0}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+nav a{color:#fff;text-decoration:none;background:rgba(255,255,255,.16);padding:5px 10px;border-radius:999px;font-size:12.5px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0}
+.meta dt{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--doux)}
+.meta dd{margin:2px 0 0;font-weight:600;color:var(--encre)}
+.meta.vertical{grid-template-columns:1fr}
+.tuiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:14px}
+.tuile,.carte{background:var(--papier);border:1px solid var(--trait);border-radius:10px;padding:14px 16px}
+.tuile-lib{font-size:12px;color:var(--doux);text-transform:uppercase;letter-spacing:.05em}
+.tuile-val{font-size:30px;font-weight:700;color:var(--encre);font-variant-numeric:tabular-nums}
+.tuile-sous{font-size:12px;color:var(--doux)}
+.deux-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:6px}
+.repart-ligne{display:grid;grid-template-columns:110px 1fr 30px;align-items:center;gap:10px;margin:10px 0}
+.repart-barre,.jauge{display:block;height:10px;background:#e8edf4;border-radius:999px;overflow:hidden}
+.repart-rempli,.jauge-rempli{display:block;height:100%;border-radius:999px}
+.repart-n{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.voie-rd-bg{background:var(--rd)}.voie-ideas-bg{background:var(--ideas)}.voie-revue-bg{background:var(--revue)}
+.prio-bg{background:var(--marine)}.conf-bg{background:#6b7fa3}
+table{width:100%;border-collapse:collapse;background:var(--papier);border:1px solid var(--trait);border-radius:10px;overflow:hidden;font-size:13px}
+th{background:#eef2f8;color:var(--encre);text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;padding:8px 10px}
+td{padding:8px 10px;border-top:1px solid var(--trait);vertical-align:top}
+td a,.id{white-space:nowrap}
+td ul{margin:0;padding-left:16px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+table.compact td,table.compact th{padding:6px 8px}
+.badge{display:inline-block;font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap;margin:1px 4px 1px 0}
+.voie-rd{background:var(--rd-p);color:var(--rd)}.voie-ideas{background:var(--ideas-p);color:var(--ideas)}
+.voie-revue{background:var(--revue-p);color:var(--revue)}.voie-bloque{background:#eceff3;color:var(--doux)}
+.statut-humain{background:var(--rouge-p);color:var(--rouge)}.statut-auto{background:var(--vert-p);color:var(--vert)}
+.fav{font-size:11.5px;font-weight:600}.fav-rd{color:var(--rd)}.fav-ideas{color:var(--ideas)}.fav-neutre{color:var(--doux)}
+.niv{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px}
+.niv-f{background:var(--vert-p);color:var(--vert)}.niv-m{background:var(--revue-p);color:var(--revue)}.niv-e{background:var(--rouge-p);color:var(--rouge)}
+.decision{white-space:nowrap;font-size:12.5px;line-height:1.8}
+.fiche{background:var(--papier);border:1px solid var(--trait);border-radius:12px;padding:20px 22px;margin:0 0 20px}
+.fiche-entete{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.fiche-entete h3{font-size:19px;margin:2px 0 0}
+.fiche-id{font-size:12px;font-weight:700;color:var(--marine);letter-spacing:.05em}
+.fiche .meta{border-top:1px solid var(--trait);border-bottom:1px solid var(--trait);padding:10px 0}
+.score{display:grid;grid-template-columns:170px 1fr 40px;align-items:center;gap:10px;margin:8px 0;font-size:13px}
+.score b{text-align:right;font-variant-numeric:tabular-nums}
+.trl{grid-column:span 2;font-weight:600;color:var(--encre)}
+.alerte{background:var(--rouge-p);border-left:4px solid var(--rouge);padding:9px 12px;border-radius:6px;font-size:13px;margin:12px 0}
+.ok{background:var(--vert-p);border-left:4px solid var(--vert);padding:9px 12px;border-radius:6px;font-size:13px;margin:12px 0}
+.note{font-size:12.5px;color:var(--doux)}
+.vide{color:var(--doux);font-style:italic;margin:4px 0}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.permises{background:var(--vert-p);border-radius:8px;padding:10px}.interdites{background:var(--rouge-p);border-radius:8px;padding:10px}
+.permises b{color:var(--vert)}.interdites b{color:var(--rouge)}
+.actions ul{margin:6px 0 0;padding-left:18px;font-size:12.5px}
+.a-remplir{min-width:90px;border-bottom:1px dotted var(--doux)}
+.trace code{font-size:11.5px}.trace-ok{color:var(--vert);font-weight:600}.trace-erreur,.trace-refusé{color:var(--rouge);font-weight:600}
+footer{margin-top:40px;padding-top:12px;border-top:1px solid var(--trait);font-size:12px;color:var(--doux);text-align:center}
+@media (max-width:640px){
+  .score{grid-template-columns:120px 1fr 34px}.actions{grid-template-columns:1fr}
+  table{display:block;overflow-x:auto}h1{font-size:26px}
+}
+@page{size:letter;margin:16mm 14mm 18mm;
+  @bottom-left{content:"Analyse des besoins en innovation — Document de travail";font:9px "Segoe UI",sans-serif;color:#5b6880}
+  @bottom-right{content:"Page " counter(page) " / " counter(pages);font:9px "Segoe UI",sans-serif;color:#5b6880}}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;font-size:11.5px}
+  main{max-width:none;padding:0}
+  .no-print{display:none!important}
+  .couverture{border-radius:8px;padding:18px 24px}
+  .couverture h1{font-size:25px;margin:4px 0}
+  .sous-titre{font-size:13px;margin-bottom:8px}
+  .avertissement{margin-top:8px;padding:7px 10px}
+  .tuile-val{font-size:24px}
+  table{font-size:10.5px}
+  th{font-size:9px}
+  td,th{padding:6px 7px}
+  .badge{font-size:9.5px;padding:2px 7px}
+  h2{margin:22px 0 10px}
+  .tuiles{grid-template-columns:repeat(4,1fr)}
+  .deux-col{grid-template-columns:1fr 1fr}
+  h2,h3,h4{break-after:avoid}
+  #fiches{break-before:page}
+  .fiche{break-inside:auto;break-before:page;border:none;padding:0;margin:0}
+  .fiche:first-of-type{break-before:auto}
+  tr,.carte,.tuile,.score{break-inside:avoid}
+  #tracabilite,#agent{break-before:page}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="barre-outils no-print">
+  <button onclick="window.print()">Imprimer / Exporter en PDF</button>
+  <span>Astuce : choisissez « Enregistrer au format PDF » comme imprimante, et activez « Graphiques d'arrière-plan ».</span>
+</div>
+<main>
+
+<header class="couverture">
+  <div class="sur-titre">Ministère de la Défense nationale · Programme RDDC</div>
+  <h1>Analyse des besoins en innovation</h1>
+  <p class="sous-titre">Orientation des besoins en soutien S&amp;T des Forces armées canadiennes :
+  R&amp;D interne, défi d'innovation IDEaS ou revue humaine</p>
+  <dl class="meta">
+    <div><dt>Produit le</dt><dd>2026-10-15 11:59</dd></div>
+    <div><dt>Dossiers</dt><dd>9</dd></div>
+    <div><dt>Règle d'escalade</dt><dd>Top N = 3 · confiance &lt; 0.70</dd></div>
+    <div><dt>Moteur</dt><dd>Ollama local · gemma4:latest (http://localhost:11434)</dd></div>
+  </dl>
+  <p class="avertissement">Document de travail — recommandations non engageantes produites par un agent d'IA.
+  Aucune voie d'approvisionnement n'est retenue sans validation par un responsable RDDC.</p>
+  <nav class="no-print"><a href="#synthese">Synthèse</a><a href="#priorisation">Priorisation</a>
+  <a href="#revue-humaine">Validation humaine</a><a href="#fiches">Fiches</a><a href="#tracabilite">Traçabilité</a><a href="#agent">Agent</a></nav>
+</header>
+
+<section id="synthese">
+  <h2><span class="num-sec">1</span>Synthèse</h2>
+  <div class="tuiles"><div class="tuile"><div class="tuile-lib">Demandes reçues</div><div class="tuile-val">9</div><div class="tuile-sous">dans ce lot</div></div><div class="tuile"><div class="tuile-lib">Analysées par l&#x27;agent</div><div class="tuile-val">7</div><div class="tuile-sous">2 non transmise(s) au modèle</div></div><div class="tuile"><div class="tuile-lib">Validation humaine</div><div class="tuile-val">9</div><div class="tuile-sous">100 % du lot</div></div><div class="tuile"><div class="tuile-lib">Confiance moyenne</div><div class="tuile-val">0.86</div><div class="tuile-sous">seuil d&#x27;escalade : 0.70</div></div></div>
+  <div class="deux-col">
+    <div class="carte">
+      <h3>Répartition des voies recommandées</h3>
+      <div class="repart-ligne"><span class="repart-lib">R&amp;D interne</span><span class="repart-barre"><span class="repart-rempli voie-rd-bg" style="width:29%"></span></span><span class="repart-n">2</span></div><div class="repart-ligne"><span class="repart-lib">Défi IDEaS</span><span class="repart-barre"><span class="repart-rempli voie-ideas-bg" style="width:29%"></span></span><span class="repart-n">2</span></div><div class="repart-ligne"><span class="repart-lib">Revue humaine</span><span class="repart-barre"><span class="repart-rempli voie-revue-bg" style="width:43%"></span></span><span class="repart-n">3</span></div>
+    </div>
+    <div class="carte">
+      <h3>Motifs de validation humaine</h3>
+      <table class="compact"><thead><tr><th>Motif</th><th class="num">Dossiers</th></tr></thead>
+      <tbody><tr><td>Risque de niveau élevé</td><td class='num'>7</td></tr><tr><td>Top 3 des recommandations</td><td class='num'>3</td></tr><tr><td>Dossier ambigu</td><td class='num'>3</td></tr><tr><td>Contradictions détectées</td><td class='num'>3</td></tr><tr><td>Erreur du moteur</td><td class='num'>1</td></tr><tr><td>Faible confiance</td><td class='num'>1</td></tr><tr><td>Classification « SECRET » hors du périmètre autorisé</td><td class='num'>1</td></tr></tbody></table>
+      <p class="note">Un dossier peut cumuler plusieurs motifs.</p>
+    </div>
+  </div>
+</section>
+
+<section id="priorisation">
+  <h2><span class="num-sec">2</span>Tableau de priorisation</h2>
+  <table>
+    <thead><tr><th class="num">Rang</th><th>Dossier</th><th style="width:36%">Besoin</th><th>Voie recommandée</th>
+    <th class="num">Priorité</th><th class="num">Confiance</th><th>Statut</th></tr></thead>
+    <tbody><tr><td class='num'>1</td><td><a href='#fiche-BES-2026-0142'>BES-2026-0142</a></td><td>Modélisation de la signature acoustique rayonnée des futurs navires de combat</td><td><span class="badge voie-rd">R&amp;D interne</span></td><td class='num'>90</td><td class='num'>0.90</td><td><span class="badge statut-humain">Validation humaine</span></td></tr><tr><td class='num'>2</td><td><a href='#fiche-BES-2026-0144'>BES-2026-0144</a></td><td>Textile de camouflage multispectral adaptatif</td><td><span class="badge voie-ideas">Défi IDEaS</span></td><td class='num'>90</td><td class='num'>0.90</td><td><span class="badge statut-humain">Validation humaine</span></td></tr><tr><td class='num'>3</td><td><a href='#fiche-BES-2026-0146'>BES-2026-0146</a></td><td>Détection des campagnes de désinformation générées par IA visant les opérations des FAC</td><td><span class="badge voie-revue">Revue humaine</span></td><td class='num'>90</td><td class='num'>0.65</td><td><span class="badge statut-humain">Validation humaine</span></td></tr><tr><td class='num'>4</td><td><a href='#fiche-BES-2026-0145'>BES-2026-0145</a></td><td>Purification d&#x27;eau portative pour patrouilles nordiques</td><td><span class="badge voie-revue">Revue humaine</span></td><td class='num'>85</td><td class='num'>0.95</td><td><span class="badge statut-humain">Validation humaine</span></td></tr><tr><td class='num'>5</td><td><a href='#fiche-BES-2026-0149'>BES-2026-0149</a></td><td>Stockage d&#x27;énergie et micro-réseaux pour bases opérationnelles avancées</td><td><span class="badge voie-ideas">Défi IDEaS</span></td><td class='num'>85</td><td class='num'>0.90</td><td><span class="badge statut-humain">Validation humaine</span></td></tr><tr><td class='num'>6</td><td><a href='#fiche-BES-2026-0148'>BES-2026-0148</a></td><td>Maintenance prédictive des moteurs de la flotte d&#x27;hélicoptères maritimes</td><td><span class="badge voie-rd">R&amp;D interne</span></td><td class='num'>75</td><td class='num'>0.85</td><td><span class="badge statut-humain">Validation humaine</span></td></tr><tr><td class='num'>7</td><td><a href='#fiche-BES-2026-0143'>BES-2026-0143</a></td><td>Outil prédictif de détection précoce de l&#x27;épuisement chez les militaires</td><td><span class="badge voie-revue">Revue humaine</span></td><td class='num'>60</td><td class='num'>0.85</td><td><span class="badge statut-humain">Validation humaine</span></td></tr><tr><td class='num'>—</td><td><a href='#fiche-BES-2026-0141'>BES-2026-0141</a></td><td>Détection de mini-drones en environnement arctique</td><td><span class='badge voie-bloque'>Non analysé</span></td><td class='num'>—</td><td class='num'>—</td><td><span class="badge statut-humain">Validation humaine</span></td></tr><tr><td class='num'>—</td><td><a href='#fiche-BES-2026-0147'>BES-2026-0147</a></td><td>Évaluation de la résilience d&#x27;une liaison de données tactique</td><td><span class='badge voie-bloque'>Non analysé</span></td><td class='num'>—</td><td class='num'>—</td><td><span class="badge statut-humain">Validation humaine</span></td></tr></tbody>
+  </table>
+</section>
+
+<section id="revue-humaine">
+  <h2><span class="num-sec">3</span>File de validation humaine</h2>
+  <p>Dossiers transférés aux responsables RDDC conformément aux règles d'escalade. La colonne
+  « Décision » est prévue pour la validation sur la version imprimée.</p>
+  <table>
+    <thead><tr><th>Dossier</th><th style="width:30%">Besoin</th><th>Motifs</th><th>Décision</th></tr></thead>
+    <tbody><tr><td><a href='#fiche-BES-2026-0142'>BES-2026-0142</a></td><td>Modélisation de la signature acoustique rayonnée des futurs navires de combat</td><td><ul><li>Top 3 des recommandations (cas stratégique)</li><li>Risque de niveau élevé</li></ul></td><td class='decision'>☐ Approuvée<br>☐ Réorientée<br>☐ Info. requise</td></tr><tr><td><a href='#fiche-BES-2026-0144'>BES-2026-0144</a></td><td>Textile de camouflage multispectral adaptatif</td><td><ul><li>Top 3 des recommandations (cas stratégique)</li><li>Risque de niveau élevé</li></ul></td><td class='decision'>☐ Approuvée<br>☐ Réorientée<br>☐ Info. requise</td></tr><tr><td><a href='#fiche-BES-2026-0146'>BES-2026-0146</a></td><td>Détection des campagnes de désinformation générées par IA visant les opérations des FAC</td><td><ul><li>Top 3 des recommandations (cas stratégique)</li><li>Faible confiance (0.65 &lt; 0.70)</li><li>Dossier ambigu : revue humaine recommandée par l&#x27;agent</li><li>Contradictions détectées (2)</li><li>Risque de niveau élevé</li></ul></td><td class='decision'>☐ Approuvée<br>☐ Réorientée<br>☐ Info. requise</td></tr><tr><td><a href='#fiche-BES-2026-0145'>BES-2026-0145</a></td><td>Purification d&#x27;eau portative pour patrouilles nordiques</td><td><ul><li>Dossier ambigu : revue humaine recommandée par l&#x27;agent</li><li>Risque de niveau élevé</li></ul></td><td class='decision'>☐ Approuvée<br>☐ Réorientée<br>☐ Info. requise</td></tr><tr><td><a href='#fiche-BES-2026-0149'>BES-2026-0149</a></td><td>Stockage d&#x27;énergie et micro-réseaux pour bases opérationnelles avancées</td><td><ul><li>Risque de niveau élevé</li></ul></td><td class='decision'>☐ Approuvée<br>☐ Réorientée<br>☐ Info. requise</td></tr><tr><td><a href='#fiche-BES-2026-0148'>BES-2026-0148</a></td><td>Maintenance prédictive des moteurs de la flotte d&#x27;hélicoptères maritimes</td><td><ul><li>Contradictions détectées (1)</li><li>Risque de niveau élevé</li></ul></td><td class='decision'>☐ Approuvée<br>☐ Réorientée<br>☐ Info. requise</td></tr><tr><td><a href='#fiche-BES-2026-0143'>BES-2026-0143</a></td><td>Outil prédictif de détection précoce de l&#x27;épuisement chez les militaires</td><td><ul><li>Dossier ambigu : revue humaine recommandée par l&#x27;agent</li><li>Contradictions détectées (1)</li><li>Risque de niveau élevé</li></ul></td><td class='decision'>☐ Approuvée<br>☐ Réorientée<br>☐ Info. requise</td></tr><tr><td><a href='#fiche-BES-2026-0141'>BES-2026-0141</a></td><td>Détection de mini-drones en environnement arctique</td><td><ul><li>Erreur du moteur : MoteurIndisponible — Aucun serveur Ollama ne répond à http://localhost:11434. Démarrez Ollama sur cette machine (« ollama serve »). Si l&#x27;application est hébergée (Streamlit Cloud), « localhost » désigne le serveur d&#x27;héber</li></ul></td><td class='decision'>☐ Approuvée<br>☐ Réorientée<br>☐ Info. requise</td></tr><tr><td><a href='#fiche-BES-2026-0147'>BES-2026-0147</a></td><td>Évaluation de la résilience d&#x27;une liaison de données tactique</td><td><ul><li>Classification « SECRET » hors du périmètre autorisé : dossier non transmis au modèle, orienté directement vers un analyste habilité.</li></ul></td><td class='decision'>☐ Approuvée<br>☐ Réorientée<br>☐ Info. requise</td></tr></tbody>
+  </table>
+</section>
+<section id="fiches">
+  <h2><span class="num-sec">4</span>Fiches d'analyse par dossier</h2>
+  
+<article class="fiche" id="fiche-BES-2026-0142">
+  <div class="fiche-entete">
+    <div><div class="fiche-id">BES-2026-0142</div><h3>Modélisation de la signature acoustique rayonnée des futurs navires de combat</h3></div>
+    <div class="fiche-badges"><span class="badge voie-rd">R&amp;D interne</span><span class="badge statut-humain">Validation humaine</span></div>
+  </div>
+  <dl class="meta">
+    <div><dt>Demandeur</dt><dd>Marine royale canadienne — Direction des besoins maritimes</dd></div>
+    <div><dt>Reçue le</dt><dd>2026-09-11</dd></div>
+    <div><dt>Classification</dt><dd>PROTÉGÉ A</dd></div>
+    <div><dt>Intégrité de l'original</dt><dd>Vérifiée ✓</dd></div>
+  </dl>
+  <div class="alerte"><strong>Validation humaine requise :</strong> Top 3 des recommandations (cas stratégique) · Risque de niveau élevé</div>
+  <h4>Résumé du besoin</h4>
+  <p>Développer et valider des modèles numériques de signature acoustique rayonnée (couplant machines, structure et hydrodynamique) pour les futurs navires de combat. Le besoin est de passer d&#x27;un état de preuve de concept (TRL 3) à une démonstration de prototype en environnement pertinent (TRL 6).</p>
+  <div class="deux-col">
+    <div>
+      <h4>Adéquation des voies</h4>
+      <div class="score"><span>R&amp;D interne (RDDC)</span><span class="jauge"><span class="jauge-rempli voie-rd-bg" style="width:95%"></span></span><b>95</b></div>
+      <div class="score"><span>Défi IDEaS</span><span class="jauge"><span class="jauge-rempli voie-ideas-bg" style="width:20%"></span></span><b>20</b></div>
+    </div>
+    <div>
+      <h4>Indicateurs</h4>
+      <div class="score"><span>Priorité (rang 1)</span><span class="jauge"><span class="jauge-rempli prio-bg" style="width:90%"></span></span><b>90</b></div>
+      <div class="score"><span>Confiance</span><span class="jauge"><span class="jauge-rempli conf-bg" style="width:90%"></span></span><b>0.90</b></div>
+      <div class="score"><span>Maturité (TRL)</span><span class="trl">Le TRL visé (6) est réalisable, mais nécessite une approche par étapes (TRL 3 -&gt; TRL 4 -&gt; TRL 5 -&gt; TRL 6) plutôt qu&#x27;une approche monolithique.</span></div>
+    </div>
+  </div>
+  <h4>Justification de la recommandation</h4>
+  <ul><li>**Problème Opérationnel et Contraintes:** Le besoin est intrinsèquement lié à des données de performance et des mesures de navires en service qui sont classifiées SECRET. Ces données ne peuvent être partagées avec un écosystème externe (industrie, PME) sans compromettre la sécurité de l&#x27;information et la souveraineté de l&#x27;information. De plus, le demandeur signale l&#x27;existence de travaux antérieurs et d&#x27;installations de mesure au sein du Ministère, ce qui oriente naturellement vers l&#x27;expertise interne.</li><li>**Analyse des Critères (REF-001):** Le besoin répond parfaitement aux critères de la R&amp;D interne (RDDC) : l&#x27;information est classifiée et sensible, les résultats constituent une information souveraine, et l&#x27;expertise et les installations de mesure sont déjà disponibles au sein du Ministère (REF-003).</li><li>**Évaluation IDEaS:** Le défi IDEaS est écarté car la validation du modèle nécessite l&#x27;accès aux mesures classifiées, rendant impossible la mise en concurrence ouverte et la participation d&#x27;acteurs externes sur la base de données sensibles.</li></ul>
+  <p class="note"><b>Priorité :</b> La nature classifiée et la dépendance aux ressources internes confèrent une priorité élevée à l&#x27;approche RDDC, car toute tentative de délocalisation ou de mise en concurrence externe est bloquée par les contraintes de sécurité de l&#x27;information.</p>
+  <h4>Critères d'orientation</h4>
+  <table class="compact"><thead><tr><th>Critère</th><th>Évaluation</th><th>Favorise</th></tr></thead><tbody><tr><td>Sensibilité de l&#x27;information</td><td>Classifiée SECRET. Exclut l&#x27;IDEaS.</td><td><span class='fav fav-rd'>R&amp;D interne</span></td></tr><tr><td>Propriété intellectuelle</td><td>Information souveraine. Doit être conservée par la Couronne.</td><td><span class='fav fav-rd'>R&amp;D interne</span></td></tr><tr><td>Expertise et ressources</td><td>Le demandeur pointe vers l&#x27;utilisation de centres de recherche et d&#x27;installations ministérielles existantes.</td><td><span class='fav fav-rd'>R&amp;D interne</span></td></tr></tbody></table>
+  <h4>Risques potentiels</h4>
+  <table class="compact"><thead><tr><th>Risque</th><th>Niveau</th><th>Mitigation</th></tr></thead>
+  <tbody><tr><td>Complexité technique et intégration des domaines physiques.</td><td><span class='niv niv-e'>élevé</span></td><td>Le projet nécessite une coordination multidisciplinaire entre l&#x27;acoustique, l&#x27;hydrodynamique et la mécanique structurelle. Il est crucial de définir des jalons de validation clairs pour chaque domaine physique et de ne pas considérer le modèle comme un simple assemblage de simulations.</td></tr><tr><td>Dépendance aux données classifiées.</td><td><span class='niv niv-e'>élevé</span></td><td>La gestion du cycle de vie des données classifiées doit être intégrée dès la phase de conception du projet pour garantir la conformité légale et sécuritaire.</td></tr></tbody></table>
+  <div class="deux-col">
+    <div><h4>Zones grises</h4><ul><li>Le passage de TRL 3 à TRL 6 est ambitieux pour un horizon de 36 mois. Il est nécessaire de décomposer le besoin en plusieurs phases de maturité pour gérer le risque de calendrier.</li></ul></div>
+    <div><h4>Contradictions</h4><p class="vide">Aucune contradiction détectée.</p></div>
+  </div>
+  <h4>Questions à adresser au demandeur</h4>
+  <ul><li>Le niveau de détail des mesures de signature acoustique (fréquence, portée, type de source) doit être précisé pour établir un plan de travail détaillé.</li></ul>
+  <h4>Références autorisées utilisées</h4>
+  <ul><li>REF-003 — Capacités des centres de recherche RDDC (aperçu)</li><li>REF-001 — Critères d&#x27;orientation : R&amp;D interne (RDDC) ou défi d&#x27;innovation IDEaS</li></ul>
+</article>
+<article class="fiche" id="fiche-BES-2026-0144">
+  <div class="fiche-entete">
+    <div><div class="fiche-id">BES-2026-0144</div><h3>Textile de camouflage multispectral adaptatif</h3></div>
+    <div class="fiche-badges"><span class="badge voie-ideas">Défi IDEaS</span><span class="badge statut-humain">Validation humaine</span></div>
+  </div>
+  <dl class="meta">
+    <div><dt>Demandeur</dt><dd>Armée canadienne — Direction du soldat</dd></div>
+    <div><dt>Reçue le</dt><dd>2026-09-17</dd></div>
+    <div><dt>Classification</dt><dd>NON CLASSIFIÉ</dd></div>
+    <div><dt>Intégrité de l'original</dt><dd>Vérifiée ✓</dd></div>
+  </dl>
+  <div class="alerte"><strong>Validation humaine requise :</strong> Top 3 des recommandations (cas stratégique) · Risque de niveau élevé</div>
+  <h4>Résumé du besoin</h4>
+  <p>Le besoin est de développer un textile de camouflage multispectral adaptatif, léger et durable, capable de réduire la détectabilité des soldats dans le visible, le proche infrarouge et l&#x27;infrarouge thermique. Le projet vise à faire passer la technologie de maturité TRL 3 à TRL 6 sur un horizon de 30 mois.</p>
+  <div class="deux-col">
+    <div>
+      <h4>Adéquation des voies</h4>
+      <div class="score"><span>R&amp;D interne (RDDC)</span><span class="jauge"><span class="jauge-rempli voie-rd-bg" style="width:40%"></span></span><b>40</b></div>
+      <div class="score"><span>Défi IDEaS</span><span class="jauge"><span class="jauge-rempli voie-ideas-bg" style="width:95%"></span></span><b>95</b></div>
+    </div>
+    <div>
+      <h4>Indicateurs</h4>
+      <div class="score"><span>Priorité (rang 2)</span><span class="jauge"><span class="jauge-rempli prio-bg" style="width:90%"></span></span><b>90</b></div>
+      <div class="score"><span>Confiance</span><span class="jauge"><span class="jauge-rempli conf-bg" style="width:90%"></span></span><b>0.90</b></div>
+      <div class="score"><span>Maturité (TRL)</span><span class="trl">TRL 3 → TRL 6</span></div>
+    </div>
+  </div>
+  <h4>Justification de la recommandation</h4>
+  <ul><li>Le besoin concerne un textile de camouflage multispectral adaptatif, un problème de science des matériaux qui est non classifié.</li><li>L&#x27;existence d&#x27;un écosystème externe actif (universités, PME textiles) et la nature ouverte des spécifications de performance sont des facteurs clés qui favorisent un appel à la concurrence.</li><li>L&#x27;historique des demandes similaires (BES-2024-0219) a déjà retenu la voie IDEaS pour ce type de défi.</li></ul>
+  <p class="note"><b>Priorité :</b> Le besoin répond à une menace opérationnelle moderne et critique (détection par capteurs avancés) et est essentiel pour la survie et l&#x27;efficacité des troupes au sol.</p>
+  <h4>Critères d'orientation</h4>
+  <table class="compact"><thead><tr><th>Critère</th><th>Évaluation</th><th>Favorise</th></tr></thead><tbody><tr><td>Sensibilité de l&#x27;information</td><td>Le besoin est explicitement NON CLASSIFIÉ, ce qui ouvre la porte à la participation du secteur privé et universitaire.</td><td><span class='fav fav-ideas'>IDEaS</span></td></tr><tr><td>Écosystème de solutions</td><td>Le demandeur mentionne l&#x27;existence d&#x27;un écosystème externe actif (laboratoires universitaires, secteur textile) capable de proposer des solutions concurrentielles.</td><td><span class='fav fav-ideas'>IDEaS</span></td></tr><tr><td>Nature du problème</td><td>Le problème est un défi de recherche et développement en science des matériaux et en ingénierie textile, qui bénéficie de l&#x27;approche par la concurrence pour optimiser le rapport performance/coût.</td><td><span class='fav fav-ideas'>IDEaS</span></td></tr></tbody></table>
+  <h4>Risques potentiels</h4>
+  <table class="compact"><thead><tr><th>Risque</th><th>Niveau</th><th>Mitigation</th></tr></thead>
+  <tbody><tr><td>Le saut de TRL 3 à TRL 6 est ambitieux et nécessite une coordination complexe entre la recherche fondamentale et les tests de terrain.</td><td><span class='niv niv-e'>élevé</span></td><td>Découper le projet en phases successives : Phase 1 (TRL 3-&gt;4 : preuve de concept en laboratoire) ; Phase 2 (TRL 4-&gt;6 : prototypes et tests de terrain).</td></tr><tr><td>Le coût de production à l&#x27;échelle industrielle (analyse des coûts) n&#x27;est pas détaillé et pourrait devenir une contrainte majeure.</td><td><span class='niv niv-m'>moyen</span></td><td>Intégrer une composante d&#x27;analyse de faisabilité industrielle et de coût dès la phase de défi d&#x27;innovation.</td></tr></tbody></table>
+  <div class="deux-col">
+    <div><h4>Zones grises</h4><ul><li>La transition entre la recherche fondamentale (TRL 3) et la production industrielle (TRL 6) est un saut technologique majeur qui nécessite une gestion de projet très structurée.</li></ul></div>
+    <div><h4>Contradictions</h4><p class="vide">Aucune contradiction détectée.</p></div>
+  </div>
+  <h4>Questions à adresser au demandeur</h4>
+  <ul><li>Quelles sont les spécifications précises de &quot;l&#x27;adaptabilité saisonnière&quot; (ex: résistance au gel, respirabilité en haute humidité) ?</li><li>Y a-t-il des contraintes de maintenance ou de cycle de vie spécifiques à intégrer dans le cahier des charges ?</li></ul>
+  <h4>Références autorisées utilisées</h4>
+  <ul><li>BES-2024-0219 — référence</li></ul>
+</article>
+<article class="fiche" id="fiche-BES-2026-0146">
+  <div class="fiche-entete">
+    <div><div class="fiche-id">BES-2026-0146</div><h3>Détection des campagnes de désinformation générées par IA visant les opérations des FAC</h3></div>
+    <div class="fiche-badges"><span class="badge voie-revue">Revue humaine</span><span class="badge statut-humain">Validation humaine</span></div>
+  </div>
+  <dl class="meta">
+    <div><dt>Demandeur</dt><dd>État-major interarmées stratégique — Opérations d&#x27;information</dd></div>
+    <div><dt>Reçue le</dt><dd>2026-09-24</dd></div>
+    <div><dt>Classification</dt><dd>NON CLASSIFIÉ</dd></div>
+    <div><dt>Intégrité de l'original</dt><dd>Vérifiée ✓</dd></div>
+  </dl>
+  <div class="alerte"><strong>Validation humaine requise :</strong> Top 3 des recommandations (cas stratégique) · Faible confiance (0.65 &lt; 0.70) · Dossier ambigu : revue humaine recommandée par l&#x27;agent · Contradictions détectées (2) · Risque de niveau élevé</div>
+  <h4>Résumé du besoin</h4>
+  <p>L&#x27;État-major interarmées stratégique a besoin d&#x27;un outil opérationnel (TRL 8) capable de détecter, d&#x27;estimer l&#x27;origine et la portée des campagnes de désinformation générées par IA ciblant les opérations des FAC. L&#x27;outil doit être développé en 6 mois, utiliser des données de renseignement classifiées et garantir la non-divulgation de son existence.</p>
+  <div class="deux-col">
+    <div>
+      <h4>Adéquation des voies</h4>
+      <div class="score"><span>R&amp;D interne (RDDC)</span><span class="jauge"><span class="jauge-rempli voie-rd-bg" style="width:85%"></span></span><b>85</b></div>
+      <div class="score"><span>Défi IDEaS</span><span class="jauge"><span class="jauge-rempli voie-ideas-bg" style="width:40%"></span></span><b>40</b></div>
+    </div>
+    <div>
+      <h4>Indicateurs</h4>
+      <div class="score"><span>Priorité (rang 3)</span><span class="jauge"><span class="jauge-rempli prio-bg" style="width:90%"></span></span><b>90</b></div>
+      <div class="score"><span>Confiance</span><span class="jauge"><span class="jauge-rempli conf-bg" style="width:65%"></span></span><b>0.65</b></div>
+      <div class="score"><span>Maturité (TRL)</span><span class="trl">TRL 2 $\rightarrow$ TRL 8</span></div>
+    </div>
+  </div>
+  <h4>Justification de la recommandation</h4>
+  <ul><li>Le besoin est critique et l&#x27;urgence est très élevée, nécessitant une analyse immédiate.</li><li>Le besoin de traiter des données classifiées et d&#x27;assurer la souveraineté de l&#x27;information oriente fortement vers les capacités contrôlées de RDDC.</li><li>Les lacunes juridiques et la contradiction entre le besoin de données classifiées et la méthode IDEaS requièrent un jugement d&#x27;expert.</li></ul>
+  <p class="note"><b>Priorité :</b> L&#x27;urgence opérationnelle est très élevée et l&#x27;impact potentiel sur les opérations des FAC est critique, justifiant une priorité élevée malgré les incertitudes méthodologiques.</p>
+  <h4>Critères d'orientation</h4>
+  <table class="compact"><thead><tr><th>Critère</th><th>Évaluation</th><th>Favorise</th></tr></thead><tbody><tr><td>Gestion des données sensibles</td><td>L&#x27;exigence d&#x27;utiliser des rapports de renseignement classifiés pour l&#x27;entraînement de l&#x27;outil est une contrainte majeure qui nécessite un environnement sécurisé et contrôlé.</td><td><span class='fav fav-neutre'>Neutre</span></td></tr><tr><td>Nature de l&#x27;appel (Ouvert vs. Contrôlé)</td><td>Le demandeur souhaite un défi ouvert (IDEaS), mais la nature du matériel source (classifié) impose un cadre de travail fermé.</td><td><span class='fav fav-neutre'>Neutre</span></td></tr><tr><td>Enjeux juridiques et éthiques</td><td>Les considérations juridiques concernant la surveillance de contenus publics ne sont pas examinées, ce qui dépasse le cadre purement S&amp;T.</td><td><span class='fav fav-neutre'>Neutre</span></td></tr></tbody></table>
+  <h4>Risques potentiels</h4>
+  <table class="compact"><thead><tr><th>Risque</th><th>Niveau</th><th>Mitigation</th></tr></thead>
+  <tbody><tr><td>Contradiction entre la méthode IDEaS ouverte et l&#x27;utilisation de données classifiées.</td><td><span class='niv niv-e'>élevé</span></td><td>Le processus de sélection doit être réévalué pour permettre une collaboration industrielle sous un cadre de sécurité contrôlé (ex. : partenariat RDDC/Industrie).</td></tr><tr><td>Risque de divulgation de l&#x27;existence de l&#x27;outil ou de ses capacités.</td><td><span class='niv niv-e'>élevé</span></td><td>Toute solution doit intégrer des protocoles stricts de gestion de l&#x27;information et de la propriété intellectuelle.</td></tr><tr><td>Le délai de 6 mois pour passer de TRL 2 à TRL 8 est extrêmement ambitieux et pourrait mener à une défaillance opérationnelle.</td><td><span class='niv niv-m'>moyen</span></td><td>Décomposer le projet en jalons plus petits et plus gérables (ex. : TRL 2 $\rightarrow$ TRL 4 en 3 mois, puis TRL 4 $\rightarrow$ TRL 6 en 3 mois).</td></tr></tbody></table>
+  <div class="deux-col">
+    <div><h4>Zones grises</h4><ul><li>La contradiction entre l&#x27;exigence d&#x27;un défi ouvert (IDEaS) et la nécessité d&#x27;utiliser des données classifiées.</li><li>L&#x27;absence d&#x27;examen des enjeux juridiques et éthiques concernant la surveillance de contenus publics.</li></ul></div>
+    <div><h4>Contradictions</h4><ul><li>Le demandeur exige un défi ouvert à l&#x27;industrie (IDEaS) tout en spécifiant que l&#x27;outil doit être entraîné sur des rapports de renseignement classifiés, ce qui est incompatible avec un processus IDEaS standard.</li><li>La demande mentionne des considérations juridiques (surveillance de contenus publics produits par des Canadiens) sans qu&#x27;un examen préalable n&#x27;ait été effectué, ce qui constitue un risque majeur non adressé.</li></ul></div>
+  </div>
+  <h4>Questions à adresser au demandeur</h4>
+  <ul><li>Quelles sont les sources exactes de données classifiées qui seront utilisées pour l&#x27;entraînement ? (Format, volume, fréquence de mise à jour).</li><li>Un examen juridique et éthique préliminaire a-t-il été effectué concernant la surveillance de contenus publics produits par des Canadiens ?</li><li>Le budget de 3 M$ est-il suffisant pour atteindre un TRL 8 en 6 mois, compte tenu de la complexité des données classifiées ?</li></ul>
+  <h4>Références autorisées utilisées</h4>
+  <p class="vide">Aucune référence citée.</p>
+</article>
+<article class="fiche" id="fiche-BES-2026-0145">
+  <div class="fiche-entete">
+    <div><div class="fiche-id">BES-2026-0145</div><h3>Purification d&#x27;eau portative pour patrouilles nordiques</h3></div>
+    <div class="fiche-badges"><span class="badge voie-revue">Revue humaine</span><span class="badge statut-humain">Validation humaine</span></div>
+  </div>
+  <dl class="meta">
+    <div><dt>Demandeur</dt><dd>Groupe de patrouilles des Rangers canadiens</dd></div>
+    <div><dt>Reçue le</dt><dd>2026-09-22</dd></div>
+    <div><dt>Classification</dt><dd>NON CLASSIFIÉ</dd></div>
+    <div><dt>Intégrité de l'original</dt><dd>Vérifiée ✓</dd></div>
+  </dl>
+  <div class="alerte"><strong>Validation humaine requise :</strong> Dossier ambigu : revue humaine recommandée par l&#x27;agent · Risque de niveau élevé</div>
+  <h4>Résumé du besoin</h4>
+  <p>Le Groupe de patrouilles des Rangers canadiens a besoin d&#x27;équiper ses patrouilles de longue durée d&#x27;un purificateur d&#x27;eau portatif fiable, capable de fonctionner à -30°C. Le besoin se limite à la sélection et à l&#x27;acquisition de 300 unités dans un délai de six mois, en se basant sur la validation de trois produits commerciaux déjà identifiés.</p>
+  <div class="deux-col">
+    <div>
+      <h4>Adéquation des voies</h4>
+      <div class="score"><span>R&amp;D interne (RDDC)</span><span class="jauge"><span class="jauge-rempli voie-rd-bg" style="width:10%"></span></span><b>10</b></div>
+      <div class="score"><span>Défi IDEaS</span><span class="jauge"><span class="jauge-rempli voie-ideas-bg" style="width:30%"></span></span><b>30</b></div>
+    </div>
+    <div>
+      <h4>Indicateurs</h4>
+      <div class="score"><span>Priorité (rang 4)</span><span class="jauge"><span class="jauge-rempli prio-bg" style="width:85%"></span></span><b>85</b></div>
+      <div class="score"><span>Confiance</span><span class="jauge"><span class="jauge-rempli conf-bg" style="width:95%"></span></span><b>0.95</b></div>
+      <div class="score"><span>Maturité (TRL)</span><span class="trl">TRL 8 → TRL 9 (Validation et Acquisition)</span></div>
+    </div>
+  </div>
+  <h4>Justification de la recommandation</h4>
+  <ul><li>Le besoin est de valider la performance de produits commerciaux existants dans des conditions extrêmes (-30°C) et d&#x27;en procéder à l&#x27;acquisition.</li><li>Le TRL actuel (8) et visé (9) indique que la technologie est mature et prête pour le déploiement opérationnel.</li><li>La nature de la demande (achat et vérification de produits commerciaux) ne relève pas de la recherche fondamentale ou du développement technologique complexe.</li></ul>
+  <p class="note"><b>Priorité :</b> L&#x27;urgence opérationnelle est élevée, mais la nature du besoin est purement logistique et d&#x27;approvisionnement, nécessitant une expertise en achat et validation de marché plutôt qu&#x27;en S&amp;T.</p>
+  <h4>Critères d'orientation</h4>
+  <table class="compact"><thead><tr><th>Critère</th><th>Évaluation</th><th>Favorise</th></tr></thead><tbody><tr><td>Niveau de maturité technologique (TRL)</td><td>TRL 8-9 (Système qualifié et éprouvé en opération). Le besoin est de validation et d&#x27;acquisition, non de développement.</td><td><span class='fav fav-neutre'>Neutre</span></td></tr><tr><td>Nature du problème</td><td>Le besoin est de sélectionner et d&#x27;acquérir des produits commerciaux existants (3 produits identifiés).</td><td><span class='fav fav-neutre'>Neutre</span></td></tr><tr><td>Accès aux données/systèmes militaires</td><td>Le besoin est de vérifier la performance environnementale (froid) de produits externes, pas de développer un système interne ou classifié.</td><td><span class='fav fav-neutre'>Neutre</span></td></tr></tbody></table>
+  <h4>Risques potentiels</h4>
+  <table class="compact"><thead><tr><th>Risque</th><th>Niveau</th><th>Mitigation</th></tr></thead>
+  <tbody><tr><td>Risque de dérive du mandat (Scope Creep) : Le demandeur pourrait tenter de transformer une demande d&#x27;achat/validation en un projet de développement S&amp;T.</td><td><span class='niv niv-e'>élevé</span></td><td>Définir clairement les limites du mandat : l&#x27;analyse doit se concentrer uniquement sur la validation de la performance et la faisabilité d&#x27;acquisition des produits commerciaux identifiés.</td></tr></tbody></table>
+  <div class="deux-col">
+    <div><h4>Zones grises</h4><ul><li>Le niveau de détail sur les critères de sélection des produits commerciaux (critères de performance, coût total de possession, maintenance) est insuffisant pour une recommandation définitive.</li></ul></div>
+    <div><h4>Contradictions</h4><p class="vide">Aucune contradiction détectée.</p></div>
+  </div>
+  <h4>Questions à adresser au demandeur</h4>
+  <ul><li>Quelles sont les spécifications exactes de l&#x27;environnement opérationnel (pression, débit, type de source d&#x27;eau) pour la validation des produits ?</li><li>Y a-t-il des critères de maintenance ou de logistique spécifiques au Grand Nord qui doivent être intégrés à l&#x27;évaluation des produits ?</li></ul>
+  <h4>Références autorisées utilisées</h4>
+  <ul><li>REF-005 — Échelle des niveaux de maturité technologique (TRL)</li></ul>
+</article>
+<article class="fiche" id="fiche-BES-2026-0149">
+  <div class="fiche-entete">
+    <div><div class="fiche-id">BES-2026-0149</div><h3>Stockage d&#x27;énergie et micro-réseaux pour bases opérationnelles avancées</h3></div>
+    <div class="fiche-badges"><span class="badge voie-ideas">Défi IDEaS</span><span class="badge statut-humain">Validation humaine</span></div>
+  </div>
+  <dl class="meta">
+    <div><dt>Demandeur</dt><dd>Sous-ministre adjoint (Infrastructure et environnement)</dd></div>
+    <div><dt>Reçue le</dt><dd>2026-10-06</dd></div>
+    <div><dt>Classification</dt><dd>NON CLASSIFIÉ</dd></div>
+    <div><dt>Intégrité de l'original</dt><dd>Vérifiée ✓</dd></div>
+  </dl>
+  <div class="alerte"><strong>Validation humaine requise :</strong> Risque de niveau élevé</div>
+  <h4>Résumé du besoin</h4>
+  <p>Le besoin est de développer et de démontrer des solutions de micro-réseaux hybrides (combinant énergies renouvelables et stockage) pour remplacer la dépendance aux génératrices diesel sur les bases opérationnelles avancées et les camps temporaires. L&#x27;objectif est de fournir des démonstrateurs comparés, des données de performance, de logistique et de coût de cycle de vie, en passant d&#x27;un niveau de maturité technologique (TRL) 5 à TRL 7.</p>
+  <div class="deux-col">
+    <div>
+      <h4>Adéquation des voies</h4>
+      <div class="score"><span>R&amp;D interne (RDDC)</span><span class="jauge"><span class="jauge-rempli voie-rd-bg" style="width:20%"></span></span><b>20</b></div>
+      <div class="score"><span>Défi IDEaS</span><span class="jauge"><span class="jauge-rempli voie-ideas-bg" style="width:90%"></span></span><b>90</b></div>
+    </div>
+    <div>
+      <h4>Indicateurs</h4>
+      <div class="score"><span>Priorité (rang 5)</span><span class="jauge"><span class="jauge-rempli prio-bg" style="width:85%"></span></span><b>85</b></div>
+      <div class="score"><span>Confiance</span><span class="jauge"><span class="jauge-rempli conf-bg" style="width:90%"></span></span><b>0.90</b></div>
+      <div class="score"><span>Maturité (TRL)</span><span class="trl">TRL 5 → TRL 7</span></div>
+    </div>
+  </div>
+  <h4>Justification de la recommandation</h4>
+  <ul><li>Le besoin est de démontrer des solutions de micro-réseaux hybrides, un problème qui peut être formulé ouvertement (non classifié).</li><li>L&#x27;analyse des références (REF-002) confirme que les défis de micro-réseaux sont un domaine idéal pour un appel à la concurrence (IDEaS).</li><li>Le contexte opérationnel (bases avancées) et les objectifs environnementaux sont des moteurs de marché clairs, favorisant l&#x27;engagement du secteur privé.</li></ul>
+  <p class="note"><b>Priorité :</b> Le besoin est critique pour la logistique et la réduction de l&#x27;empreinte carbone des opérations militaires. Le passage de TRL 5 à 7 est un saut technologique majeur, justifiant une haute priorité.</p>
+  <h4>Critères d'orientation</h4>
+  <table class="compact"><thead><tr><th>Critère</th><th>Évaluation</th><th>Favorise</th></tr></thead><tbody><tr><td>Classification de l&#x27;information</td><td>Le besoin est explicitement NON CLASSIFIÉ et peut être décrit publiquement.</td><td><span class='fav fav-ideas'>IDEaS</span></td></tr><tr><td>Écosystème externe</td><td>Le texte mentionne que l&#x27;industrie canadienne de l&#x27;énergie propre est active et que plusieurs approches concurrentes sont envisageables.</td><td><span class='fav fav-ideas'>IDEaS</span></td></tr><tr><td>Nature du problème</td><td>Il s&#x27;agit d&#x27;un défi technique complexe (micro-réseaux hybrides, grand froid) nécessitant l&#x27;apport de multiples acteurs industriels.</td><td><span class='fav fav-ideas'>IDEaS</span></td></tr></tbody></table>
+  <h4>Risques potentiels</h4>
+  <table class="compact"><thead><tr><th>Risque</th><th>Niveau</th><th>Mitigation</th></tr></thead>
+  <tbody><tr><td>Complexité d&#x27;intégration des systèmes (multiples sources d&#x27;énergie, stockage, réseau).</td><td><span class='niv niv-e'>élevé</span></td><td>Le défi IDEaS doit inclure des critères de performance stricts et des jalons de validation en environnement simulé.</td></tr><tr><td>Fiabilité en conditions de grand froid.</td><td><span class='niv niv-e'>élevé</span></td><td>Les appels d&#x27;offres doivent exiger des tests de performance spécifiques aux températures extrêmes.</td></tr></tbody></table>
+  <div class="deux-col">
+    <div><h4>Zones grises</h4><ul><li>Le niveau de maturité technologique (TRL 5) est donné, mais les spécifications précises des systèmes existants et des interfaces de connexion sont manquantes.</li></ul></div>
+    <div><h4>Contradictions</h4><p class="vide">Aucune contradiction détectée.</p></div>
+  </div>
+  <h4>Questions à adresser au demandeur</h4>
+  <ul><li>Quelles sont les spécifications exactes des sites d&#x27;essai (géographie, conditions climatiques extrêmes, contraintes de terrain) ?</li><li>Y a-t-il des exigences spécifiques en matière de durée de fonctionnement autonome (autonomie en cas de défaillance du réseau principal) ?</li></ul>
+  <h4>Références autorisées utilisées</h4>
+  <ul><li>REF-002 — Programme IDEaS : aperçu des mécanismes</li></ul>
+</article>
+<article class="fiche" id="fiche-BES-2026-0148">
+  <div class="fiche-entete">
+    <div><div class="fiche-id">BES-2026-0148</div><h3>Maintenance prédictive des moteurs de la flotte d&#x27;hélicoptères maritimes</h3></div>
+    <div class="fiche-badges"><span class="badge voie-rd">R&amp;D interne</span><span class="badge statut-humain">Validation humaine</span></div>
+  </div>
+  <dl class="meta">
+    <div><dt>Demandeur</dt><dd>Aviation royale canadienne — Direction de la gestion du programme d&#x27;équipement aérospatial</dd></div>
+    <div><dt>Reçue le</dt><dd>2026-10-02</dd></div>
+    <div><dt>Classification</dt><dd>PROTÉGÉ A</dd></div>
+    <div><dt>Intégrité de l'original</dt><dd>Vérifiée ✓</dd></div>
+  </dl>
+  <div class="alerte"><strong>Validation humaine requise :</strong> Contradictions détectées (1) · Risque de niveau élevé</div>
+  <h4>Résumé du besoin</h4>
+  <p>Le besoin est de développer des modèles de maintenance prédictive pour la flotte d&#x27;hélicoptères maritimes afin d&#x27;anticiper les défaillances moteur et d&#x27;optimiser les déposes. Ce projet doit exploiter les données de vol et de maintenance enregistrées, mais il est fortement contraint par le statut classifié des données (PROTÉGÉ A) et les droits de propriété intellectuelle du fabricant. L&#x27;intégration des modèles aux processus de navigabilité est l&#x27;objectif final.</p>
+  <div class="deux-col">
+    <div>
+      <h4>Adéquation des voies</h4>
+      <div class="score"><span>R&amp;D interne (RDDC)</span><span class="jauge"><span class="jauge-rempli voie-rd-bg" style="width:90%"></span></span><b>90</b></div>
+      <div class="score"><span>Défi IDEaS</span><span class="jauge"><span class="jauge-rempli voie-ideas-bg" style="width:45%"></span></span><b>45</b></div>
+    </div>
+    <div>
+      <h4>Indicateurs</h4>
+      <div class="score"><span>Priorité (rang 6)</span><span class="jauge"><span class="jauge-rempli prio-bg" style="width:75%"></span></span><b>75</b></div>
+      <div class="score"><span>Confiance</span><span class="jauge"><span class="jauge-rempli conf-bg" style="width:85%"></span></span><b>0.85</b></div>
+      <div class="score"><span>Maturité (TRL)</span><span class="trl">TRL 4 → TRL 7</span></div>
+    </div>
+  </div>
+  <h4>Justification de la recommandation</h4>
+  <ul><li>Le besoin concerne l&#x27;exploitation de données de vol et de maintenance de la flotte, qui sont classifiées (PROTÉGÉ A) et contiennent des droits de propriété intellectuelle (IP) du fabricant. Ces contraintes de sécurité et de souveraineté des données sont des critères déterminants pour une approche interne (REF-004).</li><li>Le fait qu&#x27;un centre de recherche du Ministère possède déjà une expertise pertinente en analytique de données aérospatiales renforce l&#x27;adéquation avec les capacités de recherche interne (REF-003).</li><li>Le programme DIP montre un projet connexe (&quot;Analytique des données de vol&quot;), suggérant que le besoin s&#x27;inscrit dans une continuité de recherche souveraine.</li></ul>
+  <p class="note"><b>Priorité :</b> Le besoin est critique pour la disponibilité opérationnelle de la flotte (impact élevé). Bien que l&#x27;urgence soit jugée &quot;moyenne&quot;, la nature critique de la défaillance des moteurs rend le projet prioritaire. La faisabilité est modérée en raison des contraintes de données.</p>
+  <h4>Critères d'orientation</h4>
+  <table class="compact"><thead><tr><th>Critère</th><th>Évaluation</th><th>Favorise</th></tr></thead><tbody><tr><td>Sensibilité des données et souveraineté de l&#x27;information</td><td>Les données sont classifiées (PROTÉGÉ A) et contiennent des éléments de propriété intellectuelle du fabricant. Le contrôle doit rester au sein des installations habilitées.</td><td><span class='fav fav-rd'>R&amp;D interne</span></td></tr><tr><td>Expertise et ressources disponibles</td><td>Le demandeur mentionne qu&#x27;un centre de recherche du Ministère possède déjà une expertise en analytique de données aérospatiales, ce qui est un atout pour une approche interne.</td><td><span class='fav fav-rd'>R&amp;D interne</span></td></tr><tr><td>Potentiel de concurrence externe</td><td>Bien que le problème soit un défi d&#x27;optimisation, la nature classifiée des données empêche un appel à la concurrence ouvert (IDEaS).</td><td><span class='fav fav-rd'>R&amp;D interne</span></td></tr></tbody></table>
+  <h4>Risques potentiels</h4>
+  <table class="compact"><thead><tr><th>Risque</th><th>Niveau</th><th>Mitigation</th></tr></thead>
+  <tbody><tr><td>Violation de la sécurité de l&#x27;information due à la nature classifiée des données (PROTÉGÉ A).</td><td><span class='niv niv-e'>élevé</span></td><td>Le projet doit être confiné à des installations habilitées et suivre les protocoles de sécurité des données classifiées.</td></tr><tr><td>Litige sur les droits de propriété intellectuelle (IP) des données du fabricant.</td><td><span class='niv niv-m'>moyen</span></td><td>Une clarification juridique et contractuelle est nécessaire avant de commencer le travail de modélisation.</td></tr></tbody></table>
+  <div class="deux-col">
+    <div><h4>Zones grises</h4><ul><li>Le niveau de maturité technologique visé (TRL 7) est ambitieux pour un horizon de 24 mois, nécessitant une planification par étapes.</li><li>Le statut juridique des données (IP fabricant) n&#x27;est pas suffisamment détaillé pour garantir la faisabilité.</li></ul></div>
+    <div><h4>Contradictions</h4><ul><li>La demande présente une tension entre la nature &quot;ouverte&quot; du problème (développement de modèles) et la nature hautement sensible et classifiée des données (PROTÉGÉ A), ce qui limite fortement la participation externe.</li></ul></div>
+  </div>
+  <h4>Questions à adresser au demandeur</h4>
+  <ul><li>Quels sont les droits contractuels précis concernant le partage des données de la flotte avec des tiers ?</li><li>Quel est le périmètre exact de l&#x27;expertise en analytique de données aérospatiales du centre de recherche du Ministère ?</li><li>Le besoin inclut-il l&#x27;acquisition de nouvelles capacités de capteurs ou se limite-t-il à l&#x27;analyse des données existantes ?</li></ul>
+  <h4>Références autorisées utilisées</h4>
+  <ul><li>REF-004 — Traitement de l&#x27;information et vie privée dans l&#x27;analyse des besoins</li><li>REF-001 — Critères d&#x27;orientation : R&amp;D interne (RDDC) ou défi d&#x27;innovation IDEaS</li><li>REF-003 — Capacités des centres de recherche RDDC (aperçu)</li></ul>
+</article>
+<article class="fiche" id="fiche-BES-2026-0143">
+  <div class="fiche-entete">
+    <div><div class="fiche-id">BES-2026-0143</div><h3>Outil prédictif de détection précoce de l&#x27;épuisement chez les militaires</h3></div>
+    <div class="fiche-badges"><span class="badge voie-revue">Revue humaine</span><span class="badge statut-humain">Validation humaine</span></div>
+  </div>
+  <dl class="meta">
+    <div><dt>Demandeur</dt><dd>Groupe des Services de santé des Forces canadiennes</dd></div>
+    <div><dt>Reçue le</dt><dd>2026-09-15</dd></div>
+    <div><dt>Classification</dt><dd>NON CLASSIFIÉ</dd></div>
+    <div><dt>Intégrité de l'original</dt><dd>Vérifiée ✓</dd></div>
+  </dl>
+  <div class="alerte"><strong>Validation humaine requise :</strong> Dossier ambigu : revue humaine recommandée par l&#x27;agent · Contradictions détectées (1) · Risque de niveau élevé</div>
+  <h4>Résumé du besoin</h4>
+  <p>Développer un outil d&#x27;aide à la décision prédictif pour détecter précocement le risque d&#x27;épuisement professionnel et de détresse psychologique chez les militaires, en combinant des données cliniques, opérationnelles et comportementales.</p>
+  <div class="deux-col">
+    <div>
+      <h4>Adéquation des voies</h4>
+      <div class="score"><span>R&amp;D interne (RDDC)</span><span class="jauge"><span class="jauge-rempli voie-rd-bg" style="width:45%"></span></span><b>45</b></div>
+      <div class="score"><span>Défi IDEaS</span><span class="jauge"><span class="jauge-rempli voie-ideas-bg" style="width:35%"></span></span><b>35</b></div>
+    </div>
+    <div>
+      <h4>Indicateurs</h4>
+      <div class="score"><span>Priorité (rang 7)</span><span class="jauge"><span class="jauge-rempli prio-bg" style="width:60%"></span></span><b>60</b></div>
+      <div class="score"><span>Confiance</span><span class="jauge"><span class="jauge-rempli conf-bg" style="width:85%"></span></span><b>0.85</b></div>
+      <div class="score"><span>Maturité (TRL)</span><span class="trl">2 (Concept formulé)</span></div>
+    </div>
+  </div>
+  <h4>Justification de la recommandation</h4>
+  <ul><li>**Problème opérationnel réel :** Le besoin est de développer une capacité de surveillance prédictive de la santé mentale des effectifs militaires pour améliorer le maintien en puissance. Il s&#x27;agit d&#x27;un problème de science des données et de facteurs humains.</li><li>**Niveau de Maturité Technologique (TRL) :** Le passage de TRL 2 (concept formulé) à TRL 5 (validation en environnement représentatif) est un saut significatif nécessitant une validation clinique et algorithmique rigoureuse.</li><li>**Analyse des contraintes et risques :** Le risque majeur n&#x27;est pas technologique, mais **légal, éthique et de gouvernance des données**. L&#x27;utilisation de renseignements personnels de santé (PHI) est extrêmement sensible. L&#x27;absence d&#x27;évaluation des facteurs relatifs à la vie privée (EFVP) et de protocoles de confidentialité clairs (notamment concernant la chaîne de commandement) rend tout lancement S&amp;T prématuré.</li><li>**Comparaison des voies :**</li><li>**R&amp;D interne (RDDC) :** Bien que les centres de recherche RDDC (notamment le Centre de recherches de Toronto pour les facteurs humains et le CARO pour l&#x27;analytique) possèdent l&#x27;expertise nécessaire pour la modélisation, l&#x27;accès aux données réelles de santé protégées et la validation clinique nécessitent une structure légale et éthique qui n&#x27;est pas en place. Le développement interne est possible, mais il doit être précédé d&#x27;une revue juridique approfondie.</li><li>**Défi d&#x27;innovation IDEaS :** Cette voie serait idéale pour le développement de l&#x27;algorithme *en théorie* en utilisant des données synthétiques, car elle permet la concurrence externe. Cependant, la complexité de l&#x27;intégration de données réelles (cliniques, opérationnelles, comportementales) et la nécessité de garantir la confidentialité des alertes rendent l&#x27;approche IDEaS trop risquée sans un cadre de données sécurisé et légalement validé.</li><li>**Conclusion :** Les enjeux éthiques, juridiques et de vie privée sont primordiaux et dépassent le cadre d&#x27;une simple orientation S&amp;T. Il est impératif de réaliser une revue approfondie pour établir la faisabilité légale et éthique avant de déterminer si le besoin doit être traité en interne ou en externe.</li></ul>
+  <p class="note"><b>Priorité :</b> Le besoin est stratégique pour le MDN, mais la complexité réglementaire et éthique nécessite une phase de cadrage préliminaire (Revue humaine approfondie) avant d&#x27;attribuer une priorité de lancement S&amp;T.</p>
+  <h4>Critères d'orientation</h4>
+  <table class="compact"><thead><tr><th>Critère</th><th>Évaluation</th><th>Favorise</th></tr></thead><tbody><tr><td>Sensibilité/Classification</td><td>Haute. Implique des renseignements personnels de santé protégés (PHI).</td><td><span class='fav fav-rd'>R&amp;D interne</span></td></tr><tr><td>Nature du problème</td><td>Modélisation complexe, nécessitant une expertise en science des données et en facteurs humains.</td><td><span class='fav fav-ideas'>IDEaS</span></td></tr><tr><td>Enjeux éthiques/Juridiques</td><td>Critique. L&#x27;absence d&#x27;EFVP et de protocoles de confidentialité clairs est un blocage majeur.</td><td><span class='fav fav-neutre'>Neutre</span></td></tr></tbody></table>
+  <h4>Risques potentiels</h4>
+  <table class="compact"><thead><tr><th>Risque</th><th>Niveau</th><th>Mitigation</th></tr></thead>
+  <tbody><tr><td>Risque de confidentialité et de vie privée (PHI). L&#x27;utilisation des données de santé doit être précédée d&#x27;une évaluation légale et éthique formelle (EFVP).</td><td><span class='niv niv-e'>élevé</span></td><td>Suspension du lancement S&amp;T jusqu&#x27;à validation légale.</td></tr><tr><td>Contradiction entre l&#x27;ambition du besoin (utilisation de données réelles et complexes) et le statut de non-classification du besoin, qui masque la sensibilité des données sous-jacentes.</td><td><span class='niv niv-m'>moyen</span></td><td>Clarification des sources de données et des protocoles d&#x27;accès.</td></tr><tr><td>Manque de définition des modalités d&#x27;utilisation des alertes (confidentialité vis-à-vis de la chaîne de commandement).</td><td><span class='niv niv-m'>moyen</span></td><td>Impliquer les responsables opérationnels et juridiques dès la phase de cadrage.</td></tr></tbody></table>
+  <div class="deux-col">
+    <div><h4>Zones grises</h4><ul><li>La demande est techniquement réalisable (TRL 2 -&gt; 5), mais la faisabilité est bloquée par des considérations de gouvernance des données qui nécessitent une expertise juridique et éthique externe au processus S&amp;T.</li></ul></div>
+    <div><h4>Contradictions</h4><ul><li>Le demandeur est ouvert à un défi ouvert (IDEaS) mais le sujet (santé mentale militaire) est intrinsèquement lié à des données hautement sensibles et potentiellement classifiées dans leur usage réel, ce qui contredit les exigences de l&#x27;IDEaS.</li></ul></div>
+  </div>
+  <h4>Questions à adresser au demandeur</h4>
+  <ul><li>Quelle est la base légale pour l&#x27;utilisation de ces données de santé (consentement, mandat, etc.) ?</li><li>Quels sont les protocoles de confidentialité et de partage des alertes entre les cliniciens et la chaîne de commandement ?</li><li>Le budget de 900 k$ est-il suffisant pour couvrir l&#x27;intégralité du cycle de vie (développement algorithmique + validation clinique + revue légale) ?</li></ul>
+  <h4>Références autorisées utilisées</h4>
+  <ul><li>REF-001 — Critères d&#x27;orientation : R&amp;D interne (RDDC) ou défi d&#x27;innovation IDEaS</li><li>REF-004 — Traitement de l&#x27;information et vie privée dans l&#x27;analyse des besoins</li><li>REF-003 — Capacités des centres de recherche RDDC (aperçu)</li><li>REF-005 — Échelle des niveaux de maturité technologique (TRL)</li></ul>
+</article>
+<article class="fiche" id="fiche-BES-2026-0141">
+  <div class="fiche-entete">
+    <div><div class="fiche-id">BES-2026-0141</div><h3>Détection de mini-drones en environnement arctique</h3></div>
+    <div class="fiche-badges"><span class="badge statut-humain">Validation humaine</span></div>
+  </div>
+  <dl class="meta">
+    <div><dt>Demandeur</dt><dd>Armée canadienne — Direction des besoins en capacités terrestres</dd></div>
+    <div><dt>Reçue le</dt><dd>2026-09-08</dd></div>
+    <div><dt>Classification</dt><dd>NON CLASSIFIÉ</dd></div>
+    <div><dt>Intégrité de l'original</dt><dd>Vérifiée ✓</dd></div>
+  </dl>
+  <div class="alerte"><strong>Dossier non analysé par l'agent.</strong> Erreur du moteur : MoteurIndisponible — Aucun serveur Ollama ne répond à http://localhost:11434. Démarrez Ollama sur cette machine (« ollama serve »). Si l&#x27;application est hébergée (Streamlit Cloud), « localhost » désigne le serveur d&#x27;héber</div>
+</article>
+<article class="fiche" id="fiche-BES-2026-0147">
+  <div class="fiche-entete">
+    <div><div class="fiche-id">BES-2026-0147</div><h3>Évaluation de la résilience d&#x27;une liaison de données tactique</h3></div>
+    <div class="fiche-badges"><span class="badge statut-humain">Validation humaine</span></div>
+  </div>
+  <dl class="meta">
+    <div><dt>Demandeur</dt><dd>Commandement — Systèmes C4ISR</dd></div>
+    <div><dt>Reçue le</dt><dd>2026-09-29</dd></div>
+    <div><dt>Classification</dt><dd>SECRET</dd></div>
+    <div><dt>Intégrité de l'original</dt><dd>Vérifiée ✓</dd></div>
+  </dl>
+  <div class="alerte"><strong>Dossier non analysé par l'agent.</strong> Classification « SECRET » hors du périmètre autorisé : dossier non transmis au modèle, orienté directement vers un analyste habilité.</div>
+</article>
+</section>
+
+<section id="tracabilite">
+  <h2><span class="num-sec">5</span>Traçabilité et contrôle</h2>
+  <div class="deux-col">
+    <div class="carte"><h3>Intégrité des demandes originales (SHA-256)</h3>
+      <table class="compact"><thead><tr><th>Dossier</th><th>Empreinte avant / après</th></tr></thead><tbody><tr><td>BES-2026-0141</td><td>Vérifiée ✓</td></tr><tr><td>BES-2026-0142</td><td>Vérifiée ✓</td></tr><tr><td>BES-2026-0143</td><td>Vérifiée ✓</td></tr><tr><td>BES-2026-0144</td><td>Vérifiée ✓</td></tr><tr><td>BES-2026-0145</td><td>Vérifiée ✓</td></tr><tr><td>BES-2026-0146</td><td>Vérifiée ✓</td></tr><tr><td>BES-2026-0147</td><td>Vérifiée ✓</td></tr><tr><td>BES-2026-0148</td><td>Vérifiée ✓</td></tr><tr><td>BES-2026-0149</td><td>Vérifiée ✓</td></tr></tbody></table></div>
+    <div class="carte"><h3>Consommation</h3>
+      <p>Jetons en entrée : <b>64,435</b><br>Jetons en sortie : <b>48,210</b></p>
+      <p class="note">Les analyses sont enregistrées dans la bibliothèque SharePoint prévue, sans écraser de version antérieure.</p></div>
+  </div>
+  <h3>Journal des appels d'outils</h3>
+  <table class='compact trace'><thead><tr><th>Dossier</th><th>Horodatage (UTC)</th><th>Outil</th><th>Paramètres</th><th>Statut</th></tr></thead><tbody><tr><td>BES-2026-0142</td><td>2026-10-15T15:41:13+00:00</td><td><code>rechercher_references</code></td><td><code>requete=signature acoustique navale classifiée</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0143</td><td>2026-10-15T15:46:11+00:00</td><td><code>rechercher_references</code></td><td><code>requete=santé mentale militaire données de santé</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0144</td><td>2026-10-15T15:50:33+00:00</td><td><code>rechercher_references</code></td><td><code>requete=textile camouflage multispectral</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0144</td><td>2026-10-15T15:50:48+00:00</td><td><code>rechercher_demandes_similaires</code></td><td><code>requete=textile camouflage multispectral</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0144</td><td>2026-10-15T15:51:53+00:00</td><td><code>soumettre_analyse</code></td><td><code>confiance=0.9, contradictions=[], criteres=[{&#x27;critere&#x27;: &quot;Sensibilité de l&#x27;information&quot;, &#x27;e</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0145</td><td>2026-10-15T15:52:20+00:00</td><td><code>rechercher_references</code></td><td><code>requete=acquisition commerciale validation équipement froid</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0145</td><td>2026-10-15T15:53:05+00:00</td><td><code>soumettre_analyse</code></td><td><code>confiance=0.95, contradictions=[], criteres=[{&#x27;critere&#x27;: &#x27;Niveau de maturité technologique</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0145</td><td>2026-10-15T15:53:26+00:00</td><td><code>soumettre_analyse</code></td><td><code>confiance=0.95, contradictions=[], criteres=[{&#x27;critere&#x27;: &#x27;Niveau de maturité technologique</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0146</td><td>2026-10-15T15:53:52+00:00</td><td><code>rechercher_references</code></td><td><code>requete=désinformation IA détection</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0146</td><td>2026-10-15T15:54:14+00:00</td><td><code>consulter_dip</code></td><td><code>id_demande=BES-2026-0146</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0146</td><td>2026-10-15T15:54:54+00:00</td><td><code>soumettre_analyse</code></td><td><code>confiance=0.65, contradictions=[&quot;Le demandeur exige un défi ouvert à l&#x27;industrie (IDEaS) t</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0146</td><td>2026-10-15T15:55:31+00:00</td><td><code>soumettre_analyse</code></td><td><code>confiance=0.65, contradictions=[&quot;Le demandeur exige un défi ouvert à l&#x27;industrie (IDEaS) t</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0148</td><td>2026-10-15T15:56:02+00:00</td><td><code>rechercher_references</code></td><td><code>requete=maintenance prédictive données classifiées</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0148</td><td>2026-10-15T15:56:16+00:00</td><td><code>consulter_dip</code></td><td><code>id_demande=BES-2026-0148</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0148</td><td>2026-10-15T15:58:11+00:00</td><td><code>soumettre_analyse</code></td><td><code>confiance=0.85, contradictions=[&#x27;La demande présente une tension entre la nature &quot;ouverte&quot;</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0149</td><td>2026-10-15T15:58:37+00:00</td><td><code>rechercher_references</code></td><td><code>requete=micro-réseaux bases opérationnelles</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0149</td><td>2026-10-15T15:59:31+00:00</td><td><code>soumettre_analyse</code></td><td><code>confiance=0.9, contradictions=[], criteres=[{&#x27;critere&#x27;: &quot;Classification de l&#x27;information&quot;,</code></td><td><span class='trace-ok'>ok</span></td></tr></tbody></table>
+</section>
+
+<section id="agent">
+  <h2><span class="num-sec">6</span>Carte d'identité de l'agent et garde-fous appliqués</h2>
+  <div class="deux-col">
+    <div class="carte">
+      <h3>Profil</h3>
+      <dl class="meta vertical">
+        <div><dt>Objectif</dt><dd>Recommander la meilleure voie d'approvisionnement S&amp;T : R&amp;D interne, défi IDEaS ou revue humaine.</dd></div>
+        <div><dt>Utilisateurs</dt><dd>Responsables et analystes du programme RDDC.</dd></div>
+        <div><dt>Volume ciblé</dt><dd>≈ 1 000 besoins par an (demandes de 4 à 5 pages).</dd></div>
+        <div><dt>Autonomie</dt><dd>L3 avancé / L4 supervisé — validation humaine des cas stratégiques, ambigus ou à risque.</dd></div>
+        <div><dt>Moteur</dt><dd>Ollama local · gemma4:latest (http://localhost:11434)</dd></div>
+      </dl>
+    </div>
+    <div class="carte">
+      <h3>Politique d'actions</h3>
+      <div class="actions">
+        <div class="permises"><b>Permises</b><ul><li>Lire les demandes</li><li>Analyser le contenu</li><li>Formuler des recommandations</li>
+          <li>Souligner les risques</li><li>Prioriser et justifier</li><li>Enregistrer l'analyse dans SharePoint</li></ul></div>
+        <div class="interdites"><b>Interdites</b><ul><li>Effacer des données ou fichiers</li><li>Modifier la demande originale</li>
+          <li>Transmettre ailleurs que dans SharePoint</li><li>Lancer un projet ou un défi sans validation</li></ul></div>
+      </div>
+      <p class="note">Mise en œuvre : outils en lecture seule uniquement, aucune fonction de suppression, écriture confinée
+      à la bibliothèque d'analyses, contrôle d'empreinte SHA-256 des originaux, refus journalisé de tout outil non autorisé,
+      dossiers au-delà de « NON CLASSIFIÉ / PROTÉGÉ A » jamais transmis au modèle.</p>
+    </div>
+  </div>
+  <div class="carte">
+    <h3>Mesures de succès — à compléter par les experts RDDC</h3>
+    <table class="compact"><thead><tr><th>Indicateur</th><th>Méthode de mesure</th><th>Valeur</th></tr></thead><tbody>
+      <tr><td>Pertinence des recommandations</td><td>% jugées pertinentes par les experts (colonne « Décision »)</td><td class="a-remplir"></td></tr>
+      <tr><td>Distinction R&amp;D interne / IDEaS</td><td>% de voies confirmées sans réorientation</td><td class="a-remplir"></td></tr>
+      <tr><td>Détection des zones grises</td><td>% de dossiers ambigus correctement escaladés</td><td class="a-remplir"></td></tr>
+      <tr><td>Temps d'analyse initiale</td><td>Durée moyenne par dossier vs référence manuelle</td><td class="a-remplir"></td></tr>
+      <tr><td>Traçabilité</td><td>% de recommandations avec références et journal complets</td><td class="a-remplir"></td></tr>
+    </tbody></table>
+  </div>
+</section>
+<footer>Agent « Analyse des Besoins en Innovation » · Rapport généré le 2026-10-15 · Document de travail</footer>
+</main>
+</body>
+</html>

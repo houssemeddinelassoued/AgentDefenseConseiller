@@ -1,0 +1,21 @@
+Moteur : Ollama local · gemma4:latest (http://localhost:11434)
+[1/9] BES-2026-0141 — Détection de mini-drones en environnement arctique
+      → non analysé (Erreur du moteur : MoteurIndisponible — Aucun serveur Ollama ne répond à http://localhost:11434. Démarrez Ollama sur cette machine (« ollama serve »). Si l'application est hébergée (Streamlit Cloud), « localhost » désigne le serveur d'héber) [694 s]
+[2/9] BES-2026-0142 — Modélisation de la signature acoustique rayonnée des futurs navires de combat
+      → R&D interne (RDDC) [298 s]
+[3/9] BES-2026-0143 — Outil prédictif de détection précoce de l'épuisement chez les militaires
+      → Revue humaine approfondie [260 s]
+[4/9] BES-2026-0144 — Textile de camouflage multispectral adaptatif
+      → Défi d'innovation IDEaS [113 s]
+[5/9] BES-2026-0145 — Purification d'eau portative pour patrouilles nordiques
+      → Revue humaine approfondie [93 s]
+[6/9] BES-2026-0146 — Détection des campagnes de désinformation générées par IA visant les opérations des FAC
+      → Revue humaine approfondie [125 s]
+[7/9] BES-2026-0147 — Évaluation de la résilience d'une liaison de données tactique
+      → non analysé (Classification « SECRET » hors du périmètre autorisé : dossier non transmis au modèle, orienté directement vers un analyste habilité.) [0 s]
+[8/9] BES-2026-0148 — Maintenance prédictive des moteurs de la flotte d'hélicoptères maritimes
+      → R&D interne (RDDC) [160 s]
+[9/9] BES-2026-0149 — Stockage d'énergie et micro-réseaux pour bases opérationnelles avancées
+      → Défi d'innovation IDEaS [80 s]
+Rapport HTML : sortie_ollama\rapport_analyse_besoins.html
+Rapport PDF  : sortie_ollama\rapport_analyse_besoins.pdf

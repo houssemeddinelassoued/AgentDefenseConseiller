@@ -1,0 +1,150 @@
+[
+  {
+    "demande_id": "BES-2026-0141",
+    "titre": "Détection de mini-drones en environnement arctique",
+    "demandeur": "Armée canadienne — Direction des besoins en capacités terrestres",
+    "classification": "NON CLASSIFIÉ",
+    "date_reception": "2026-09-08",
+    "analyse": {
+      "id_demande": "BES-2026-0141",
+      "resume_besoin": "Les Forces armées canadiennes ont besoin d'une capacité légère et maniable pour détecter, suivre et identifier des mini-drones à 2 km dans des conditions arctiques extrêmes (-40°C). Les systèmes commerciaux actuels échouent en raison des conditions climatiques et de la réverbération. Le besoin est de comparer plusieurs technologies (radar, RF, acoustique, fusion de capteurs) en stimulant l'écosystème externe.",
+      "voie_recommandee": "Défi d'innovation IDEaS",
+      "scores_voies": {
+        "rd_interne": 30,
+        "ideas": 90
+      },
+      "justification": [
+        "Le besoin est de développer une capacité de détection de mini-drones en environnement arctique. Le problème est non classifié et les menaces sont basées sur des drones commerciaux.",
+        "La référence REF-002 confirme que le mécanisme IDEaS est conçu pour les \"Projets compétitifs\" et les \"Micro-réseaux d'innovation\", ce qui correspond parfaitement à l'objectif de comparer plusieurs approches (radar, RF, acoustique, fusion de capteurs) et de stimuler l'écosystème externe."
+      ],
+      "criteres": [
+        {
+          "critere": "Nature du problème (Classification)",
+          "evaluation": "Le problème est explicitement non classifié et les menaces sont basées sur des équipements commerciaux.",
+          "favorise": "IDEaS"
+        },
+        {
+          "critere": "Objectif stratégique (Écosystème)",
+          "evaluation": "Le demandeur souhaite stimuler et comparer plusieurs solutions concurrentes issues de PME et universités.",
+          "favorise": "IDEaS"
+        },
+        {
+          "critere": "Niveau de maturité technologique (TRL)",
+          "evaluation": "Le passage de TRL 4 à TRL 7 nécessite une validation de plusieurs concepts externes.",
+          "favorise": "IDEaS"
+        }
+      ],
+      "risques": [
+        {
+          "description": "La performance des systèmes en conditions extrêmes (-40°C) est un facteur critique qui doit être intégré comme contrainte majeure du défi.",
+          "niveau": "élevé",
+          "mitigation": "Le défi d'innovation doit inclure des bancs d'essai simulant les conditions arctiques réelles (température, neige, vent) pour tous les participants."
+        },
+        {
+          "description": "Le périmètre est large (comparaison de 4 types de capteurs). Il y a un risque de dispersion des efforts.",
+          "niveau": "moyen",
+          "mitigation": "Définir des jalons de validation intermédiaires clairs pour chaque type de capteur afin de maintenir la focalisation sur l'objectif de démonstration TRL 7."
+        }
+      ],
+      "zones_grises": [
+        "Les critères de succès pour la comparaison des différentes approches (radar, RF, acoustique, fusion) ne sont pas quantifiés."
+      ],
+      "contradictions": [],
+      "questions_ouvertes": [
+        "Quels sont les critères de succès quantifiables pour la comparaison des différentes approches (ex. : probabilité de détection minimale, taux de fausses alarmes maximal acceptable) ?",
+        "Quelles sont les spécifications opérationnelles précises de la \"mini-drone\" à détecter (taille, vitesse, fréquence de vol) ?"
+      ],
+      "trl_estime": "TRL 4 → TRL 7",
+      "priorite": 90,
+      "justification_priorite": "L'urgence opérationnelle est élevée (Opérations NANOOK) et le besoin est clairement défini (détection 2 km à -40°C). La nature ouverte et comparative du problème rend IDEaS la voie la plus appropriée pour atteindre le TRL 7 dans l'échéance de 24 mois.",
+      "confiance": 0.9,
+      "references_utilisees": [
+        "REF-002"
+      ]
+    },
+    "erreur": null,
+    "rang_priorite": 1,
+    "escalade": true,
+    "motifs_escalade": [
+      "Top 1 des recommandations (cas stratégique)",
+      "Risque de niveau élevé"
+    ],
+    "traces": [
+      {
+        "horodatage": "2026-10-15T17:09:05+00:00",
+        "outil": "rechercher_references",
+        "entree": {
+          "requete": "détection mini-drones arctique"
+        },
+        "statut": "ok",
+        "detail": ""
+      },
+      {
+        "horodatage": "2026-10-15T17:09:54+00:00",
+        "outil": "soumettre_analyse",
+        "entree": {
+          "confiance": 0.9,
+          "contradictions": [],
+          "criteres": [
+            {
+              "critere": "Nature du problème (Classification)",
+              "evaluation": "Le problème est explicitement non classifié et les menaces sont basées sur des équipements commerciaux.",
+              "favorise": "IDEaS"
+            },
+            {
+              "critere": "Objectif stratégique (Écosystème)",
+              "evaluation": "Le demandeur souhaite stimuler et comparer plusieurs solutions concurrentes issues de PME et universités.",
+              "favorise": "IDEaS"
+            },
+            {
+              "critere": "Niveau de maturité technologique (TRL)",
+              "evaluation": "Le passage de TRL 4 à TRL 7 nécessite une validation de plusieurs concepts externes.",
+              "favorise": "IDEaS"
+            }
+          ],
+          "id_demande": "BES-2026-0141",
+          "justification": [
+            "Le besoin est de développer une capacité de détection de mini-drones en environnement arctique. Le problème est non classifié et les menaces sont basées sur des drones commerciaux.",
+            "La référence REF-002 confirme que le mécanisme IDEaS est conçu pour les \"Projets compétitifs\" et les \"Micro-réseaux d'innovation\", ce qui correspond parfaitement à l'objectif de comparer plusieurs approches (radar, RF, acoustique, fusion de capteurs) et de stimuler l'écosystème externe."
+          ],
+          "justification_priorite": "L'urgence opérationnelle est élevée (Opérations NANOOK) et le besoin est clairement défini (détection 2 km à -40°C). La nature ouverte et comparative du problème rend IDEaS la voie la plus appropriée pour atteindre le TRL 7 dans l'échéance de 24 mois.",
+          "priorite": 90,
+          "questions_ouvertes": [
+            "Quels sont les critères de succès quantifiables pour la comparaison des différentes approches (ex. : probabilité de détection minimale, taux de fausses alarmes maximal acceptable) ?",
+            "Quelles sont les spécifications opérationnelles précises de la \"mini-drone\" à détecter (taille, vitesse, fréquence de vol) ?"
+          ],
+          "references_utilisees": [
+            "REF-002"
+          ],
+          "resume_besoin": "Les Forces armées canadiennes ont besoin d'une capacité légère et maniable pour détecter, suivre et identifier des mini-drones à 2 km dans des conditions arctiques extrêmes (-40°C). Les systèmes commerciaux actuels échouent en raison des conditions climatiques et de la réverbération. Le besoin est de comparer plusieurs technologies (radar, RF, acoustique, fusion de capteurs) en stimulant l'écosystème externe.",
+          "risques": [
+            {
+              "description": "La performance des systèmes en conditions extrêmes (-40°C) est un facteur critique qui doit être intégré comme contrainte majeure du défi.",
+              "mitigation": "Le défi d'innovation doit inclure des bancs d'essai simulant les conditions arctiques réelles (température, neige, vent) pour tous les participants.",
+              "niveau": "élevé"
+            },
+            {
+              "description": "Le périmètre est large (comparaison de 4 types de capteurs). Il y a un risque de dispersion des efforts.",
+              "mitigation": "Définir des jalons de validation intermédiaires clairs pour chaque type de capteur afin de maintenir la focalisation sur l'objectif de démonstration TRL 7.",
+              "niveau": "moyen"
+            }
+          ],
+          "scores_voies": {
+            "ideas": 90,
+            "rd_interne": 30
+          },
+          "trl_estime": "TRL 4 → TRL 7",
+          "voie_recommandee": "Défi d'innovation IDEaS",
+          "zones_grises": [
+            "Les critères de succès pour la comparaison des différentes approches (radar, RF, acoustique, fusion) ne sont pas quantifiés."
+          ]
+        },
+        "statut": "ok",
+        "detail": ""
+      }
+    ],
+    "integrite_ok": true,
+    "jetons_entree": 5110,
+    "jetons_sortie": 3888
+  }
+]

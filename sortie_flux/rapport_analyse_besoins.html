@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rapport d'analyse des besoins</title>
+<style>
+:root{
+  --encre:#0f1f3a;--texte:#26334d;--doux:#5b6880;--trait:#d9e0ea;--fond:#f4f6fa;--papier:#fff;
+  --marine:#0b3d91;--rd:#1d5fd1;--rd-p:#e3edfd;--ideas:#0e8a7a;--ideas-p:#dcf3ef;
+  --revue:#c25e00;--revue-p:#fdecdc;--rouge:#b42318;--rouge-p:#fde8e7;--vert:#1b7f3b;--vert-p:#e3f4e8;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--texte);font:14px/1.5 "Segoe UI",system-ui,-apple-system,Roboto,Arial,sans-serif}
+main{max-width:1040px;margin:0 auto;padding:24px 16px 48px}
+h1,h2,h3,h4{color:var(--encre);line-height:1.25}
+h1{font-size:32px;margin:6px 0 8px}
+h2{font-size:21px;margin:36px 0 14px;padding-bottom:8px;border-bottom:2px solid var(--marine);display:flex;align-items:center;gap:10px}
+h3{font-size:16px;margin:0 0 10px}
+h4{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--marine);margin:18px 0 6px}
+a{color:var(--rd)}
+.num-sec{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:6px;background:var(--marine);color:#fff;font-size:14px}
+.barre-outils{position:sticky;top:0;z-index:5;display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:10px 16px;background:var(--encre);color:#cfd8e6;font-size:13px}
+.barre-outils button{background:#fff;color:var(--encre);border:0;border-radius:6px;padding:8px 14px;font-weight:600;cursor:pointer}
+.barre-outils button:hover{background:#dbe6fb}
+.bandeau-demo{background:var(--revue-p);color:#7a3b00;border:1px solid #f3c597;border-radius:8px;padding:10px 14px;font-weight:600;margin-bottom:16px}
+.couverture{background:linear-gradient(135deg,#0b3d91,#1d5fd1);color:#fff;border-radius:14px;padding:28px}
+.couverture h1{color:#fff}
+.sur-titre{text-transform:uppercase;letter-spacing:.12em;font-size:12px;opacity:.85}
+.sous-titre{font-size:16px;opacity:.95;margin:0 0 18px}
+.couverture .meta dt{color:#bcd0f5}.couverture .meta dd{color:#fff}
+.avertissement{font-size:12.5px;background:rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;margin:16px 0 0}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+nav a{color:#fff;text-decoration:none;background:rgba(255,255,255,.16);padding:5px 10px;border-radius:999px;font-size:12.5px}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:12px 0}
+.meta dt{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--doux)}
+.meta dd{margin:2px 0 0;font-weight:600;color:var(--encre)}
+.meta.vertical{grid-template-columns:1fr}
+.tuiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:14px}
+.tuile,.carte{background:var(--papier);border:1px solid var(--trait);border-radius:10px;padding:14px 16px}
+.tuile-lib{font-size:12px;color:var(--doux);text-transform:uppercase;letter-spacing:.05em}
+.tuile-val{font-size:30px;font-weight:700;color:var(--encre);font-variant-numeric:tabular-nums}
+.tuile-sous{font-size:12px;color:var(--doux)}
+.deux-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:6px}
+.repart-ligne{display:grid;grid-template-columns:110px 1fr 30px;align-items:center;gap:10px;margin:10px 0}
+.repart-barre,.jauge{display:block;height:10px;background:#e8edf4;border-radius:999px;overflow:hidden}
+.repart-rempli,.jauge-rempli{display:block;height:100%;border-radius:999px}
+.repart-n{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.voie-rd-bg{background:var(--rd)}.voie-ideas-bg{background:var(--ideas)}.voie-revue-bg{background:var(--revue)}
+.prio-bg{background:var(--marine)}.conf-bg{background:#6b7fa3}
+table{width:100%;border-collapse:collapse;background:var(--papier);border:1px solid var(--trait);border-radius:10px;overflow:hidden;font-size:13px}
+th{background:#eef2f8;color:var(--encre);text-align:left;font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;padding:8px 10px}
+td{padding:8px 10px;border-top:1px solid var(--trait);vertical-align:top}
+td a,.id{white-space:nowrap}
+td ul{margin:0;padding-left:16px}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+table.compact td,table.compact th{padding:6px 8px}
+.badge{display:inline-block;font-size:11.5px;font-weight:600;padding:3px 9px;border-radius:999px;white-space:nowrap;margin:1px 4px 1px 0}
+.voie-rd{background:var(--rd-p);color:var(--rd)}.voie-ideas{background:var(--ideas-p);color:var(--ideas)}
+.voie-revue{background:var(--revue-p);color:var(--revue)}.voie-bloque{background:#eceff3;color:var(--doux)}
+.statut-humain{background:var(--rouge-p);color:var(--rouge)}.statut-auto{background:var(--vert-p);color:var(--vert)}
+.fav{font-size:11.5px;font-weight:600}.fav-rd{color:var(--rd)}.fav-ideas{color:var(--ideas)}.fav-neutre{color:var(--doux)}
+.niv{font-size:11.5px;font-weight:700;padding:2px 8px;border-radius:999px}
+.niv-f{background:var(--vert-p);color:var(--vert)}.niv-m{background:var(--revue-p);color:var(--revue)}.niv-e{background:var(--rouge-p);color:var(--rouge)}
+.decision{white-space:nowrap;font-size:12.5px;line-height:1.8}
+.fiche{background:var(--papier);border:1px solid var(--trait);border-radius:12px;padding:20px 22px;margin:0 0 20px}
+.fiche-entete{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start}
+.fiche-entete h3{font-size:19px;margin:2px 0 0}
+.fiche-id{font-size:12px;font-weight:700;color:var(--marine);letter-spacing:.05em}
+.fiche .meta{border-top:1px solid var(--trait);border-bottom:1px solid var(--trait);padding:10px 0}
+.score{display:grid;grid-template-columns:170px 1fr 40px;align-items:center;gap:10px;margin:8px 0;font-size:13px}
+.score b{text-align:right;font-variant-numeric:tabular-nums}
+.trl{grid-column:span 2;font-weight:600;color:var(--encre)}
+.alerte{background:var(--rouge-p);border-left:4px solid var(--rouge);padding:9px 12px;border-radius:6px;font-size:13px;margin:12px 0}
+.ok{background:var(--vert-p);border-left:4px solid var(--vert);padding:9px 12px;border-radius:6px;font-size:13px;margin:12px 0}
+.note{font-size:12.5px;color:var(--doux)}
+.vide{color:var(--doux);font-style:italic;margin:4px 0}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.permises{background:var(--vert-p);border-radius:8px;padding:10px}.interdites{background:var(--rouge-p);border-radius:8px;padding:10px}
+.permises b{color:var(--vert)}.interdites b{color:var(--rouge)}
+.actions ul{margin:6px 0 0;padding-left:18px;font-size:12.5px}
+.a-remplir{min-width:90px;border-bottom:1px dotted var(--doux)}
+.trace code{font-size:11.5px}.trace-ok{color:var(--vert);font-weight:600}.trace-erreur,.trace-refusé{color:var(--rouge);font-weight:600}
+footer{margin-top:40px;padding-top:12px;border-top:1px solid var(--trait);font-size:12px;color:var(--doux);text-align:center}
+@media (max-width:640px){
+  .score{grid-template-columns:120px 1fr 34px}.actions{grid-template-columns:1fr}
+  table{display:block;overflow-x:auto}h1{font-size:26px}
+}
+@page{size:letter;margin:16mm 14mm 18mm;
+  @bottom-left{content:"Analyse des besoins en innovation — Document de travail";font:9px "Segoe UI",sans-serif;color:#5b6880}
+  @bottom-right{content:"Page " counter(page) " / " counter(pages);font:9px "Segoe UI",sans-serif;color:#5b6880}}
+@media print{
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{background:#fff;font-size:11.5px}
+  main{max-width:none;padding:0}
+  .no-print{display:none!important}
+  .couverture{border-radius:8px;padding:18px 24px}
+  .couverture h1{font-size:25px;margin:4px 0}
+  .sous-titre{font-size:13px;margin-bottom:8px}
+  .avertissement{margin-top:8px;padding:7px 10px}
+  .tuile-val{font-size:24px}
+  table{font-size:10.5px}
+  th{font-size:9px}
+  td,th{padding:6px 7px}
+  .badge{font-size:9.5px;padding:2px 7px}
+  h2{margin:22px 0 10px}
+  .tuiles{grid-template-columns:repeat(4,1fr)}
+  .deux-col{grid-template-columns:1fr 1fr}
+  h2,h3,h4{break-after:avoid}
+  #fiches{break-before:page}
+  .fiche{break-inside:auto;break-before:page;border:none;padding:0;margin:0}
+  .fiche:first-of-type{break-before:auto}
+  tr,.carte,.tuile,.score{break-inside:avoid}
+  #tracabilite,#agent{break-before:page}
+  a{color:inherit;text-decoration:none}
+}
+</style>
+</head>
+<body>
+<div class="barre-outils no-print">
+  <button onclick="window.print()">Imprimer / Exporter en PDF</button>
+  <span>Astuce : choisissez « Enregistrer au format PDF » comme imprimante, et activez « Graphiques d'arrière-plan ».</span>
+</div>
+<main>
+
+<header class="couverture">
+  <div class="sur-titre">Ministère de la Défense nationale · Programme RDDC</div>
+  <h1>Analyse des besoins en innovation</h1>
+  <p class="sous-titre">Orientation des besoins en soutien S&amp;T des Forces armées canadiennes :
+  R&amp;D interne, défi d'innovation IDEaS ou revue humaine</p>
+  <dl class="meta">
+    <div><dt>Produit le</dt><dd>2026-10-15 13:09</dd></div>
+    <div><dt>Dossiers</dt><dd>1</dd></div>
+    <div><dt>Règle d'escalade</dt><dd>Top N = 1 · confiance &lt; 0.70</dd></div>
+    <div><dt>Moteur</dt><dd>Ollama local · gemma4:latest (http://localhost:11434)</dd></div>
+  </dl>
+  <p class="avertissement">Prototype non officiel · document de travail — recommandations non engageantes produites par un agent d'IA.
+  Aucune voie d'approvisionnement n'est retenue sans validation par un responsable RDDC.</p>
+  <nav class="no-print"><a href="#synthese">Synthèse</a><a href="#priorisation">Priorisation</a>
+  <a href="#revue-humaine">Validation humaine</a><a href="#fiches">Fiches</a><a href="#tracabilite">Traçabilité</a><a href="#agent">Agent</a></nav>
+</header>
+
+<section id="synthese">
+  <h2><span class="num-sec">1</span>Synthèse</h2>
+  <div class="tuiles"><div class="tuile"><div class="tuile-lib">Demandes reçues</div><div class="tuile-val">1</div><div class="tuile-sous">dans ce lot</div></div><div class="tuile"><div class="tuile-lib">Analysées par l&#x27;agent</div><div class="tuile-val">1</div><div class="tuile-sous">0 non transmise(s) au modèle</div></div><div class="tuile"><div class="tuile-lib">Validation humaine</div><div class="tuile-val">1</div><div class="tuile-sous">100 % du lot</div></div><div class="tuile"><div class="tuile-lib">Confiance moyenne</div><div class="tuile-val">0.90</div><div class="tuile-sous">seuil d&#x27;escalade : 0.70</div></div></div>
+  <div class="deux-col">
+    <div class="carte">
+      <h3>Répartition des voies recommandées</h3>
+      <div class="repart-ligne"><span class="repart-lib">R&amp;D interne</span><span class="repart-barre"><span class="repart-rempli voie-rd-bg" style="width:0%"></span></span><span class="repart-n">0</span></div><div class="repart-ligne"><span class="repart-lib">Défi IDEaS</span><span class="repart-barre"><span class="repart-rempli voie-ideas-bg" style="width:100%"></span></span><span class="repart-n">1</span></div><div class="repart-ligne"><span class="repart-lib">Revue humaine</span><span class="repart-barre"><span class="repart-rempli voie-revue-bg" style="width:0%"></span></span><span class="repart-n">0</span></div>
+    </div>
+    <div class="carte">
+      <h3>Motifs de validation humaine</h3>
+      <table class="compact"><thead><tr><th>Motif</th><th class="num">Dossiers</th></tr></thead>
+      <tbody><tr><td>Top 1 des recommandations</td><td class='num'>1</td></tr><tr><td>Risque de niveau élevé</td><td class='num'>1</td></tr></tbody></table>
+      <p class="note">Un dossier peut cumuler plusieurs motifs.</p>
+    </div>
+  </div>
+</section>
+
+<section id="priorisation">
+  <h2><span class="num-sec">2</span>Tableau de priorisation</h2>
+  <table>
+    <thead><tr><th class="num">Rang</th><th>Dossier</th><th style="width:36%">Besoin</th><th>Voie recommandée</th>
+    <th class="num">Priorité</th><th class="num">Confiance</th><th>Statut</th></tr></thead>
+    <tbody><tr><td class='num'>1</td><td><a href='#fiche-BES-2026-0141'>BES-2026-0141</a></td><td>Détection de mini-drones en environnement arctique</td><td><span class="badge voie-ideas">Défi IDEaS</span></td><td class='num'>90</td><td class='num'>0.90</td><td><span class="badge statut-humain">Validation humaine</span></td></tr></tbody>
+  </table>
+</section>
+
+<section id="revue-humaine">
+  <h2><span class="num-sec">3</span>File de validation humaine</h2>
+  <p>Dossiers transférés aux responsables RDDC conformément aux règles d'escalade. La colonne
+  « Décision » est prévue pour la validation sur la version imprimée.</p>
+  <table>
+    <thead><tr><th>Dossier</th><th style="width:30%">Besoin</th><th>Motifs</th><th>Décision</th></tr></thead>
+    <tbody><tr><td><a href='#fiche-BES-2026-0141'>BES-2026-0141</a></td><td>Détection de mini-drones en environnement arctique</td><td><ul><li>Top 1 des recommandations (cas stratégique)</li><li>Risque de niveau élevé</li></ul></td><td class='decision'>☐ Approuvée<br>☐ Réorientée<br>☐ Info. requise</td></tr></tbody>
+  </table>
+</section>
+<section id="fiches">
+  <h2><span class="num-sec">4</span>Fiches d'analyse par dossier</h2>
+  
+<article class="fiche" id="fiche-BES-2026-0141">
+  <div class="fiche-entete">
+    <div><div class="fiche-id">BES-2026-0141</div><h3>Détection de mini-drones en environnement arctique</h3></div>
+    <div class="fiche-badges"><span class="badge voie-ideas">Défi IDEaS</span><span class="badge statut-humain">Validation humaine</span></div>
+  </div>
+  <dl class="meta">
+    <div><dt>Demandeur</dt><dd>Armée canadienne — Direction des besoins en capacités terrestres</dd></div>
+    <div><dt>Reçue le</dt><dd>2026-09-08</dd></div>
+    <div><dt>Classification</dt><dd>NON CLASSIFIÉ</dd></div>
+    <div><dt>Intégrité de l'original</dt><dd>Vérifiée ✓</dd></div>
+  </dl>
+  <div class="alerte"><strong>Validation humaine requise :</strong> Top 1 des recommandations (cas stratégique) · Risque de niveau élevé</div>
+  <h4>Résumé du besoin</h4>
+  <p>Les Forces armées canadiennes ont besoin d&#x27;une capacité légère et maniable pour détecter, suivre et identifier des mini-drones à 2 km dans des conditions arctiques extrêmes (-40°C). Les systèmes commerciaux actuels échouent en raison des conditions climatiques et de la réverbération. Le besoin est de comparer plusieurs technologies (radar, RF, acoustique, fusion de capteurs) en stimulant l&#x27;écosystème externe.</p>
+  <div class="deux-col">
+    <div>
+      <h4>Adéquation des voies</h4>
+      <div class="score"><span>R&amp;D interne (RDDC)</span><span class="jauge"><span class="jauge-rempli voie-rd-bg" style="width:30%"></span></span><b>30</b></div>
+      <div class="score"><span>Défi IDEaS</span><span class="jauge"><span class="jauge-rempli voie-ideas-bg" style="width:90%"></span></span><b>90</b></div>
+    </div>
+    <div>
+      <h4>Indicateurs</h4>
+      <div class="score"><span>Priorité (rang 1)</span><span class="jauge"><span class="jauge-rempli prio-bg" style="width:90%"></span></span><b>90</b></div>
+      <div class="score"><span>Confiance</span><span class="jauge"><span class="jauge-rempli conf-bg" style="width:90%"></span></span><b>0.90</b></div>
+      <div class="score"><span>Maturité (TRL)</span><span class="trl">TRL 4 → TRL 7</span></div>
+    </div>
+  </div>
+  <h4>Justification de la recommandation</h4>
+  <ul><li>Le besoin est de développer une capacité de détection de mini-drones en environnement arctique. Le problème est non classifié et les menaces sont basées sur des drones commerciaux.</li><li>La référence REF-002 confirme que le mécanisme IDEaS est conçu pour les &quot;Projets compétitifs&quot; et les &quot;Micro-réseaux d&#x27;innovation&quot;, ce qui correspond parfaitement à l&#x27;objectif de comparer plusieurs approches (radar, RF, acoustique, fusion de capteurs) et de stimuler l&#x27;écosystème externe.</li></ul>
+  <p class="note"><b>Priorité :</b> L&#x27;urgence opérationnelle est élevée (Opérations NANOOK) et le besoin est clairement défini (détection 2 km à -40°C). La nature ouverte et comparative du problème rend IDEaS la voie la plus appropriée pour atteindre le TRL 7 dans l&#x27;échéance de 24 mois.</p>
+  <h4>Critères d'orientation</h4>
+  <table class="compact"><thead><tr><th>Critère</th><th>Évaluation</th><th>Favorise</th></tr></thead><tbody><tr><td>Nature du problème (Classification)</td><td>Le problème est explicitement non classifié et les menaces sont basées sur des équipements commerciaux.</td><td><span class='fav fav-ideas'>IDEaS</span></td></tr><tr><td>Objectif stratégique (Écosystème)</td><td>Le demandeur souhaite stimuler et comparer plusieurs solutions concurrentes issues de PME et universités.</td><td><span class='fav fav-ideas'>IDEaS</span></td></tr><tr><td>Niveau de maturité technologique (TRL)</td><td>Le passage de TRL 4 à TRL 7 nécessite une validation de plusieurs concepts externes.</td><td><span class='fav fav-ideas'>IDEaS</span></td></tr></tbody></table>
+  <h4>Risques potentiels</h4>
+  <table class="compact"><thead><tr><th>Risque</th><th>Niveau</th><th>Mitigation</th></tr></thead>
+  <tbody><tr><td>La performance des systèmes en conditions extrêmes (-40°C) est un facteur critique qui doit être intégré comme contrainte majeure du défi.</td><td><span class='niv niv-e'>élevé</span></td><td>Le défi d&#x27;innovation doit inclure des bancs d&#x27;essai simulant les conditions arctiques réelles (température, neige, vent) pour tous les participants.</td></tr><tr><td>Le périmètre est large (comparaison de 4 types de capteurs). Il y a un risque de dispersion des efforts.</td><td><span class='niv niv-m'>moyen</span></td><td>Définir des jalons de validation intermédiaires clairs pour chaque type de capteur afin de maintenir la focalisation sur l&#x27;objectif de démonstration TRL 7.</td></tr></tbody></table>
+  <div class="deux-col">
+    <div><h4>Zones grises</h4><ul><li>Les critères de succès pour la comparaison des différentes approches (radar, RF, acoustique, fusion) ne sont pas quantifiés.</li></ul></div>
+    <div><h4>Contradictions</h4><p class="vide">Aucune contradiction détectée.</p></div>
+  </div>
+  <h4>Questions à adresser au demandeur</h4>
+  <ul><li>Quels sont les critères de succès quantifiables pour la comparaison des différentes approches (ex. : probabilité de détection minimale, taux de fausses alarmes maximal acceptable) ?</li><li>Quelles sont les spécifications opérationnelles précises de la &quot;mini-drone&quot; à détecter (taille, vitesse, fréquence de vol) ?</li></ul>
+  <h4>Références autorisées utilisées</h4>
+  <ul><li>REF-002 — Programme IDEaS : aperçu des mécanismes</li></ul>
+</article>
+</section>
+
+<section id="tracabilite">
+  <h2><span class="num-sec">5</span>Traçabilité et contrôle</h2>
+  <div class="deux-col">
+    <div class="carte"><h3>Intégrité des demandes originales (SHA-256)</h3>
+      <table class="compact"><thead><tr><th>Dossier</th><th>Empreinte avant / après</th></tr></thead><tbody><tr><td>BES-2026-0141</td><td>Vérifiée ✓</td></tr></tbody></table></div>
+    <div class="carte"><h3>Consommation</h3>
+      <p>Jetons en entrée : <b>5,110</b><br>Jetons en sortie : <b>3,888</b></p>
+      <p class="note">Les analyses sont enregistrées dans la bibliothèque SharePoint prévue, sans écraser de version antérieure.</p></div>
+  </div>
+  <h3>Journal des appels d'outils</h3>
+  <table class='compact trace'><thead><tr><th>Dossier</th><th>Horodatage (UTC)</th><th>Outil</th><th>Paramètres</th><th>Statut</th></tr></thead><tbody><tr><td>BES-2026-0141</td><td>2026-10-15T17:09:05+00:00</td><td><code>rechercher_references</code></td><td><code>requete=détection mini-drones arctique</code></td><td><span class='trace-ok'>ok</span></td></tr><tr><td>BES-2026-0141</td><td>2026-10-15T17:09:54+00:00</td><td><code>soumettre_analyse</code></td><td><code>confiance=0.9, contradictions=[], criteres=[{&#x27;critere&#x27;: &#x27;Nature du problème (Classificatio</code></td><td><span class='trace-ok'>ok</span></td></tr></tbody></table>
+</section>
+
+<section id="agent">
+  <h2><span class="num-sec">6</span>Carte d'identité de l'agent et garde-fous appliqués</h2>
+  <div class="deux-col">
+    <div class="carte">
+      <h3>Profil</h3>
+      <dl class="meta vertical">
+        <div><dt>Objectif</dt><dd>Recommander la meilleure voie d'approvisionnement S&amp;T : R&amp;D interne, défi IDEaS ou revue humaine.</dd></div>
+        <div><dt>Utilisateurs</dt><dd>Responsables et analystes du programme RDDC.</dd></div>
+        <div><dt>Volume ciblé</dt><dd>≈ 1 000 besoins par an (demandes de 4 à 5 pages).</dd></div>
+        <div><dt>Autonomie</dt><dd>L3 avancé / L4 supervisé — validation humaine des cas stratégiques, ambigus ou à risque.</dd></div>
+        <div><dt>Moteur</dt><dd>Ollama local · gemma4:latest (http://localhost:11434)</dd></div>
+      </dl>
+    </div>
+    <div class="carte">
+      <h3>Politique d'actions</h3>
+      <div class="actions">
+        <div class="permises"><b>Permises</b><ul><li>Lire les demandes</li><li>Analyser le contenu</li><li>Formuler des recommandations</li>
+          <li>Souligner les risques</li><li>Prioriser et justifier</li><li>Enregistrer l'analyse dans SharePoint</li></ul></div>
+        <div class="interdites"><b>Interdites</b><ul><li>Effacer des données ou fichiers</li><li>Modifier la demande originale</li>
+          <li>Transmettre ailleurs que dans SharePoint</li><li>Lancer un projet ou un défi sans validation</li></ul></div>
+      </div>
+      <p class="note">Mise en œuvre : outils en lecture seule uniquement, aucune fonction de suppression, écriture confinée
+      à la bibliothèque d'analyses, contrôle d'empreinte SHA-256 des originaux, refus journalisé de tout outil non autorisé,
+      dossiers au-delà de « NON CLASSIFIÉ / PROTÉGÉ A » jamais transmis au modèle.</p>
+    </div>
+  </div>
+  <div class="carte">
+    <h3>Mesures de succès — à compléter par les experts RDDC</h3>
+    <table class="compact"><thead><tr><th>Indicateur</th><th>Méthode de mesure</th><th>Valeur</th></tr></thead><tbody>
+      <tr><td>Pertinence des recommandations</td><td>% jugées pertinentes par les experts (colonne « Décision »)</td><td class="a-remplir"></td></tr>
+      <tr><td>Distinction R&amp;D interne / IDEaS</td><td>% de voies confirmées sans réorientation</td><td class="a-remplir"></td></tr>
+      <tr><td>Détection des zones grises</td><td>% de dossiers ambigus correctement escaladés</td><td class="a-remplir"></td></tr>
+      <tr><td>Temps d'analyse initiale</td><td>Durée moyenne par dossier vs référence manuelle</td><td class="a-remplir"></td></tr>
+      <tr><td>Traçabilité</td><td>% de recommandations avec références et journal complets</td><td class="a-remplir"></td></tr>
+    </tbody></table>
+  </div>
+</section>
+<footer>Agent « Analyse des Besoins en Innovation » · Rapport généré le 2026-10-15 · Document de travail</footer>
+</main>
+</body>
+</html>

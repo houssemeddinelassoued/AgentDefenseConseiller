@@ -1,0 +1,154 @@
+[
+  {
+    "demande_id": "BES-2026-0141",
+    "titre": "Détection de mini-drones en environnement arctique",
+    "demandeur": "Armée canadienne — Direction des besoins en capacités terrestres",
+    "classification": "NON CLASSIFIÉ",
+    "date_reception": "2026-09-08",
+    "analyse": {
+      "id_demande": "BES-2026-0141",
+      "resume_besoin": "Les Forces armées canadiennes ont besoin d'une capacité légère et portable pour détecter, suivre et identifier des mini-drones à au moins 2 km dans des conditions arctiques extrêmes (jusqu'à -40 °C). Les systèmes commerciaux actuels échouent en raison des conditions climatiques et de la réverbération. Le besoin vise à comparer plusieurs approches technologiques (radar, RF, acoustique, fusion de capteurs) pour atteindre un prototype opérationnel (TRL 7) dans 24 mois.",
+      "voie_recommandee": "Défi d'innovation IDEaS",
+      "scores_voies": {
+        "rd_interne": 30,
+        "ideas": 95
+      },
+      "justification": [
+        "Le problème est de nature ouverte et non classifiée, ce qui permet à l'écosystème externe de proposer des solutions variées.",
+        "L'objectif de comparer plusieurs approches (radar, RF, acoustique, fusion de capteurs) et de stimuler les PME/universités est le cœur du modèle IDEaS (REF-002).",
+        "Le passage de TRL 4 à TRL 7, nécessitant une démonstration en environnement représentatif, est mieux servi par la compétition et la validation par des acteurs multiples."
+      ],
+      "criteres": [
+        {
+          "critere": "Nature de l'information et de la menace",
+          "evaluation": "Le problème est décrit publiquement et les menaces sont basées sur des drones commerciaux. Aucune donnée classifiée n'est requise.",
+          "favorise": "IDEaS"
+        },
+        {
+          "critere": "Objectif de l'écosystème",
+          "evaluation": "Le demandeur souhaite explicitement stimuler l'écosystème externe (PME, universités) et comparer plusieurs solutions concurrentes (radar, RF, acoustique).",
+          "favorise": "IDEaS"
+        },
+        {
+          "critere": "Complexité technique et méthodologique",
+          "evaluation": "Le besoin nécessite la comparaison de plusieurs approches technologiques (fusion de capteurs) et la validation de la faisabilité en conditions extrêmes, ce qui est idéal pour un appel à la concurrence.",
+          "favorise": "IDEaS"
+        }
+      ],
+      "risques": [
+        {
+          "description": "Complexité de la fusion de capteurs en environnement extrême.",
+          "niveau": "élevé",
+          "mitigation": "Le défi IDEaS doit inclure des jalons de validation spécifiques pour l'intégration des données de capteurs dans des conditions de froid extrême."
+        },
+        {
+          "description": "Dépendance au succès de l'écosystème externe.",
+          "niveau": "moyen",
+          "mitigation": "Définir des critères de sélection et de performance très stricts dès le lancement du défi pour garantir la qualité des soumissions."
+        }
+      ],
+      "zones_grises": [
+        "Aucune zone grise significative. La demande est claire et les contraintes sont bien définies."
+      ],
+      "contradictions": [],
+      "questions_ouvertes": [
+        "Quelles sont les spécifications précises (taille, fréquence de fonctionnement, vitesse) des mini-drones commerciaux cibles ?",
+        "Y a-t-il des contraintes de portabilité spécifiques au-delà de la motoneige (ex. : poids maximal, volume) ?"
+      ],
+      "trl_estime": "TRL 4 → TRL 7",
+      "priorite": 90,
+      "justification_priorite": "L'urgence opérationnelle est élevée et le besoin répond à une lacune critique dans le théâtre arctique. La nature ouverte du problème et l'objectif de stimulation de l'écosystème rendent IDEaS la voie la plus efficace pour atteindre le TRL 7 dans l'horizon de 24 mois.",
+      "confiance": 0.95,
+      "references_utilisees": [
+        "REF-002",
+        "REF-005"
+      ]
+    },
+    "erreur": null,
+    "rang_priorite": 1,
+    "escalade": true,
+    "motifs_escalade": [
+      "Top 1 des recommandations (cas stratégique)",
+      "Risque de niveau élevé"
+    ],
+    "traces": [
+      {
+        "horodatage": "2026-10-15T16:35:09+00:00",
+        "outil": "rechercher_references",
+        "entree": {
+          "requete": "détection mini-drones environnement arctique"
+        },
+        "statut": "ok",
+        "detail": ""
+      },
+      {
+        "horodatage": "2026-10-15T16:36:44+00:00",
+        "outil": "soumettre_analyse",
+        "entree": {
+          "confiance": 0.95,
+          "contradictions": [],
+          "criteres": [
+            {
+              "critere": "Nature de l'information et de la menace",
+              "evaluation": "Le problème est décrit publiquement et les menaces sont basées sur des drones commerciaux. Aucune donnée classifiée n'est requise.",
+              "favorise": "IDEaS"
+            },
+            {
+              "critere": "Objectif de l'écosystème",
+              "evaluation": "Le demandeur souhaite explicitement stimuler l'écosystème externe (PME, universités) et comparer plusieurs solutions concurrentes (radar, RF, acoustique).",
+              "favorise": "IDEaS"
+            },
+            {
+              "critere": "Complexité technique et méthodologique",
+              "evaluation": "Le besoin nécessite la comparaison de plusieurs approches technologiques (fusion de capteurs) et la validation de la faisabilité en conditions extrêmes, ce qui est idéal pour un appel à la concurrence.",
+              "favorise": "IDEaS"
+            }
+          ],
+          "id_demande": "BES-2026-0141",
+          "justification": [
+            "Le problème est de nature ouverte et non classifiée, ce qui permet à l'écosystème externe de proposer des solutions variées.",
+            "L'objectif de comparer plusieurs approches (radar, RF, acoustique, fusion de capteurs) et de stimuler les PME/universités est le cœur du modèle IDEaS (REF-002).",
+            "Le passage de TRL 4 à TRL 7, nécessitant une démonstration en environnement représentatif, est mieux servi par la compétition et la validation par des acteurs multiples."
+          ],
+          "justification_priorite": "L'urgence opérationnelle est élevée et le besoin répond à une lacune critique dans le théâtre arctique. La nature ouverte du problème et l'objectif de stimulation de l'écosystème rendent IDEaS la voie la plus efficace pour atteindre le TRL 7 dans l'horizon de 24 mois.",
+          "priorite": 90,
+          "questions_ouvertes": [
+            "Quelles sont les spécifications précises (taille, fréquence de fonctionnement, vitesse) des mini-drones commerciaux cibles ?",
+            "Y a-t-il des contraintes de portabilité spécifiques au-delà de la motoneige (ex. : poids maximal, volume) ?"
+          ],
+          "references_utilisees": [
+            "REF-002",
+            "REF-005"
+          ],
+          "resume_besoin": "Les Forces armées canadiennes ont besoin d'une capacité légère et portable pour détecter, suivre et identifier des mini-drones à au moins 2 km dans des conditions arctiques extrêmes (jusqu'à -40 °C). Les systèmes commerciaux actuels échouent en raison des conditions climatiques et de la réverbération. Le besoin vise à comparer plusieurs approches technologiques (radar, RF, acoustique, fusion de capteurs) pour atteindre un prototype opérationnel (TRL 7) dans 24 mois.",
+          "risques": [
+            {
+              "description": "Complexité de la fusion de capteurs en environnement extrême.",
+              "mitigation": "Le défi IDEaS doit inclure des jalons de validation spécifiques pour l'intégration des données de capteurs dans des conditions de froid extrême.",
+              "niveau": "élevé"
+            },
+            {
+              "description": "Dépendance au succès de l'écosystème externe.",
+              "mitigation": "Définir des critères de sélection et de performance très stricts dès le lancement du défi pour garantir la qualité des soumissions.",
+              "niveau": "moyen"
+            }
+          ],
+          "scores_voies": {
+            "ideas": 95,
+            "rd_interne": 30
+          },
+          "trl_estime": "TRL 4 → TRL 7",
+          "voie_recommandee": "Défi d'innovation IDEaS",
+          "zones_grises": [
+            "Aucune zone grise significative. La demande est claire et les contraintes sont bien définies."
+          ]
+        },
+        "statut": "ok",
+        "detail": ""
+      }
+    ],
+    "integrite_ok": true,
+    "jetons_entree": 8126,
+    "jetons_sortie": 6574
+  }
+]
