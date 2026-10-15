@@ -1,0 +1,8 @@
+# Politique ngrok : seul l'utilisateur ci-dessous peut joindre l'Ollama du poste.
+# Copiez ce fichier en ngrok-politique.yml (non versionné) et changez le mot de passe (8 à 128 caractères).
+on_http_request:
+  - actions:
+      - type: basic-auth
+        config:
+          credentials:
+            - boreal:CHANGEZ-MOI-mot-de-passe-long

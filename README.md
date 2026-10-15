@@ -85,8 +85,13 @@ OLLAMA_MODEL = "gemma4"
 OLLAMA_NUM_CTX = "8192"
 ```
 
-Puis, à chaque séance, sur le poste : Ollama lancé et
-`ngrok http 11434 --url=https://xxxx.ngrok-free.app --host-header="localhost:11434" --traffic-policy-file=...`.
+Le dossier `deploiement/` contient la politique d'accès ngrok et le script de lancement :
+
+1. une seule fois : copier `deploiement/ngrok-politique.exemple.yml` en
+   `deploiement/ngrok-politique.yml` (non versionné) et y choisir le mot de passe ;
+2. à chaque séance : lancer Ollama, puis `powershell -File deploiement\tunnel-ollama.ps1`
+   (domaine ngrok défini dans le script, `--host-header` et politique inclus).
+
 Sans `--host-header`, Ollama répond 403 ; l'application l'indique. Un même tunnel peut servir
 plusieurs applications, mais les analyses se partagent alors le même GPU.
 

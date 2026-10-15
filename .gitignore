@@ -8,3 +8,4 @@ donnees/sharepoint/analyses/*
 .streamlit/secrets.toml
 .env
 /Rapport.pdf
+deploiement/ngrok-politique.yml
