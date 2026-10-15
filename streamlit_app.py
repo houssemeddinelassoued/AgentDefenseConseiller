@@ -13,21 +13,25 @@ import streamlit as st
 from agent_besoins.config import Config
 from agent_besoins.escalade import appliquer_escalade
 from agent_besoins.modeles import Resultat
-from agent_besoins.moteurs import ClientOllama, MoteurIndisponible, est_adresse_locale, libelle_moteur
+from agent_besoins.moteurs import (ClientOllama, MoteurIndisponible, est_adresse_locale, libelle_moteur,
+                                   masquer_identifiants, normaliser_modele)
 from agent_besoins.pipeline import ErreurFatale, executer_analyse, executer_demo, titres_references
 from agent_besoins.rapport import construire_html
 
 st.set_page_config(page_title="Analyse des besoins en innovation", page_icon=":material/biotech:", layout="wide")
 
 # Clé Anthropic : secrets Streamlit (Cloud) ou variable d'environnement (poste local)
-def secret(nom: str, defaut: str = "") -> str:
-    """Secret Streamlit (Cloud), sinon variable d'environnement (poste local)."""
-    try:
-        if nom in st.secrets:
-            return str(st.secrets[nom])
-    except FileNotFoundError:
-        pass  # aucun fichier de secrets en local
-    return os.environ.get(nom, defaut)
+def secret(*noms: str, defaut: str = "") -> str:
+    """Premier secret Streamlit (Cloud) ou variable d'environnement défini parmi `noms`."""
+    for nom in noms:
+        try:
+            if nom in st.secrets:
+                return str(st.secrets[nom])
+        except FileNotFoundError:
+            pass  # aucun fichier de secrets en local
+        if os.environ.get(nom):
+            return os.environ[nom]
+    return defaut
 
 
 if secret("ANTHROPIC_API_KEY"):
@@ -94,9 +98,18 @@ with st.sidebar:
             st.warning("Ajoutez `ANTHROPIC_API_KEY` aux secrets de l'application pour activer Claude.",
                        title="Clé API absente", icon=":material/key_off:")
     elif mode == "ollama":
-        url_defaut = secret("OLLAMA_HOST", "" if EN_LIGNE else "http://localhost:11434")
-        url = st.text_input("Serveur Ollama", value=url_defaut, key="ollama_url",
-                            placeholder="https://mon-tunnel.example.com ou https://ollama.com")
+        # Mêmes noms de secrets que d'autres projets (OLLAMA_BASE_URL, OLLAMA_MODEL, OLLAMA_NUM_CTX) acceptés.
+        url_secrets = secret("OLLAMA_BASE_URL", "OLLAMA_HOST")
+        autre_adresse = False
+        if url_secrets:
+            st.caption(f"Serveur défini dans les secrets : `{masquer_identifiants(url_secrets)}`")
+            autre_adresse = st.toggle("Utiliser une autre adresse", key="ollama_autre")
+        url = url_secrets
+        if not url_secrets or autre_adresse:
+            url = st.text_input("Serveur Ollama", value="" if EN_LIGNE else "http://localhost:11434",
+                                key="ollama_url", type="password" if EN_LIGNE else "default",
+                                placeholder="https://utilisateur:motdepasse@xxxx.ngrok-free.app",
+                                help="Une adresse de tunnel peut contenir les identifiants ; ils ne sont jamais affichés.")
         api_key = st.text_input("Clé API Ollama (facultative)", value=secret("OLLAMA_API_KEY"), type="password",
                                 key="ollama_api_key", help="Uniquement pour un serveur protégé, p. ex. Ollama Cloud.")
         disponibles: dict = {}
@@ -111,12 +124,13 @@ with st.sidebar:
                 st.caption("Vérifiez qu'Ollama tourne : `ollama serve`, puis `ollama list`.")
         if disponibles:
             noms = list(disponibles)
-            defaut = secret("OLLAMA_MODELE", config.ollama_modele)
+            defaut = normaliser_modele(secret("OLLAMA_MODEL", "OLLAMA_MODELE", defaut=config.ollama_modele))
             modele = st.selectbox("Modèle", noms, key="ollama_modele",
                                   index=noms.index(defaut) if defaut in noms else 0,
                                   format_func=lambda n: etiquette_modele(n, disponibles[n]))
             config = replace(config, fournisseur="ollama", ollama_url=url, ollama_modele=modele,
-                             ollama_api_key=api_key)
+                             ollama_api_key=api_key,
+                             ollama_num_ctx=int(secret("OLLAMA_NUM_CTX", defaut=str(config.ollama_num_ctx))))
 
     st.subheader("Règles d'escalade")
     top_n = st.number_input("Top N soumis à validation", min_value=0, max_value=1000, value=3, key="top_n",

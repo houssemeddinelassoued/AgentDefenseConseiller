@@ -6,13 +6,14 @@ agentique (`agent.py`), qui reste ainsi indépendante du fournisseur.
 
 from __future__ import annotations
 
+import base64
 import http.client
 import json
 import urllib.error
 import urllib.parse
 import urllib.request
 import uuid
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 
 from .config import Config
 from .outils import OUTIL_SOUMISSION, OUTILS
@@ -128,6 +129,28 @@ CONSIGNE_JSON = (
 )
 
 
+def _separer_identifiants(url: str) -> tuple[str, str | None]:
+    """Retire « utilisateur:motdepasse@ » de l'adresse ; retourne (adresse sans secret, en-tête Basic)."""
+    url = url.strip().rstrip("/")
+    parties = urllib.parse.urlsplit(url if "://" in url else f"http://{url}")
+    if parties.username is None:
+        return urllib.parse.urlunsplit(parties), None
+    hote = parties.hostname + (f":{parties.port}" if parties.port else "")
+    jeton = f"{urllib.parse.unquote(parties.username)}:{urllib.parse.unquote(parties.password or '')}"
+    entete = "Basic " + base64.b64encode(jeton.encode("utf-8")).decode("ascii")
+    return urllib.parse.urlunsplit(parties._replace(netloc=hote)), entete
+
+
+def masquer_identifiants(url: str) -> str:
+    """Adresse affichable : le mot de passe éventuel n'apparaît jamais à l'écran ni dans le rapport."""
+    propre, entete = _separer_identifiants(url)
+    return f"{propre} (authentifié)" if entete else propre
+
+
+def normaliser_modele(nom: str) -> str:
+    return nom if ":" in nom else f"{nom}:latest"
+
+
 def est_adresse_locale(url: str) -> bool:
     hote = urllib.parse.urlsplit(url if "://" in url else f"http://{url}").hostname or ""
     return hote in ("localhost", "127.0.0.1", "::1", "0.0.0.0")
@@ -144,11 +167,13 @@ class ClientOllama:
     """Client minimal de l'API REST d'Ollama (bibliothèque standard uniquement)."""
 
     def __init__(self, url: str, timeout: float, api_key: str = ""):
-        url = url.strip().rstrip("/")
-        self.url = url if "://" in url else f"http://{url}"
+        self.url, basic = _separer_identifiants(url)  # self.url ne contient jamais le mot de passe
         self.timeout = timeout
-        self.entetes = {"Content-Type": "application/json"}
-        if api_key:
+        # « ngrok-skip-browser-warning » évite la page d'avertissement des tunnels ngrok gratuits.
+        self.entetes = {"Content-Type": "application/json", "ngrok-skip-browser-warning": "1"}
+        if basic:
+            self.entetes["Authorization"] = basic  # mot de passe du tunnel (politique ngrok)
+        elif api_key:
             self.entetes["Authorization"] = f"Bearer {api_key}"
 
     def _requete(self, chemin: str, corps: dict | None = None) -> dict:
@@ -158,8 +183,17 @@ class ClientOllama:
             with urllib.request.urlopen(req, timeout=self.timeout) as rep:
                 return json.loads(rep.read().decode("utf-8"))
         except urllib.error.HTTPError as exc:
-            if exc.code in (401, 403):
-                raise MoteurIndisponible(f"Accès refusé par {self.url} ({exc.code}) : vérifiez la clé API Ollama.")
+            if exc.code == 401:
+                raise MoteurIndisponible(
+                    f"Accès refusé par {self.url} (401) : identifiants du tunnel ou clé API incorrects.")
+            if exc.code == 403:
+                raise MoteurIndisponible(
+                    f"Accès refusé par {self.url} (403). Derrière un tunnel, Ollama exige l'en-tête d'hôte "
+                    "localhost : lancez ngrok avec --host-header=\"localhost:11434\". Sinon, vérifiez la clé API.")
+            if exc.code in (502, 503, 504) or "ngrok" in (exc.headers.get("Server") or "").lower():
+                raise MoteurIndisponible(
+                    f"Le tunnel {self.url} répond ({exc.code}) mais n'atteint pas Ollama : vérifiez que le poste "
+                    "est allumé, qu'Ollama tourne (« ollama serve ») et que la commande ngrok est lancée.")
             raise MoteurIndisponible(f"Ollama a répondu {exc.code} : {exc.read().decode('utf-8', 'replace')[:300]}")
         except (urllib.error.URLError, TimeoutError, ConnectionError, http.client.HTTPException) as exc:
             raise MoteurIndisponible(f"Aucun serveur Ollama ne répond à {self.url}. {_conseil(self.url, exc)}")
@@ -237,6 +271,8 @@ class ConversationOllama:
 def moteur_ollama(config: Config):
     client = ClientOllama(config.ollama_url, config.ollama_timeout, config.ollama_api_key)
     disponibles = client.modeles()
+    if config.ollama_modele not in disponibles and normaliser_modele(config.ollama_modele) in disponibles:
+        config = replace(config, ollama_modele=normaliser_modele(config.ollama_modele))
     if config.ollama_modele not in disponibles:
         liste = ", ".join(disponibles) or "aucun"
         raise MoteurIndisponible(
@@ -258,5 +294,6 @@ def creer_moteur(config: Config):
 
 def libelle_moteur(config: Config) -> str:
     if config.fournisseur == "ollama":
-        return f"Ollama local · {config.ollama_modele} ({config.ollama_url})"
+        lieu = "local" if est_adresse_locale(config.ollama_url) else "distant"
+        return f"Ollama {lieu} · {config.ollama_modele} ({masquer_identifiants(config.ollama_url)})"
     return f"Claude · {config.modele} (effort « {config.effort} »)"

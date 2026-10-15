@@ -15,8 +15,10 @@ class Config:
     fournisseur: str = os.environ.get("AGENT_FOURNISSEUR", "anthropic")
 
     # Ollama local — les demandes ne quittent pas le poste
-    ollama_url: str = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
-    ollama_modele: str = os.environ.get("OLLAMA_MODELE", "gemma4:latest")
+    # Noms alternatifs (OLLAMA_BASE_URL, OLLAMA_MODEL) acceptés pour réutiliser la configuration d'un autre projet.
+    # L'adresse peut contenir des identifiants (https://utilisateur:motdepasse@tunnel.ngrok-free.app).
+    ollama_url: str = os.environ.get("OLLAMA_BASE_URL") or os.environ.get("OLLAMA_HOST", "http://localhost:11434")
+    ollama_modele: str = os.environ.get("OLLAMA_MODEL") or os.environ.get("OLLAMA_MODELE", "gemma4:latest")
     ollama_num_ctx: int = int(os.environ.get("OLLAMA_NUM_CTX", "32768"))
     ollama_timeout: float = 600.0  # un modèle local sur CPU peut être lent
     # Facultatif : serveur Ollama distant protégé (Ollama Cloud, proxy) — envoyé en « Bearer »

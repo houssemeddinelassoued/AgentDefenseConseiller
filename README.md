@@ -72,7 +72,23 @@ poste ; l'application l'indique au lieu de tenter la connexion. Trois options :
    (le tunnel rend Ollama accessible depuis Internet : arrêtez-le après usage) ;
 3. utiliser Ollama Cloud (`https://ollama.com` et une clé API) ; les demandes quittent alors le poste.
 
-Secrets facultatifs : `OLLAMA_HOST`, `OLLAMA_API_KEY`, `OLLAMA_MODELE`.
+Secrets facultatifs : `OLLAMA_HOST`, `OLLAMA_API_KEY`, `OLLAMA_MODELE`, `OLLAMA_NUM_CTX`.
+
+**Réutiliser un tunnel ngrok existant** (même configuration qu'un autre projet) : les noms
+`OLLAMA_BASE_URL` et `OLLAMA_MODEL` sont acceptés, et l'adresse peut contenir les identifiants du
+tunnel. L'application les envoie en en-tête d'authentification et ne les affiche jamais (barre
+latérale, messages, rapport). Dans *Settings → Secrets* de cette application :
+
+```toml
+OLLAMA_BASE_URL = "https://boreal:MOT_DE_PASSE@xxxx.ngrok-free.app"
+OLLAMA_MODEL = "gemma4"
+OLLAMA_NUM_CTX = "8192"
+```
+
+Puis, à chaque séance, sur le poste : Ollama lancé et
+`ngrok http 11434 --url=https://xxxx.ngrok-free.app --host-header="localhost:11434" --traffic-policy-file=...`.
+Sans `--host-header`, Ollama répond 403 ; l'application l'indique. Un même tunnel peut servir
+plusieurs applications, mais les analyses se partagent alors le même GPU.
 
 Sorties dans `sortie/` : `rapport_analyse_besoins.html` (bouton « Imprimer / Exporter en PDF »),
 `rapport_analyse_besoins.pdf` (option `--pdf`, via Edge ou Chrome sans tête) et `resultats.json`.
