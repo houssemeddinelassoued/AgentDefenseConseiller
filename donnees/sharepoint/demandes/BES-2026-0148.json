@@ -1,0 +1,18 @@
+{
+  "id": "BES-2026-0148",
+  "titre": "Maintenance prédictive des moteurs de la flotte d'hélicoptères maritimes",
+  "date_reception": "2026-10-02",
+  "demandeur": "Aviation royale canadienne — Direction de la gestion du programme d'équipement aérospatial",
+  "classification": "PROTÉGÉ A",
+  "contexte": {
+    "flotte": "Hélicoptères maritimes",
+    "urgence": "moyenne"
+  },
+  "parametres": {
+    "budget_estime": "1,8 M$",
+    "horizon": "24 mois",
+    "trl_actuel": 4,
+    "trl_vise": 7
+  },
+  "contenu": "[DONNÉES FICTIVES — PROTOTYPE] 1. Contexte\nLa disponibilité de la flotte est limitée par des déposes de moteurs non planifiées. Les données des capteurs embarqués sont enregistrées mais peu exploitées.\n\n2. Énoncé du problème\nDévelopper des modèles de maintenance prédictive exploitant les données de vol et de maintenance pour anticiper les défaillances et optimiser les déposes.\n\n3. Résultats attendus\n- Modèles validés sur l'historique de la flotte.\n- Intégration aux processus de navigabilité.\n\n4. Contraintes\nLes données de la flotte sont protégées et comprennent des éléments de propriété intellectuelle du fabricant ; leur partage avec des tiers dépend des droits contractuels, qui restent à confirmer. Le demandeur mentionne qu'un centre de recherche du Ministère possède une expertise en analytique de données aérospatiales."
+}

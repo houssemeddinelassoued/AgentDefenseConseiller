@@ -1,0 +1,266 @@
+{
+  "avertissement": "Analyses d'exemple rédigées à la main pour illustrer le format du rapport. Elles n'ont pas été produites par un appel au modèle et portent sur des demandes fictives.",
+  "analyses": [
+    {
+      "id_demande": "BES-2026-0141",
+      "resume_besoin": "L'Armée canadienne demande une capacité légère, transportable par motoneige, pour détecter, suivre et identifier des mini-drones à 2 km en conditions arctiques (-40 °C, vents forts, nuit polaire). Les systèmes commerciaux actuels perdent leur efficacité par grand froid. Le demandeur veut comparer plusieurs approches (radar, RF passif, acoustique, fusion) et démontrer un prototype en exercice nordique d'ici 24 mois.",
+      "voie_recommandee": "Défi d'innovation IDEaS",
+      "scores_voies": {"rd_interne": 42, "ideas": 86},
+      "justification": [
+        "Le problème est explicitement publiable : aucune donnée classifiée n'est requise et les menaces de référence sont des drones commerciaux (REF-001, REF-004).",
+        "Plusieurs approches concurrentes sont plausibles et un écosystème canadien de PME et d'universités est actif en détection RF et fusion de capteurs (REF-001, REF-002).",
+        "La maturité visée (TRL 4 → 7) et l'objectif de démonstration en environnement réel correspondent aux mécanismes IDEaS de projets compétitifs suivis d'un bac à sable (REF-002, REF-005).",
+        "Cohérence avec l'historique : le dossier BES-2024-0307 (détection de drones autour des bases) a été orienté vers IDEaS, mais la performance par grand froid n'avait pas été testée — ce besoin en est le prolongement."
+      ],
+      "criteres": [
+        {"critere": "Sensibilité de l'information", "evaluation": "Non classifié ; énoncé publiable.", "favorise": "IDEaS"},
+        {"critere": "Écosystème externe", "evaluation": "PME et universités actives en RF passif et fusion de capteurs.", "favorise": "IDEaS"},
+        {"critere": "Nombre d'approches possibles", "evaluation": "Au moins quatre familles de capteurs à comparer.", "favorise": "IDEaS"},
+        {"critere": "Expertise interne", "evaluation": "Compétences radar et guerre électronique disponibles à RDDC Ottawa, utiles comme autorité technique d'évaluation.", "favorise": "R&D interne"},
+        {"critere": "Calendrier", "evaluation": "24 mois pour TRL 7 : ambitieux mais compatible avec un financement par étapes.", "favorise": "Neutre"}
+      ],
+      "risques": [
+        {"description": "Calendrier serré pour atteindre TRL 7 en conditions arctiques réelles.", "niveau": "moyen", "mitigation": "Prévoir une étape de bac à sable en chambre froide avant l'exercice nordique."},
+        {"description": "Chevauchement avec le bac à sable de détection de drones terminé (DIP-23-C017).", "niveau": "faible", "mitigation": "Réutiliser les critères et résultats de 2024 comme base de référence du défi."}
+      ],
+      "zones_grises": [
+        "Les critères de performance (taux de détection, fausses alarmes acceptables) ne sont pas chiffrés.",
+        "Le budget de 1,5 M$ couvre-t-il l'organisation d'un essai en Arctique ?"
+      ],
+      "contradictions": [],
+      "questions_ouvertes": [
+        "Quel taux de fausses alarmes est opérationnellement acceptable ?",
+        "Un site d'essai nordique et une fenêtre d'exercice sont-ils déjà réservés ?"
+      ],
+      "trl_estime": "TRL 4 → 7",
+      "priorite": 88,
+      "justification_priorite": "Menace en croissance rapide, lacune avérée lors d'exercices récents et urgence élevée déclarée ; forte faisabilité via l'écosystème externe.",
+      "confiance": 0.86,
+      "references_utilisees": ["REF-001", "REF-002", "REF-004", "REF-005"]
+    },
+    {
+      "id_demande": "BES-2026-0142",
+      "resume_besoin": "La Marine royale canadienne veut des modèles numériques prédisant la signature acoustique rayonnée des futurs navires de combat, calibrés sur des mesures en mer. Les mesures de référence sont classifiées SECRET et les résultats constituent une information souveraine. Un avis scientifique à l'autorité technique est attendu.",
+      "voie_recommandee": "R&D interne (RDDC)",
+      "scores_voies": {"rd_interne": 91, "ideas": 18},
+      "justification": [
+        "Les données de calibration sont classifiées SECRET et ne peuvent sortir des installations habilitées : un défi ouvert est exclu (REF-004).",
+        "Le livrable inclut un avis scientifique à l'autorité technique et une capacité souveraine, indicateurs typiques de la R&D interne (REF-001).",
+        "RDDC Centre de recherches de l'Atlantique possède l'expertise en acoustique sous-marine et des installations de mesure en mer (REF-003).",
+        "L'historique (BES-2025-0112, caractérisation acoustique des coques) a été traité à l'interne pour les mêmes motifs."
+      ],
+      "criteres": [
+        {"critere": "Sensibilité de l'information", "evaluation": "Données de mesure SECRET ; résultats souverains.", "favorise": "R&D interne"},
+        {"critere": "Expertise et installations", "evaluation": "Équipe et installations de mesure existantes au centre de l'Atlantique.", "favorise": "R&D interne"},
+        {"critere": "Écosystème externe", "evaluation": "Restreint pour la modélisation calibrée sur données classifiées.", "favorise": "R&D interne"},
+        {"critere": "Nature du livrable", "evaluation": "Avis scientifique à une autorité technique.", "favorise": "R&D interne"}
+      ],
+      "risques": [
+        {"description": "Chevauchement avec le projet interne en cours DIP-25-M044 (caractérisation acoustique des coques, fin prévue 2027-03).", "niveau": "moyen", "mitigation": "Intégrer le besoin comme extension du projet existant plutôt qu'un nouveau projet."},
+        {"description": "Disponibilité des fenêtres de mesure en mer sur les navires en service.", "niveau": "moyen", "mitigation": "Coordonner tôt avec la planification de la flotte."}
+      ],
+      "zones_grises": [
+        "La part de la modélisation pouvant reposer sur des données non classifiées (p. ex. modèles génériques de machines) n'est pas précisée ; un volet externe limité pourrait être envisagé."
+      ],
+      "contradictions": [],
+      "questions_ouvertes": [
+        "Le besoin peut-il être intégré au projet DIP-25-M044 ?",
+        "Quel niveau de précision de prédiction l'autorité technique exige-t-elle ?"
+      ],
+      "trl_estime": "TRL 3 → 6",
+      "priorite": 80,
+      "justification_priorite": "Impact direct sur la survivabilité des futures plateformes et sur des décisions de conception à fort coût ; urgence moyenne.",
+      "confiance": 0.88,
+      "references_utilisees": ["REF-001", "REF-003", "REF-004"]
+    },
+    {
+      "id_demande": "BES-2026-0143",
+      "resume_besoin": "Le Groupe des Services de santé souhaite un outil d'aide à la décision estimant le risque d'épuisement des militaires à partir de questionnaires, du rythme opérationnel, des absences et de données de santé, afin d'alerter les cliniciens. Le demandeur hésite entre un défi ouvert sur données synthétiques et un développement interne.",
+      "voie_recommandee": "Revue humaine approfondie",
+      "scores_voies": {"rd_interne": 56, "ideas": 49},
+      "justification": [
+        "Le besoin repose sur des renseignements personnels de santé ; aucune évaluation des facteurs relatifs à la vie privée ni base d'entente n'est engagée, préalable obligatoire à toute orientation (REF-004).",
+        "Un outil d'IA touchant des personnes exige une évaluation de l'incidence algorithmique et une supervision humaine dont les modalités ne sont pas définies (REF-004).",
+        "Les scores des deux voies sont proches : l'expertise en santé et performance de RDDC Toronto favorise l'interne, tandis qu'un défi sur données synthétiques reste envisageable (REF-001, REF-003).",
+        "Précédent : BES-2025-0241 (attrition du personnel) a été placé en revue humaine pour des motifs de vie privée."
+      ],
+      "criteres": [
+        {"critere": "Sensibilité des données", "evaluation": "Renseignements personnels de santé protégés.", "favorise": "R&D interne"},
+        {"critere": "Expertise interne", "evaluation": "RDDC Toronto (facteurs humains, santé) pertinent.", "favorise": "R&D interne"},
+        {"critere": "Faisabilité d'un défi ouvert", "evaluation": "Possible uniquement sur données synthétiques, avec une validité réelle incertaine.", "favorise": "IDEaS"},
+        {"critere": "Maturité du cadre éthique et juridique", "evaluation": "Non établi.", "favorise": "Neutre"}
+      ],
+      "risques": [
+        {"description": "Atteinte à la vie privée et perte de confiance des militaires si les alertes sont accessibles à la chaîne de commandement.", "niveau": "élevé", "mitigation": "Réaliser l'EFVP et définir la gouvernance des alertes avant toute orientation."},
+        {"description": "Biais algorithmiques conduisant à des faux positifs stigmatisants.", "niveau": "élevé", "mitigation": "Évaluation de l'incidence algorithmique et validation clinique indépendante."}
+      ],
+      "zones_grises": [
+        "Les modalités de confidentialité des alertes vis-à-vis de la chaîne de commandement ne sont pas définies.",
+        "Le choix entre données réelles et synthétiques n'est pas tranché."
+      ],
+      "contradictions": [],
+      "questions_ouvertes": [
+        "Une EFVP est-elle planifiée et par qui ?",
+        "Qui aura accès aux alertes et à quelles fins ?",
+        "Des données synthétiques représentatives peuvent-elles être produites ?"
+      ],
+      "trl_estime": "TRL 2 → 5",
+      "priorite": 70,
+      "justification_priorite": "Enjeu important de maintien en puissance des effectifs, mais prérequis juridiques et éthiques non satisfaits qui limitent la faisabilité immédiate.",
+      "confiance": 0.58,
+      "references_utilisees": ["REF-001", "REF-003", "REF-004"]
+    },
+    {
+      "id_demande": "BES-2026-0144",
+      "resume_besoin": "L'Armée canadienne cherche un textile léger réduisant la détectabilité du soldat dans le visible, le proche infrarouge et l'infrarouge thermique, idéalement adaptable aux saisons canadiennes. Des échantillons doivent être évalués en laboratoire puis sur le terrain, avec analyse de durabilité et de coût de production.",
+      "voie_recommandee": "Défi d'innovation IDEaS",
+      "scores_voies": {"rd_interne": 38, "ideas": 82},
+      "justification": [
+        "Les spécifications de performance sont publiables (REF-001, REF-004).",
+        "Le secteur des textiles techniques et des laboratoires universitaires canadiens est actif sur les matériaux à émissivité contrôlée, ce qui permet la mise en concurrence (REF-002).",
+        "Précédent cohérent : BES-2024-0219 (signature IR des tenues) a été orienté vers IDEaS avec des résultats prometteurs."
+      ],
+      "criteres": [
+        {"critere": "Sensibilité de l'information", "evaluation": "Non classifié.", "favorise": "IDEaS"},
+        {"critere": "Écosystème externe", "evaluation": "Industrie textile et universités actives.", "favorise": "IDEaS"},
+        {"critere": "Industrialisation", "evaluation": "Le coût de production à l'échelle est un critère clé, mieux porté par l'industrie.", "favorise": "IDEaS"},
+        {"critere": "Évaluation de signature", "evaluation": "RDDC Valcartier (optronique) peut servir d'évaluateur technique.", "favorise": "R&D interne"}
+      ],
+      "risques": [
+        {"description": "Compromis entre performance multispectrale et confort (poids, respirabilité).", "niveau": "moyen", "mitigation": "Inclure ces critères dans la grille d'évaluation du défi."}
+      ],
+      "zones_grises": ["Les seuils de réduction de détectabilité attendus ne sont pas chiffrés."],
+      "contradictions": [],
+      "questions_ouvertes": ["Quels capteurs adverses de référence doivent servir aux essais ?"],
+      "trl_estime": "TRL 3 → 6",
+      "priorite": 66,
+      "justification_priorite": "Amélioration notable de la protection du soldat face à une menace en prolifération ; urgence moyenne.",
+      "confiance": 0.81,
+      "references_utilisees": ["REF-001", "REF-002", "REF-004"]
+    },
+    {
+      "id_demande": "BES-2026-0145",
+      "resume_besoin": "Les Rangers canadiens souhaitent équiper leurs patrouilles de 300 purificateurs d'eau portatifs fiables à -30 °C d'ici six mois. Trois produits commerciaux répondant presque entièrement au besoin ont été identifiés, dont deux employés par des forces alliées.",
+      "voie_recommandee": "Revue humaine approfondie",
+      "scores_voies": {"rd_interne": 28, "ideas": 33},
+      "justification": [
+        "Des produits commerciaux matures (TRL 8-9) existent : le besoin relève de l'approvisionnement plutôt que de la S&T (REF-001, REF-005).",
+        "Le seul volet technique est une vérification de tenue au froid, qui peut être réalisée par des essais d'acceptation plutôt que par un projet de recherche.",
+        "Précédent : BES-2025-0188 (lunettes balistiques) a été réorienté vers l'approvisionnement pour le même motif."
+      ],
+      "criteres": [
+        {"critere": "Maturité", "evaluation": "Produits commerciaux existants, TRL 8 → 9.", "favorise": "Neutre"},
+        {"critere": "Nature du besoin", "evaluation": "Acquisition de 300 unités.", "favorise": "Neutre"},
+        {"critere": "Calendrier", "evaluation": "Six mois : incompatible avec un défi IDEaS, cohérent avec un achat.", "favorise": "Neutre"}
+      ],
+      "risques": [
+        {"description": "Retarder un besoin urgent en l'engageant dans un processus S&T inadapté.", "niveau": "moyen", "mitigation": "Réorienter rapidement vers l'autorité d'approvisionnement avec un protocole d'essai au froid."}
+      ],
+      "zones_grises": ["Un soutien ponctuel de RDDC pour définir le protocole d'essai au froid pourrait être utile."],
+      "contradictions": [],
+      "questions_ouvertes": ["Les produits alliés ont-ils été testés sous -30 °C ? Des résultats sont-ils disponibles ?"],
+      "trl_estime": "TRL 8 → 9",
+      "priorite": 45,
+      "justification_priorite": "Besoin opérationnel réel et urgent, mais faible valeur ajoutée S&T.",
+      "confiance": 0.74,
+      "references_utilisees": ["REF-001", "REF-005"]
+    },
+    {
+      "id_demande": "BES-2026-0146",
+      "resume_besoin": "L'État-major interarmées stratégique demande un outil repérant les campagnes de désinformation générées par IA visant les opérations des FAC, en estimant origine et portée, déployé à TRL 8 en six mois. Le demandeur exige à la fois un défi ouvert à l'industrie et un entraînement sur des rapports de renseignement classifiés, et souhaite une orientation directe vers IDEaS sans revue.",
+      "voie_recommandee": "Revue humaine approfondie",
+      "scores_voies": {"rd_interne": 61, "ideas": 54},
+      "justification": [
+        "La demande est contradictoire : un défi ouvert ne peut reposer sur des données classifiées (REF-004).",
+        "Le calendrier (TRL 2 → 8 en six mois) est irréaliste au regard des repères de maturité (REF-005).",
+        "Des questions juridiques sur la surveillance de contenus produits par des Canadiens n'ont pas été examinées, préalable obligatoire (REF-004).",
+        "La demande d'orientation directe vers IDEaS « sans revue » est une préférence du demandeur, pas un critère d'orientation ; elle ne peut contourner la validation prévue."
+      ],
+      "criteres": [
+        {"critere": "Sensibilité de l'information", "evaluation": "Données d'entraînement classifiées exigées.", "favorise": "R&D interne"},
+        {"critere": "Écosystème externe", "evaluation": "Très actif en détection de contenus synthétiques.", "favorise": "IDEaS"},
+        {"critere": "Cadre juridique", "evaluation": "Non examiné.", "favorise": "Neutre"},
+        {"critere": "Calendrier", "evaluation": "Incompatible avec la maturité visée.", "favorise": "Neutre"}
+      ],
+      "risques": [
+        {"description": "Enjeux juridiques et de vie privée liés à la surveillance de contenus publics canadiens.", "niveau": "élevé", "mitigation": "Avis juridique préalable et définition du périmètre de surveillance."},
+        {"description": "Divulgation d'information classifiée si un défi ouvert est lancé sur ces données.", "niveau": "élevé", "mitigation": "Scinder le besoin : volet générique non classifié (IDEaS) et volet classifié (interne)."},
+        {"description": "Attentes irréalistes sur le délai de déploiement.", "niveau": "moyen", "mitigation": "Recadrer le calendrier par étapes avec le demandeur."}
+      ],
+      "zones_grises": [
+        "Le besoin pourrait être scindé en deux volets distincts, chacun relevant d'une voie différente.",
+        "Le rôle exact des équipes d'affaires publiques dans l'usage de l'outil n'est pas défini."
+      ],
+      "contradictions": [
+        "Défi ouvert à l'industrie demandé, mais entraînement sur données de renseignement classifiées exigé et existence de l'outil non divulgable.",
+        "TRL 8 visé en six mois à partir d'un TRL 2."
+      ],
+      "questions_ouvertes": [
+        "Le besoin peut-il être scindé en un volet non classifié et un volet classifié ?",
+        "Un avis juridique sur la surveillance des contenus publics a-t-il été demandé ?",
+        "Quel calendrier réaliste le demandeur peut-il accepter ?"
+      ],
+      "trl_estime": "TRL 2 → 8 (déclaré, irréaliste)",
+      "priorite": 78,
+      "justification_priorite": "Menace stratégique en forte croissance et urgence très élevée, tempérées par une faisabilité incertaine.",
+      "confiance": 0.52,
+      "references_utilisees": ["REF-001", "REF-002", "REF-004", "REF-005"]
+    },
+    {
+      "id_demande": "BES-2026-0148",
+      "resume_besoin": "L'Aviation royale canadienne souhaite des modèles de maintenance prédictive exploitant les données de vol et de maintenance de sa flotte d'hélicoptères maritimes, afin d'anticiper les défaillances moteur et d'optimiser les déposes, puis de les intégrer aux processus de navigabilité.",
+      "voie_recommandee": "R&D interne (RDDC)",
+      "scores_voies": {"rd_interne": 74, "ideas": 51},
+      "justification": [
+        "Les données de flotte sont protégées et contiennent de la propriété intellectuelle du fabricant ; leur partage avec des tiers n'est pas confirmé (REF-001, REF-004).",
+        "Le CARO dispose d'une expertise en analytique de données et un projet DIP connexe (DIP-24-A031) est en cours (REF-003).",
+        "L'intégration aux processus de navigabilité exige une proximité avec l'autorité technique."
+      ],
+      "criteres": [
+        {"critere": "Accès aux données", "evaluation": "Données protégées, droits du fabricant non confirmés.", "favorise": "R&D interne"},
+        {"critere": "Expertise interne", "evaluation": "Analytique de données au CARO ; projet connexe en cours.", "favorise": "R&D interne"},
+        {"critere": "Écosystème externe", "evaluation": "Marché actif en maintenance prédictive aéronautique.", "favorise": "IDEaS"}
+      ],
+      "risques": [
+        {"description": "Droits d'utilisation des données du fabricant non établis.", "niveau": "moyen", "mitigation": "Vérifier les clauses contractuelles avant le lancement."},
+        {"description": "Duplication avec DIP-24-A031.", "niveau": "moyen", "mitigation": "Évaluer une extension du projet existant."}
+      ],
+      "zones_grises": ["Un volet IDEaS ultérieur sur données anonymisées pourrait être envisagé une fois les droits clarifiés."],
+      "contradictions": [],
+      "questions_ouvertes": ["Les contrats de soutien autorisent-ils l'utilisation des données moteur par le Ministère à des fins de R&D ?"],
+      "trl_estime": "TRL 4 → 7",
+      "priorite": 72,
+      "justification_priorite": "Gain direct de disponibilité de la flotte ; dépendance aux droits de données.",
+      "confiance": 0.71,
+      "references_utilisees": ["REF-001", "REF-003", "REF-004"]
+    },
+    {
+      "id_demande": "BES-2026-0149",
+      "resume_besoin": "Le SMA (Infrastructure et environnement) veut démontrer des micro-réseaux hybrides (renouvelables et stockage) rapidement déployables et fonctionnant par grand froid pour réduire la dépendance des bases avancées au diesel, avec comparaison de démonstrateurs sur un site d'essai.",
+      "voie_recommandee": "Défi d'innovation IDEaS",
+      "scores_voies": {"rd_interne": 36, "ideas": 84},
+      "justification": [
+        "Le besoin est publiable et l'industrie canadienne de l'énergie propre propose plusieurs approches concurrentes (REF-001, REF-002).",
+        "La comparaison de démonstrateurs sur un site d'essai correspond au mécanisme de bac à sable IDEaS (REF-002).",
+        "La maturité de départ (TRL 5) et la cible (TRL 7) sont cohérentes avec une démonstration (REF-005)."
+      ],
+      "criteres": [
+        {"critere": "Sensibilité de l'information", "evaluation": "Non classifié.", "favorise": "IDEaS"},
+        {"critere": "Écosystème externe", "evaluation": "Industrie de l'énergie propre active.", "favorise": "IDEaS"},
+        {"critere": "Mécanisme adapté", "evaluation": "Bac à sable comparatif sur site d'essai.", "favorise": "IDEaS"}
+      ],
+      "risques": [
+        {"description": "Chevauchement avec le pilote d'énergie renouvelable en garnison (DIP-25-E009).", "niveau": "faible", "mitigation": "Coordonner les sites et partager les données de performance."},
+        {"description": "Performance des batteries par grand froid.", "niveau": "moyen", "mitigation": "Inclure des essais à basse température dans les critères."}
+      ],
+      "zones_grises": ["Le site d'essai n'est pas identifié."],
+      "contradictions": [],
+      "questions_ouvertes": ["Quel site d'essai et quelle charge électrique de référence utiliser ?"],
+      "trl_estime": "TRL 5 → 7",
+      "priorite": 62,
+      "justification_priorite": "Gains logistiques et environnementaux significatifs ; urgence moyenne.",
+      "confiance": 0.83,
+      "references_utilisees": ["REF-001", "REF-002", "REF-005"]
+    }
+  ]
+}

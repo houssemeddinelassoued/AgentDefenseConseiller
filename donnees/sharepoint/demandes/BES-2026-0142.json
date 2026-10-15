@@ -1,0 +1,18 @@
+{
+  "id": "BES-2026-0142",
+  "titre": "Modélisation de la signature acoustique rayonnée des futurs navires de combat",
+  "date_reception": "2026-09-11",
+  "demandeur": "Marine royale canadienne — Direction des besoins maritimes",
+  "classification": "PROTÉGÉ A",
+  "contexte": {
+    "plateforme": "Navires de combat de surface (futurs)",
+    "urgence": "moyenne"
+  },
+  "parametres": {
+    "budget_estime": "2,2 M$",
+    "horizon": "36 mois",
+    "trl_actuel": 3,
+    "trl_vise": 6
+  },
+  "contenu": "[DONNÉES FICTIVES — PROTOTYPE] 1. Contexte opérationnel\nLa discrétion acoustique est un facteur déterminant de la survivabilité des navires face aux menaces sous-marines. La Marine doit pouvoir prédire la signature acoustique rayonnée des futures plateformes dès la phase de conception, puis la vérifier en service.\n\n2. Énoncé du problème\nDévelopper et valider des modèles numériques de signature acoustique rayonnée couplant machines, structure et hydrodynamique, calibrés avec des mesures en mer.\n\n3. Résultats attendus\n- Modèle prédictif validé sur des mesures réelles.\n- Avis scientifique pour l'autorité technique sur les marges de discrétion.\n\n4. Contraintes\nLes mesures de signature des navires en service sont classifiées SECRET et ne peuvent être partagées hors des installations gouvernementales habilitées. Les résultats constituent une information souveraine.\n\n5. Expertise\nLe demandeur indique que des travaux antérieurs sur la caractérisation acoustique ont été menés par un centre de recherche du Ministère, dont l'équipe et les installations de mesure seraient réutilisables."
+}

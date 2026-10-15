@@ -1,0 +1,19 @@
+{
+  "id": "BES-2026-0141",
+  "titre": "Détection de mini-drones en environnement arctique",
+  "date_reception": "2026-09-08",
+  "demandeur": "Armée canadienne — Direction des besoins en capacités terrestres",
+  "classification": "NON CLASSIFIÉ",
+  "contexte": {
+    "theatre": "Arctique canadien",
+    "urgence": "élevée",
+    "programme_lie": "Opérations NANOOK"
+  },
+  "parametres": {
+    "budget_estime": "1,5 M$",
+    "horizon": "24 mois",
+    "trl_actuel": 4,
+    "trl_vise": 7
+  },
+  "contenu": "[DONNÉES FICTIVES — PROTOTYPE] 1. Contexte opérationnel\nLors des exercices nordiques récents, les unités déployées ont constaté que les systèmes commerciaux de détection de petits drones (catégories 1 et 2) perdent une grande partie de leur efficacité sous -30 °C : autonomie des batteries réduite, fausses alarmes radar causées par la neige soufflée, capteurs optiques aveuglés par la réverbération.\n\n2. Énoncé du problème\nLes FAC ont besoin d'une capacité légère, transportable par motoneige, capable de détecter, suivre et identifier des mini-drones à au moins 2 km dans des conditions arctiques (-40 °C, vents forts, nuit polaire).\n\n3. Résultats attendus\n- Démonstration d'au moins un prototype lors d'un exercice nordique dans 24 mois.\n- Comparaison de plusieurs approches (radar, RF passif, acoustique, fusion de capteurs).\n- Rapport sur la consommation énergétique et la logistique en climat froid.\n\n4. Contraintes\nLe problème peut être décrit publiquement ; aucune donnée classifiée n'est nécessaire pour concevoir les solutions. Les menaces de référence seront décrites à partir de drones commerciaux disponibles sur le marché. La neutralisation n'est pas visée à cette étape.\n\n5. Expertise et écosystème\nPlusieurs PME canadiennes et universités travaillent sur la détection RF et la fusion de capteurs. Le demandeur souhaite stimuler cet écosystème et comparer plusieurs solutions concurrentes."
+}

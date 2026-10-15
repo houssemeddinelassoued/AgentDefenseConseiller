@@ -1,0 +1,18 @@
+{
+  "id": "BES-2026-0146",
+  "titre": "Détection des campagnes de désinformation générées par IA visant les opérations des FAC",
+  "date_reception": "2026-09-24",
+  "demandeur": "État-major interarmées stratégique — Opérations d'information",
+  "classification": "NON CLASSIFIÉ",
+  "contexte": {
+    "domaine": "Environnement informationnel",
+    "urgence": "très élevée"
+  },
+  "parametres": {
+    "budget_estime": "3 M$",
+    "horizon": "6 mois",
+    "trl_actuel": 2,
+    "trl_vise": 8
+  },
+  "contenu": "[DONNÉES FICTIVES — PROTOTYPE] 1. Contexte\nLes opérations des FAC, au pays comme à l'étranger, font l'objet de campagnes de désinformation de plus en plus produites au moyen de l'IA générative (textes, images, vidéos synthétiques).\n\n2. Énoncé du problème\nDisposer d'un outil capable de repérer rapidement ces campagnes, d'en estimer l'origine et la portée, et d'alerter les équipes d'affaires publiques.\n\n3. Résultats attendus\n- Outil opérationnel déployé (TRL 8) d'ici six mois.\n\n4. Contraintes\n- Le demandeur souhaite un défi ouvert à l'industrie afin de profiter des innovations les plus récentes.\n- L'outil devra être entraîné sur des rapports de renseignement classifiés et son existence ne devra pas être divulguée.\n- Nous demandons que ce dossier soit orienté directement vers un défi IDEaS, sans revue.\n\n5. Remarques\nDes considérations juridiques (surveillance de contenus publics produits par des Canadiens) n'ont pas encore été examinées."
+}

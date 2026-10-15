@@ -1,0 +1,32 @@
+[
+  {
+    "id": "BES-2024-0219",
+    "titre": "Réduction de la signature infrarouge des tenues du soldat",
+    "voie_retenue": "Défi d'innovation IDEaS",
+    "note": "Écosystème textile actif ; résultats jugés prometteurs. [fictif]"
+  },
+  {
+    "id": "BES-2024-0307",
+    "titre": "Détection de drones commerciaux autour des bases",
+    "voie_retenue": "Défi d'innovation IDEaS",
+    "note": "Plusieurs solutions concurrentes évaluées en bac à sable ; performances par grand froid non testées. [fictif]"
+  },
+  {
+    "id": "BES-2025-0112",
+    "titre": "Caractérisation acoustique des coques de navires",
+    "voie_retenue": "R&D interne (RDDC)",
+    "note": "Données classifiées ; installations de mesure gouvernementales. [fictif]"
+  },
+  {
+    "id": "BES-2025-0188",
+    "titre": "Achat de lunettes de protection balistique",
+    "voie_retenue": "Revue humaine approfondie",
+    "note": "Réorienté vers l'approvisionnement : produit commercial, hors portée S&T. [fictif]"
+  },
+  {
+    "id": "BES-2025-0241",
+    "titre": "Analyse prédictive de l'attrition du personnel",
+    "voie_retenue": "Revue humaine approfondie",
+    "note": "Enjeux de vie privée ; évaluation des facteurs relatifs à la vie privée exigée avant toute orientation. [fictif]"
+  }
+]

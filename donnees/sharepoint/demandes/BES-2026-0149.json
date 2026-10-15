@@ -1,0 +1,18 @@
+{
+  "id": "BES-2026-0149",
+  "titre": "Stockage d'énergie et micro-réseaux pour bases opérationnelles avancées",
+  "date_reception": "2026-10-06",
+  "demandeur": "Sous-ministre adjoint (Infrastructure et environnement)",
+  "classification": "NON CLASSIFIÉ",
+  "contexte": {
+    "objectif": "Réduction de la dépendance au carburant diesel",
+    "urgence": "moyenne"
+  },
+  "parametres": {
+    "budget_estime": "2 M$",
+    "horizon": "36 mois",
+    "trl_actuel": 5,
+    "trl_vise": 7
+  },
+  "contenu": "[DONNÉES FICTIVES — PROTOTYPE] 1. Contexte\nLes bases opérationnelles avancées et les camps temporaires dépendent de génératrices diesel, coûteuses à ravitailler et vulnérables. Les objectifs de réduction des émissions du Ministère renforcent ce besoin.\n\n2. Énoncé du problème\nDémontrer des solutions de micro-réseaux hybrides (renouvelables + stockage) déployables rapidement et fonctionnant par grand froid.\n\n3. Résultats attendus\n- Démonstrateurs comparés sur un site d'essai.\n- Données de performance, de logistique et de coût de cycle de vie.\n\n4. Contraintes\nLe besoin peut être décrit publiquement. L'industrie canadienne de l'énergie propre est active dans ce domaine et plusieurs approches concurrentes sont envisageables."
+}

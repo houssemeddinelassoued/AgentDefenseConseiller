@@ -1,0 +1,47 @@
+{
+  "BES-2026-0141": {
+    "projets_connexes": [
+      {
+        "code": "DIP-23-C017",
+        "titre": "Bac à sable de détection de drones (2024)",
+        "statut": "Terminé"
+      }
+    ],
+    "code_programme": "PRG-INNOV-01",
+    "note": "[fictif]"
+  },
+  "BES-2026-0142": {
+    "projets_connexes": [
+      {
+        "code": "DIP-25-M044",
+        "titre": "Caractérisation acoustique des coques",
+        "statut": "En cours",
+        "fin_prevue": "2027-03"
+      }
+    ],
+    "code_programme": "PRG-MAR-02",
+    "note": "Chevauchement possible avec un projet interne en cours. [fictif]"
+  },
+  "BES-2026-0148": {
+    "projets_connexes": [
+      {
+        "code": "DIP-24-A031",
+        "titre": "Analytique des données de vol",
+        "statut": "En cours"
+      }
+    ],
+    "code_programme": "PRG-AERO-03",
+    "note": "Droits d'utilisation des données du fabricant non répertoriés dans le DIP. [fictif]"
+  },
+  "BES-2026-0149": {
+    "projets_connexes": [
+      {
+        "code": "DIP-25-E009",
+        "titre": "Pilote d'énergie renouvelable en garnison",
+        "statut": "Planifié"
+      }
+    ],
+    "code_programme": "PRG-INFRA-04",
+    "note": "[fictif]"
+  }
+}

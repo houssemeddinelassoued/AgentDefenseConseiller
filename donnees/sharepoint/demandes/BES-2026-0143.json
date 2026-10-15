@@ -1,0 +1,18 @@
+{
+  "id": "BES-2026-0143",
+  "titre": "Outil prédictif de détection précoce de l'épuisement chez les militaires",
+  "date_reception": "2026-09-15",
+  "demandeur": "Groupe des Services de santé des Forces canadiennes",
+  "classification": "NON CLASSIFIÉ",
+  "contexte": {
+    "population": "Militaires de la Force régulière et de la Réserve",
+    "urgence": "moyenne"
+  },
+  "parametres": {
+    "budget_estime": "900 k$",
+    "horizon": "18 mois",
+    "trl_actuel": 2,
+    "trl_vise": 5
+  },
+  "contenu": "[DONNÉES FICTIVES — PROTOTYPE] 1. Contexte\nLes taux d'épuisement professionnel et de détresse psychologique constituent un enjeu de maintien en puissance des effectifs. Les cliniciens souhaitent repérer plus tôt les militaires à risque afin d'offrir un soutien préventif.\n\n2. Énoncé du problème\nConcevoir un outil d'aide à la décision qui combine des indicateurs (questionnaires, rythme opérationnel, absences, données de santé) pour estimer un risque d'épuisement et alerter les cliniciens.\n\n3. Résultats attendus\n- Prototype d'algorithme et tableau de bord clinique.\n- Évaluation de la validité prédictive.\n\n4. Contraintes\nLes données de santé des militaires sont des renseignements personnels protégés. Leur utilisation par des tiers exigerait des ententes et des évaluations des facteurs relatifs à la vie privée qui ne sont pas encore engagées. Le demandeur envisage aussi bien un défi ouvert avec des données synthétiques qu'un développement interne.\n\n5. Remarques\nLes modalités d'utilisation des alertes (confidentialité vis-à-vis de la chaîne de commandement) ne sont pas encore définies."
+}

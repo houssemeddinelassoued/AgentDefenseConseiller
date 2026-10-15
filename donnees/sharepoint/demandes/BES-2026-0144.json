@@ -1,0 +1,18 @@
+{
+  "id": "BES-2026-0144",
+  "titre": "Textile de camouflage multispectral adaptatif",
+  "date_reception": "2026-09-17",
+  "demandeur": "Armée canadienne — Direction du soldat",
+  "classification": "NON CLASSIFIÉ",
+  "contexte": {
+    "utilisateurs": "Fantassins et équipes de reconnaissance",
+    "urgence": "moyenne"
+  },
+  "parametres": {
+    "budget_estime": "1,2 M$",
+    "horizon": "30 mois",
+    "trl_actuel": 3,
+    "trl_vise": 6
+  },
+  "contenu": "[DONNÉES FICTIVES — PROTOTYPE] 1. Contexte\nLa prolifération des capteurs thermiques et hyperspectraux bon marché expose les soldats débarqués. Les tenues actuelles offrent une protection limitée dans l'infrarouge et ne s'adaptent pas aux saisons canadiennes.\n\n2. Énoncé du problème\nObtenir un textile léger réduisant la détectabilité dans le visible, le proche infrarouge et l'infrarouge thermique, idéalement adaptable (été, hiver, transition).\n\n3. Résultats attendus\n- Échantillons de textiles évalués en laboratoire puis sur le terrain.\n- Analyse de la durabilité, du poids, de la respirabilité et du coût de production à l'échelle.\n\n4. Contraintes\nLes spécifications de performance peuvent être publiées. Le secteur des textiles techniques et plusieurs laboratoires universitaires canadiens sont actifs sur les matériaux à émissivité contrôlée."
+}
